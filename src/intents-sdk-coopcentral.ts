@@ -29,6 +29,17 @@ const getOwnerAccessRules = (publicKey: string) => {
   ] as any;
 };
 
+const sdk = new LedgerSdk({
+  ledger: LEDGER,
+  server: SERVER,
+  timeout: 15000,
+  verifyResponseProofs: false,
+  signer: {
+    format: "ed25519-raw",
+    public: PUBLIC_SERVER_KEY,
+  },
+});
+
 const claim = {
   action: "transfer",
   amount: 400,
@@ -53,17 +64,6 @@ const claim = {
   },
 } as any;
 
-const sdk = new LedgerSdk({
-  ledger: LEDGER,
-  server: SERVER,
-  timeout: 15000,
-  verifyResponseProofs: false,
-  signer: {
-    format: "ed25519-raw",
-    public: PUBLIC_SERVER_KEY,
-  },
-});
-
 const keyPair = {
   // Public-secret key pair used to sign tokens
   format: "ed25519-raw" as const,
@@ -75,12 +75,12 @@ export const createIntentWithSdk = async () => {
   const response = await sdk.intent
     .init()
     .data({
-      handle: "12345678901234567XYZ123456789012345", //sdk.handle.unique(), // will return a random unique handle
+      handle: "12345678901234567XYZ123456789012345",
       claims: [claim],
       schema: "b2p-send",
-      //   custom: {
-      //     routingCode: "TFY",
-      //   },
+      custom: {
+        routingCode: "TFY",
+      },
       access: getOwnerAccessRules(keyPair.public),
     })
     .hash()
