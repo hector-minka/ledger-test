@@ -187,10 +187,34 @@ export const createIntentWithApi = async () => {
   }
 };
 
-export const prepareDebitWithSdk = async () => {};
+export const prepareDebitWithApi = async () => {};
+
+const ANCHOR_SERVER = "https://427652022779.ngrok-free.app"; //esta prueba es con el alias ledger local y el mockup bridge de TFY
+const ANCHOR = "3123454333";
+
+export const getAnchortWithApi = async () => {
+  try {
+    const response = await axios.get(`${ANCHOR_SERVER}/v2/anchors/${ANCHOR}`, {
+      headers: {
+        "Content-Type": "application/json",
+        "x-received": dayjs().toISOString(),
+        "x-dispatched": dayjs().toISOString(),
+        //   "x-ledger": LEDGER,
+        //   Authorization: `Bearer ${jwt}`, // Temporarily removed
+      },
+    });
+
+    // console.info("RESPONSE:", response.data);
+    console.info(
+      "RESPONSE:",
+      util.inspect(response.data, { depth: null, colors: true })
+    );
+  } catch (error) {}
+};
 
 createIntentWithApi();
 // prepareDebitWithSdk();
+// getAnchortWithApi();
 
 // const getJWT = async () => {
 //   const privateKey = getPrivateKey();

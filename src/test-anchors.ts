@@ -3,11 +3,12 @@ import {
   LedgerSdk,
 } from "@minka/ledger-sdk";
 import {
-  AccessAction,
-  AccessRecordOwnership,
+  // AccessAction,
+  // AccessRecordOwnership,
   //   LedgerClaim,
   LedgerKeyPair,
 } from "@minka/ledger-sdk/types";
+import util from "util";
 
 //CARLOS
 /*const PUBLIC_KEY = 'ak40/ebXaPHdSwypXWHDlFaZZx0zdajPBz/dijLvdaE=';
@@ -25,12 +26,30 @@ const PUBLIC_SERVER_KEY = 'ruoUJXl56DvcM0QLAt12WzUoEFhW+rbZt4XMqcCPQGQ=';
 // const AUDIENCE = "servibanca";
 
 // const SIGNER = "htorohn";
+// const PUBLIC_KEY = "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw=";
+// const SECRET_KEY = "fiCwMZ406y4uzpCvB+bZZAemToHooagwLGn15We+m0s=";
+// const LEDGER = "hector-ledger-test";
+// const SERVER = "https://ldg-stg.one/api/v2";
+// const PUBLIC_SERVER_KEY = "MMko0OM/+lNtdKR+D9SvgZul1KiZXjZ5slLkGEBTO9s=";
+const AUDIENCE = "payments-hub-hector-test";
+
+// htorohn
 const PUBLIC_KEY = "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw=";
 const SECRET_KEY = "fiCwMZ406y4uzpCvB+bZZAemToHooagwLGn15We+m0s=";
-const LEDGER = "hector-ledger-test";
-const SERVER = "https://ldg-stg.one/api/v2";
-const PUBLIC_SERVER_KEY = "MMko0OM/+lNtdKR+D9SvgZul1KiZXjZ5slLkGEBTO9s=";
-const AUDIENCE = "hector-ledger-test";
+
+// hector-bac
+// const PUBLIC_KEY = "mZgQf7MvGjSHgevAF0ZhVfXGjX5Jyd8bHMdZJ0msEcE=";
+// const SECRET_KEY = "ocOakPT0WW/vG7TZTHeg0nf4CJ2mfv/WrivaDQzo0j4=";
+// const LEDGER = "toro-ledger";
+// const LEDGER = "hector-ledger-test";
+const LEDGER = "payments-hub-hector-test";
+const SERVER = "https://ldg-dev.one/api/v2";
+// const LEDGER = "ledger-bridge-test";
+// const SERVER = "https://ldg-stg.one/api/v2";
+// const PUBLIC_SERVER_KEY = "9nwKxTS2IT2CQMtFGw0oWbOWPCkD7NRwSVMin2EQlzA="; // htorohn server key
+// const PUBLIC_SERVER_KEY = "MMko0OM/+lNtdKR+D9SvgZul1KiZXjZ5slLkGEBTO9s="; // hector-bac server key
+// const PUBLIC_SERVER_KEY = "vY5WiTerOBs7FVHLQcz+Y4L0pXXs6HtasskooJwcyqw="; // htorohn ledger-bridge-test
+const PUBLIC_SERVER_KEY = "sWf+wVQmbs+1lrjOpfwetHHMchQxDdEHVoCl6+1v1CI="; // htorohn lpayments-hub-hector-test dev server
 
 //CARLOS_DEV
 //const PUBLIC_KEY = 'nAgcwbd3YA/agRjwLee3GGd2eXscnaQIX5i7rS8x7p0=';
@@ -100,23 +119,22 @@ export async function createAnchor() {
     secret: SECRET_KEY,
   };
   const anchorData = {
-    handle: "svgs:12345.bac.com.hn.cop",
-    wallet: "bac.com.hn",
-    target: "svgs:1234597755@bac.com.hn",
+    handle: "3123454332",
+    target: "svgs:20359303@bancorojo.co",
+    // wallet: "svgs:20359303@bancorojo.co",
     symbol: "cop",
+    schema: "individual",
     custom: {
-      name: "Hector Toro",
-      idType: "nidn",
-      idNumber: "0801198607261",
-      entityType: "individual",
+      lastName: "Carrasquillo",
+      aliasType: "tel",
+      firstName: "Alejandra",
+      secondName: "Lourdes",
+      routingCode: "TFY",
+      documentType: "cc",
+      documentNumber: "1239374708",
+      secondLastName: "Palomo",
+      participantCode: "8224",
     },
-    access: [
-      {
-        action: AccessAction.Any,
-        signer: { $record: AccessRecordOwnership.Owner },
-      },
-    ],
-    schema: "person",
   };
 
   //   const anchorData = {
@@ -176,45 +194,45 @@ export async function createAnchor() {
   console.log("<br>El response es:", response);
 }
 
-// async function getAnchor() {
-//   const sdk = new LedgerSdk({
-//     ledger: LEDGER,
-//     server: SERVER,
-//     timeout: 15000,
-//     verifyResponseProofs: true,
-//     signer: {
-//       format: "ed25519-raw",
-//       public: PUBLIC_SERVER_KEY,
-//     },
-//     secure: {
-//       iss: "carlos",
-//       sub: "signer:carlos",
-//       aud: AUDIENCE,
-//       exp: 60,
-//       keyPair: {
-//         format: "ed25519-raw",
-//         public: PUBLIC_KEY,
-//         secret: SECRET_KEY,
-//       },
-//     },
-//   });
+async function getAnchor() {
+  const sdk = new LedgerSdk({
+    ledger: LEDGER,
+    server: SERVER,
+    timeout: 15000,
+    verifyResponseProofs: true,
+    signer: {
+      format: "ed25519-raw",
+      public: PUBLIC_SERVER_KEY,
+    },
+    secure: {
+      iss: "carlos",
+      sub: "signer:carlos",
+      aud: AUDIENCE,
+      exp: 60,
+      keyPair: {
+        format: "ed25519-raw",
+        public: PUBLIC_KEY,
+        secret: SECRET_KEY,
+      },
+    },
+  });
 
-//   sdk.anchor.setHeader("X-Received", "2025-04-14T14:23:45.123Z"); // value is an example without the proper format
-//   sdk.anchor.setHeader("X-Dispatched", "2025-04-14T14:23:45.123Z"); // value is an example without the proper format
+  sdk.anchor.setHeader("X-Received", "2025-04-14T14:23:45.123Z"); // value is an example without the proper format
+  sdk.anchor.setHeader("X-Dispatched", "2025-04-14T14:23:45.123Z"); // value is an example without the proper format
 
-//   /*
-// 	const anchor = (await  sdk.anchor
-//                     .read('carlos998876@minka.io')
-//                     ).response.data;
-//     console.log("El Anchor  es:", anchor);
-//     */
+  /*
+	const anchor = (await  sdk.anchor
+                    .read('carlos998876@minka.io')
+                    ).response.data;
+    console.log("El Anchor  es:", anchor);
+    */
 
-//   const { response } = await sdk.anchor.read("asdasdasdasd@minka.io");
+  const { response } = await sdk.anchor.read("3123454332");
 
-//   console.log("<br>El Anchor response request es:", response.request);
-//   console.log("<br>El Anchor config es:", response.config);
-//   console.log("<br>El Anchor response es:", response);
-// }
+  console.log("<br>El Anchor response request es:", response.request);
+  console.log("<br>El Anchor config es:", response.config);
+  console.log("<br>El Anchor response es:", response);
+}
 
 // async function getAnchors() {
 //   const sdk = new LedgerSdk({
@@ -642,6 +660,45 @@ export async function createAnchor() {
 //     */
 // }
 
-// updateAnchorData().catch(console.error);
+// Main function to handle command line arguments
+async function main() {
+  const args = process.argv.slice(2);
+  const command = args[0];
 
-createAnchor().catch(console.error);
+  if (!command) {
+    console.log("Usage: npm run ts-node src/test-anchors.ts <command>");
+    console.log("Available commands:");
+    console.log("  createAnchor - Create a new anchor");
+    console.log("  getAnchor    - Get an existing anchor");
+    return;
+  }
+
+  try {
+    switch (command) {
+      case "createAnchor":
+        console.log("🔄 Creating anchor...");
+        await createAnchor();
+        break;
+      case "getAnchor":
+        console.log("🔍 Getting anchor...");
+        await getAnchor();
+        break;
+      default:
+        console.log(`❌ Unknown command: ${command}`);
+        console.log("Available commands: createAnchor, getAnchor");
+    }
+  } catch (error) {
+    console.error(
+      "❌ Error executing command:",
+      util.inspect(error, { depth: null, colors: true })
+    );
+  }
+}
+
+// Export getAnchor function for individual use
+export { getAnchor };
+
+// Run main function if this file is executed directly
+if (require.main === module) {
+  main().catch(console.error);
+}

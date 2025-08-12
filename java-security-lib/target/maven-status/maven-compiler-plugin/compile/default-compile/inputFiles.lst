@@ -1,5 +1,6 @@
 /Users/hectortoro/Development/minka/bank-integration/java-security-lib/src/main/java/com/minka/security/HashUtils.java
 /Users/hectortoro/Development/minka/bank-integration/java-security-lib/src/main/java/com/minka/security/JwtUtils.java
+/Users/hectortoro/Development/minka/bank-integration/java-security-lib/src/test/java/com/minka/security/AnchorApiSecurityTest.java
 /Users/hectortoro/Development/minka/bank-integration/java-security-lib/src/test/java/com/minka/security/IntentApiSecurityTest.java
 /Users/hectortoro/Development/minka/bank-integration/java-security-lib/src/main/java/com/minka/security/KeyUtils.java
 /Users/hectortoro/Development/minka/bank-integration/java-security-lib/src/main/java/com/minka/security/SignatureUtils.java
