@@ -12,14 +12,17 @@ const SECRET_KEY = "fiCwMZ406y4uzpCvB+bZZAemToHooagwLGn15We+m0s=";
 // const SECRET_KEY = "ocOakPT0WW/vG7TZTHeg0nf4CJ2mfv/WrivaDQzo0j4=";
 // const LEDGER = "toro-ledger";
 // const LEDGER = "hector-ledger-test";
-const LEDGER = "payments-hub-hector-test";
-const SERVER = "https://ldg-dev.one/api/v2";
+// const LEDGER = "payments-hub-hector-test";
+// const SERVER = "https://ldg-dev.one/api/v2";
+const LEDGER = "payment-hub-staging";
+const SERVER = "https://ldg-stg.one/api/v2";
+const PUBLIC_SERVER_KEY = "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A="; // htorohn lpayments-hub-hector-test dev server
 // const LEDGER = "ledger-bridge-test";
 // const SERVER = "https://ldg-stg.one/api/v2";
 // const PUBLIC_SERVER_KEY = "9nwKxTS2IT2CQMtFGw0oWbOWPCkD7NRwSVMin2EQlzA="; // htorohn server key
 // const PUBLIC_SERVER_KEY = "MMko0OM/+lNtdKR+D9SvgZul1KiZXjZ5slLkGEBTO9s="; // hector-bac server key
 // const PUBLIC_SERVER_KEY = "vY5WiTerOBs7FVHLQcz+Y4L0pXXs6HtasskooJwcyqw="; // htorohn ledger-bridge-test
-const PUBLIC_SERVER_KEY = "sWf+wVQmbs+1lrjOpfwetHHMchQxDdEHVoCl6+1v1CI="; // htorohn lpayments-hub-hector-test dev server
+// const PUBLIC_SERVER_KEY = "sWf+wVQmbs+1lrjOpfwetHHMchQxDdEHVoCl6+1v1CI="; // htorohn lpayments-hub-hector-test dev server
 
 const getOwnerAccessRules = (publicKey: string) => {
   return [
@@ -46,8 +49,8 @@ const claim = {
   source: {
     // handle: "svgs:1234567@ficohsa.com.hn",
     // handle: "svgs:1234567@bac.com.hn",
-    // handle: "svgs:1234567@bank.com.co",
-    handle: "svgs:wLExoGUFuGoBv69VrKvMzRVRJi96HaYTUC@bank.com.co",
+    handle: "svgs:1234567@bank.com.co",
+    // handle: "svgs:wLExoGUFuGoBv69VrKvMzRVRJi96HaYTUC@bank.com.co",
     custom: {
       documentNumber: "123456789",
       documentType: "txid",
@@ -63,7 +66,8 @@ const claim = {
     // },
   },
   target: {
-    handle: "svgs:w0000002",
+    // handle: "svgs:w0000002",
+    handle: "svgs:1234567@bancorojo.co",
     custom: {
       accountRef: "3123454333",
       documentNumber: "321654987",
@@ -71,7 +75,6 @@ const claim = {
       entityType: "individual",
       name: "Hector Toro",
     },
-    // handle: "svgs:1234567@bac.com.hn",
     // custom: {
     //   entityType: "individual",
     //   idNumber: "7654321",
@@ -83,6 +86,49 @@ const claim = {
   symbol: { handle: "cop" },
   amount: 400,
 } as any;
+// const claim2 = {
+//   action: "transfer",
+
+//   source: {
+//     // handle: "svgs:1234567@ficohsa.com.hn",
+//     // handle: "svgs:1234567@bac.com.hn",
+//     // handle: "svgs:1234567@bank.com.co",
+//     handle: "svgs:wLExoGUFuGoBv69VrKvMzRVRJi96HaYTUC@bank.com.co",
+//     custom: {
+//       documentNumber: "123456789",
+//       documentType: "txid",
+//       entityType: "business",
+//       name: "Toro Studio",
+//     },
+//     // custom: {
+//     //   entityType: "individual",
+//     //   idNumber: "1234567",
+//     //   idType: "txid",
+//     //   name: "Hector Toro",
+//     //   phoneNumber: "98761065",
+//     // },
+//   },
+//   target: {
+//     handle: "svgs:w0000002",
+//     custom: {
+//       accountRef: "3123454333",
+//       documentNumber: "321654987",
+//       documentType: "txid",
+//       entityType: "individual",
+//       name: "Hector Toro",
+//     },
+//     // handle: "svgs:1234567@bac.com.hn",
+//     // custom: {
+//     //   entityType: "individual",
+//     //   idNumber: "7654321",
+//     //   idType: "txid",
+//     //   name: "Alfredo del Cid",
+//     // },
+//   },
+
+//   symbol: { handle: "cop" },
+//   amount: 500,
+// } as any;
 
 const keyPair = {
   // Public-secret key pair used to sign tokens
