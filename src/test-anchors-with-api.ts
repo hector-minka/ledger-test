@@ -12,7 +12,8 @@ const SECRET_KEY = "fiCwMZ406y4uzpCvB+bZZAemToHooagwLGn15We+m0s=";
 const LEDGER = "payment-hub-staging";
 const SERVER = "https://ldg-stg.one/api/v2";
 // const PUBLIC_SERVER_KEY = "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=";
-const AUDIENCE = "payments-hub-hector-test";
+// const AUDIENCE = "payments-hub-hector-test";
+const AUDIENCE = "payment-hub-staging";
 
 const keyPair = {
   format: "ed25519-raw" as const,
@@ -148,14 +149,16 @@ export async function getAnchor() {
     console.log("🔍 Getting anchor with direct API...");
 
     const jwt = await createJWT();
-
-    const response = await axios.get(`${SERVER}/anchors/@htorohn`, {
+    const handle = "@htorohn";
+    const response = await axios.get(`${SERVER}/anchors/${handle}`, {
       headers: {
         "Content-Type": "application/json",
         "x-ledger": LEDGER,
         "x-received": "2025-04-14T14:23:45.123Z",
         "x-dispatched": "2025-04-14T14:23:45.123Z",
         Authorization: `Bearer ${jwt}`,
+        "x-use-case": "p2p",
+        "x-domain": "TFY",
       },
     });
 
@@ -190,6 +193,8 @@ export async function getAnchors() {
         "Content-Type": "application/json",
         "x-ledger": LEDGER,
         Authorization: `Bearer ${jwt}`,
+        "x-use-case": "p2p",
+        "x-domain": "TFY",
       },
       params,
     });
@@ -356,40 +361,84 @@ export async function dropAnchor() {
   try {
     console.log("🗑️ Dropping anchor with direct API...");
 
-    const signatureCustom = {
-      status: "CANCELLED",
-      moment: "2025-04-15T14:23:45.123Z",
-    };
+    const handle = "@htorohn";
 
-    // For drop operation, we need to create a minimal data structure
-    const dropData = {
-      handle: "3044933089",
-    };
+    // // First, get the existing anchor to get its current data and hash
+    const jwt = await signJWT(
+      {
+        iss: SIGNER,
+        sub: `signer:${SIGNER}`,
+        aud: LEDGER,
+        iat: Math.floor(Date.now() / 1000),
+        exp: Math.floor(Date.now() / 1000) + 60,
+      },
+      SECRET_KEY,
+      PUBLIC_KEY
+    );
+    const getResponse = await axios.get(`${SERVER}/anchors/${handle}`, {
+      headers: {
+        "Content-Type": "application/json",
+        "x-ledger": LEDGER,
+        Authorization: `Bearer ${jwt}`,
+        // tyesting new headers
+        "x-use-case": "p2p",
+        "x-domain": "TFY",
+      },
+    });
 
-    const { hash, signatureDigest, signatureBase64 } = createSignature(
-      dropData,
-      signatureCustom
+    console.log(
+      "GET RESPONSE:",
+      util.inspect(getResponse.data, { depth: null, colors: true })
     );
 
+    // const existingAnchor = getResponse.data.data;
+    const existingHash = getResponse.data.hash;
+    const existingLuid = getResponse.data.luid;
+
+    // Calculate hash for the drop operation data
+    const dropData = {
+      parent: existingHash, // Reference to previous state
+    };
+    // You need to calculate the hash of this drop data
+    const newHash = createHash(dropData); // Use your hash function
+
+    const signatureCustom = {
+      status: "CANCELLED",
+      moment: "2025-04-15T14:23:45.123Z", // or use new Date().toISOString()
+    };
+
+    // Use the existing hash for the signature digest
+    const signatureDigest = createSignatureDigest(newHash, signatureCustom);
+
+    const digestBuffer = Buffer.from(signatureDigest, "hex");
+    const privateKey = getPrivateKey();
+    const signatureBase64 = crypto
+      .sign(undefined, digestBuffer, privateKey)
+      .toString("base64");
+
+    const proofData = {
+      method: "ed25519-v2",
+      public: keyPair.public,
+      digest: signatureDigest,
+      result: signatureBase64,
+      custom: signatureCustom,
+    };
+
     const request = {
+      luid: existingLuid,
       data: dropData,
-      hash,
+      hash: newHash,
       meta: {
-        proofs: [
-          {
-            method: "ed25519-v2",
-            custom: signatureCustom,
-            digest: signatureDigest,
-            public: keyPair.public,
-            result: signatureBase64,
-          },
-        ],
+        ...getResponse.data.meta,
+        proofs: [proofData], // Only include the new proof for the drop operation
       },
     };
 
-    const jwt = await createJWT();
-
-    const response = await axios.delete(`${SERVER}/anchors/3044933089`, {
+    console.log(
+      "REQUEST:",
+      util.inspect(request, { depth: null, colors: true })
+    );
+    const response = await axios.delete(`${SERVER}/anchors/${handle}`, {
       headers: {
         "Content-Type": "application/json",
         "x-ledger": LEDGER,
@@ -498,7 +547,7 @@ export async function updateAnchorData() {
 export async function signAnchor() {
   try {
     console.log("✍️ Signing anchor with direct API...");
-
+    const handle = "@htorohn3";
     // First, get the existing anchor
     // const jwt = await createJWT();
     const jwt = await signJWT(
@@ -512,11 +561,13 @@ export async function signAnchor() {
       SECRET_KEY,
       PUBLIC_KEY
     );
-    const getResponse = await axios.get(`${SERVER}/anchors/@htorohn`, {
+    const getResponse = await axios.get(`${SERVER}/anchors/${handle}`, {
       headers: {
         "Content-Type": "application/json",
         "x-ledger": LEDGER,
         Authorization: `Bearer ${jwt}`,
+        // tyesting new headers
+        // "x-use-case": "p2p",
       },
     });
     const existingAnchor = getResponse.data.data;
@@ -555,7 +606,7 @@ export async function signAnchor() {
     };
 
     const response = await axios.post(
-      `${SERVER}/anchors/@htorohn/proofs`,
+      `${SERVER}/anchors/${handle}/proofs`,
       proofData,
       {
         headers: {

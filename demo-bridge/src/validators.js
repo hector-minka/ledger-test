@@ -1,5 +1,5 @@
 // Populate this with the wallet handle you created
-const BANK_WALLET = "alianza"; //this is the target wallet
+const BANK_WALLET = "alianza.com.co"; //this is the target wallet
 
 // Factor for usd is 100
 const USD_FACTOR = 100;
@@ -25,7 +25,7 @@ export function extractAndValidateAddress(address) {
       `Expected address parent to be ${BANK_WALLET}, got ${parent}`
     );
   }
-  if (schema !== "account") {
+  if (schema !== "svgs") {
     throw new Error(`Expected address schema to be account, got ${schema}`);
   }
   if (!account || account.length === 0) {

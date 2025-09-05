@@ -10,7 +10,7 @@ import { logRequest } from "./middleware/logging.js";
 
 const app = express();
 const bankName = "Demo bank";
-const port = 3001;
+const port = process.env.PORT || process.argv[2] || 3001;
 
 // express.json() is used to parse incoming JSON data
 app.use(express.json());

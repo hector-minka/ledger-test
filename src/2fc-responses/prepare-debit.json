@@ -1,0 +1,179 @@
+RECEIVED POST /v2/debits
+{
+  "data": {
+    "luid": "$ben.-0w11VnbzsU-f68N9",
+    "amount": 400,
+    "handle": "deb_02CQQiYS0mRY2yfBS",
+    "inputs": [
+      0
+    ],
+    "intent": {
+      "data": {
+        "access": [
+          {
+            "action": "any",
+            "signer": {
+              "public": "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw="
+            }
+          },
+          {
+            "action": "read",
+            "bearer": {
+              "$signer": {
+                "public": "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw="
+              }
+            }
+          }
+        ],
+        "claims": [
+          {
+            "action": "transfer",
+            "amount": 400,
+            "source": {
+              "custom": {
+                "name": "Mi Negocio",
+                "entityType": "business",
+                "documentType": "txid",
+                "documentNumber": "123456789"
+              },
+              "handle": "svgs:1234567@alianza.com.co"
+            },
+            "symbol": {
+              "handle": "cop"
+            },
+            "target": {
+              "custom": {
+                "name": "Hector Toro",
+                "accountRef": "3123454333",
+                "entityType": "individual",
+                "documentType": "txid",
+                "documentNumber": "321654987"
+              },
+              "handle": "svgs:1234567@bancorojo.co"
+            }
+          }
+        ],
+        "handle": "20250903834327742TFY742840352166425",
+        "schema": "b2p-send"
+      },
+      "hash": "03098c1bfe071172c0f61db3d79b9bbf09e9b7e2d37d7d371290875f125a8179",
+      "luid": "$int.-0w11Ux0xQlgr_Bno",
+      "meta": {
+        "moment": "2025-09-03T19:22:05.867Z",
+        "owners": [
+          "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw="
+        ],
+        "proofs": [
+          {
+            "custom": {
+              "moment": "2025-09-03T19:22:05.491Z",
+              "status": "created"
+            },
+            "digest": "c491bc996db4dd9821551f46a88009ee1583e2da2940f2822334733a696d92ab",
+            "method": "ed25519-v2",
+            "public": "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw=",
+            "result": "pOGUgx8MRMwKtTWfaFcVloD2aNnTeu8OBSO8CBpUvJEUHPfTp5n08J8XnUgKcH4OcZVHT9OnUooIb7NklqwmCQ=="
+          },
+          {
+            "custom": {
+              "moment": "2025-09-03T19:22:05.867Z",
+              "status": "pending"
+            },
+            "digest": "921de31e2bcf5a9e212dfda1296384536b5a2b16a5e971a800d44891ee0a1498",
+            "method": "ed25519-v2",
+            "public": "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=",
+            "result": "Ml2goR1WunyAyWwEC1fX9UcBwN37sYizzBsM3uGRW7xtO/zWQji8QyEzIlMs38SiiQHpt2DFhuAWKVTedbEYBA=="
+          },
+          {
+            "custom": {
+              "luid": "$int.-0w11Ux0xQlgr_Bno",
+              "moment": "2025-09-03T19:22:05.895Z",
+              "status": "pending"
+            },
+            "digest": "5aa66c22e2bfbf845c5454c4381ef6238107ebea18167128b3f957eda824cbb8",
+            "method": "ed25519-v2",
+            "public": "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=",
+            "result": "IweBNOAQz43DpZAwow08jIELNcXVMaAzbpdgEqjNFiaJKTjI/imDF71IKvmMWP0CdhC/0KX52zg9CUWeqcH9Dg=="
+          },
+          {
+            "custom": {
+              "amount": 400,
+              "bridge": "demo-bridge",
+              "handle": "deb_02CQQiVgaNAaDj6eL",
+              "inputs": [
+                0
+              ],
+              "moment": "2025-09-03T19:22:06.220Z",
+              "schema": "debit",
+              "status": "resolved",
+              "symbol": "cop",
+              "wallet": "alianza.com.co"
+            },
+            "digest": "d22fb6f974832393d9e73d631f4934adb3709cf4eead3de18bdf1372bc77c3dc",
+            "method": "ed25519-v2",
+            "public": "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=",
+            "result": "VZCexeMUxLYiLNy4ehOpLw28h7AnDIg+h0+Slh8fnM9GeZ2/8EDKi0fEkIEjWP7nL2KGHJcbHbYDU5tpedxdBw=="
+          },
+          {
+            "custom": {
+              "amount": 400,
+              "bridge": "tfy-bridge",
+              "handle": "cre_02CQQiykcCG1dQHfX",
+              "inputs": [
+                0
+              ],
+              "moment": "2025-09-03T19:22:06.222Z",
+              "schema": "credit",
+              "status": "resolved",
+              "symbol": "cop",
+              "wallet": "transfiya"
+            },
+            "digest": "d5661acde16f04940595ec8c1b8d203248e9a277d0edf5774b27d351e8c6f0c0",
+            "method": "ed25519-v2",
+            "public": "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=",
+            "result": "CPYwBMI5SmqG1slKqJrRMMsQG5D6AJH5yySigkm7DVI1lnSuRUnC5c1nckLxs/MsIPD8QLwnXC1+YSv7TBPTBw=="
+          }
+        ],
+        "status": "pending",
+        "thread": "-0w11UsMvGP9FhddF"
+      }
+    },
+    "schema": "debit",
+    "source": {
+      "custom": {
+        "name": "Mi Negocio",
+        "entityType": "business",
+        "documentType": "txid",
+        "documentNumber": "123456789"
+      },
+      "handle": "svgs:1234567@alianza.com.co"
+    },
+    "symbol": {
+      "handle": "cop"
+    },
+    "target": {
+      "custom": {
+        "name": "Hector Toro",
+        "accountRef": "3123454333",
+        "entityType": "individual",
+        "documentType": "txid",
+        "documentNumber": "321654987"
+      },
+      "handle": "svgs:1234567@bancorojo.co"
+    }
+  },
+  "hash": "d220a4ea112a45cbf3306ff137aaca88eec74feaeb98a454332c747ef548b702",
+  "meta": {
+    "proofs": [
+      {
+        "custom": {
+          "moment": "2025-09-03T19:22:06.316Z"
+        },
+        "digest": "244fb463c252e774767af3424554d6c239c9348f1d320dc44908819239c6d0d3",
+        "method": "ed25519-v2",
+        "public": "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=",
+        "result": "Mq0gE4O6lXPTWigu7rw1rhr0+pRKJGr4ZWQGSG8YKKk22kjyR/RoxYmCdhy3lt7qtzMQk1hZ2/iBlflNPBngCg=="
+      }
+    ]
+  }
+}

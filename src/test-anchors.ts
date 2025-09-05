@@ -26,7 +26,7 @@ const PUBLIC_SERVER_KEY = 'ruoUJXl56DvcM0QLAt12WzUoEFhW+rbZt4XMqcCPQGQ=';
 // const LEDGER = "hector-ledger-test";
 // const SERVER = "https://ldg-stg.one/api/v2";
 // const PUBLIC_SERVER_KEY = "MMko0OM/+lNtdKR+D9SvgZul1KiZXjZ5slLkGEBTO9s=";
-const AUDIENCE = "payments-hub-hector-test";
+const AUDIENCE = "payment-hub-staging";
 
 // htorohn
 const PUBLIC_KEY = "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw=";
@@ -116,67 +116,24 @@ export async function createAnchor() {
     public: PUBLIC_KEY,
     secret: SECRET_KEY,
   };
-  //   const anchorData = {
-  //     handle: "3123454336",
-  //     target: "svgs:20359303@bancorojo.co",
-  //     // wallet: "svgs:20359303@bancorojo.co",
-  //     symbol: "cop",
-  //     schema: "individual",
-  //     custom: {
-  //       lastName: "Carrasquillo",
-  //       aliasType: "tel",
-  //       firstName: "Alejandra",
-  //       secondName: "Lourdes",
-  //       routingCode: "TFY",
-  //       documentType: "cc",
-  //       documentNumber: "1239374708",
-  //       secondLastName: "Palomo",
-  //       participantCode: "8224",
-  //     },
-  //   };
-  // "data": {
-  //     "handle": "carlos129833da@minka.io",
-  //     "target": "svgs:1234597755@lulobank.com",
-  //     "symbol": "cop",
-  //     "schema": "individual",
-  //     "custom": {
-  //       "aliasType": "email",
-  //       "documentType": "cc",
-  //       "documentNumber": "0801198607261",
-  //       "firstName": "Carlos",
-  //       "secondName": "Jose",
-  //       "lastName": "Andino",
-  //       "secondLastName": "Nunez",
-  //       "routingCode": "TFY",
-  //       "participantCode": "860050750"
-  //     }
-  //   },
+
   const anchorData = {
-    handle: "@htorohn3",
-    // wallet: "DICE",
-    target: "svgs:19395654999@bancorojo.co",
+    handle: "htorohn@icloud.com",
+    target: "svgs:1543534534534@bancoamarillo.co",
     symbol: "cop",
     custom: {
       aliasType: "username",
       documentType: "cc",
-      documentNumber: "0801198607",
+      documentNumber: "080119860745",
       accountType: "svgs",
       accountNumber: "123457",
       firstName: "Hector",
       secondName: "Alfredo",
       lastName: "Toro",
       secondLastName: "del Cid",
-      //   entityType: "individual",
       participantCode: "891234918",
-      //   directory: "centralized",
       routingCode: "TFY",
     },
-    // access: [
-    //   {
-    //     action: AccessAction.Any,
-    //     signer: { $record: AccessRecordOwnership.Owner },
-    //   },
-    // ],
     schema: "individual",
   };
 
@@ -233,14 +190,14 @@ async function getAnchor() {
     ledger: LEDGER,
     server: SERVER,
     timeout: 15000,
-    verifyResponseProofs: true,
+    verifyResponseProofs: false,
     signer: {
       format: "ed25519-raw",
       public: PUBLIC_SERVER_KEY,
     },
     secure: {
-      iss: "carlos",
-      sub: "signer:carlos",
+      iss: PUBLIC_KEY,
+      sub: "signer:htorohn",
       aud: AUDIENCE,
       exp: 60,
       keyPair: {
@@ -253,6 +210,8 @@ async function getAnchor() {
 
   sdk.anchor.setHeader("X-Received", "2025-04-14T14:23:45.123Z"); // value is an example without the proper format
   sdk.anchor.setHeader("X-Dispatched", "2025-04-14T14:23:45.123Z"); // value is an example without the proper format
+  sdk.anchor.setHeader("X-use-case", "p2p"); // value is an example without the proper format
+  sdk.anchor.setHeader("X-domain", "TFY"); // value is an example without the proper format
 
   /*
 	const anchor = (await  sdk.anchor
@@ -263,7 +222,7 @@ async function getAnchor() {
 
   try {
     // const { response } = await sdk.anchor.read("@zeljko11");
-    const { response } = await sdk.anchor.read("@martinez");
+    const { response } = await sdk.anchor.read("ricardo");
 
     console.log("<br>El Anchor response request es:", response.request);
     console.log("<br>El Anchor config es:", response.config);
@@ -461,7 +420,7 @@ async function dropAnchor() {
   };
 
   const droppedAnchor = await sdk.anchor
-    .with("3044933089")
+    .with("@htorohn3")
     .drop()
     .hash()
     .sign([
@@ -572,6 +531,7 @@ async function signAnchor() {
   const builder = sdk.anchor
     .from(anchorResponse.data)
     .hash()
+
     .sign([
       {
         keyPair: {

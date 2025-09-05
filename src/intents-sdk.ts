@@ -1,5 +1,6 @@
 import { LedgerSdk } from "@minka/ledger-sdk";
 import util from "util";
+import { generateTimestampHandle } from "./utils/handle";
 
 // Informacion para firmar los proof
 
@@ -47,26 +48,15 @@ const claim = {
   action: "transfer",
 
   source: {
-    // handle: "svgs:1234567@ficohsa.com.hn",
-    // handle: "svgs:1234567@bac.com.hn",
-    handle: "svgs:1234567@bank.com.co",
-    // handle: "svgs:wLExoGUFuGoBv69VrKvMzRVRJi96HaYTUC@bank.com.co",
+    handle: "svgs:234234234@alianza.com.co",
     custom: {
       documentNumber: "123456789",
       documentType: "txid",
       entityType: "business",
-      name: "Toro Studio",
+      name: "Mi Negocio",
     },
-    // custom: {
-    //   entityType: "individual",
-    //   idNumber: "1234567",
-    //   idType: "txid",
-    //   name: "Hector Toro",
-    //   phoneNumber: "98761065",
-    // },
   },
   target: {
-    // handle: "svgs:w0000002",
     handle: "svgs:1234567@bancorojo.co",
     custom: {
       accountRef: "3123454333",
@@ -75,16 +65,10 @@ const claim = {
       entityType: "individual",
       name: "Hector Toro",
     },
-    // custom: {
-    //   entityType: "individual",
-    //   idNumber: "7654321",
-    //   idType: "txid",
-    //   name: "Alfredo del Cid",
-    // },
   },
 
   symbol: { handle: "cop" },
-  amount: 400,
+  amount: 4000,
 } as any;
 // const claim2 = {
 //   action: "transfer",
@@ -157,29 +141,29 @@ const sdk = new LedgerSdk({
 });
 
 // Function to generate a timestamp-based handle following the pattern ^\\d{8}\\d{9}.{3}\\d{15}$
-const generateTimestampHandle = (): string => {
-  // Get current timestamp in YYYYMMDD format (8 digits)
-  const now = new Date();
-  const timestamp =
-    now.getFullYear().toString() +
-    (now.getMonth() + 1).toString().padStart(2, "0") +
-    now.getDate().toString().padStart(2, "0");
+// const generateTimestampHandle = (): string => {
+//   // Get current timestamp in YYYYMMDD format (8 digits)
+//   const now = new Date();
+//   const timestamp =
+//     now.getFullYear().toString() +
+//     (now.getMonth() + 1).toString().padStart(2, "0") +
+//     now.getDate().toString().padStart(2, "0");
 
-  // Generate 9 random digits
-  const randomDigits = Math.floor(Math.random() * 1000000000)
-    .toString()
-    .padStart(9, "0");
+//   // Generate 9 random digits
+//   const randomDigits = Math.floor(Math.random() * 1000000000)
+//     .toString()
+//     .padStart(9, "0");
 
-  // Fixed 3 characters (you can change these as needed)
-  const fixedChars = "TFY";
+//   // Fixed 3 characters (you can change these as needed)
+//   const fixedChars = "TFY";
 
-  // Generate 15 random digits
-  const randomDigits15 = Math.floor(Math.random() * 1000000000000000)
-    .toString()
-    .padStart(15, "0");
+//   // Generate 15 random digits
+//   const randomDigits15 = Math.floor(Math.random() * 1000000000000000)
+//     .toString()
+//     .padStart(15, "0");
 
-  return timestamp + randomDigits + fixedChars + randomDigits15;
-};
+//   return timestamp + randomDigits + fixedChars + randomDigits15;
+// };
 
 export const createIntentWithSdk = async () => {
   const response = await sdk.intent

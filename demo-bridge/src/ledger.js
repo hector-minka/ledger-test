@@ -2,11 +2,14 @@ import ledgerSdk from "@minka/ledger-sdk";
 
 const { LedgerSdk } = ledgerSdk;
 
-const LEDGER = "ledger-bridge-test";
+// const LEDGER = "ledger-bridge-test";
+const LEDGER = "payment-hub-staging";
 const SERVER = "https://ldg-stg.one/api/v2";
 // htorohn
 const PUBLIC_KEY = "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw=";
 const SECRET_KEY = "fiCwMZ406y4uzpCvB+bZZAemToHooagwLGn15We+m0s=";
+
+// const PUBLIC_SERVER_KEY = "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=";
 
 // Populate this object with bank keys you have created previously
 // using htorohn signer at the moment

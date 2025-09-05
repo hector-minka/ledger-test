@@ -1,0 +1,27 @@
+{
+  "name": "alias-forwarding-bridge",
+  "version": "1.0.0",
+  "description": "Simple web service to log all incoming requests",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "cookie-parser": "^1.4.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "keywords": [
+    "logging",
+    "webhook",
+    "bridge"
+  ],
+  "author": "",
+  "license": "ISC"
+}
+
+
