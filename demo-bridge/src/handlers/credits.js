@@ -1,6 +1,7 @@
 import core from "../core.js";
 import { ledgerSigner, notifyLedger } from "../ledger.js";
 import { updateEntry } from "../persistence.js";
+import { waitForInput } from "../utils/terminal-input.js";
 import {
   extractAndValidateData,
   validateAction,
@@ -30,6 +31,25 @@ export async function prepareCredit(req, res) {
   if (!alreadyRunning) {
     await processPrepareCredit(entry);
 
+    // Wait for user input before continuing (for verification)
+    console.log(
+      `\n[CREDIT-PREPARE] Processing completed for handle: ${entry.handle}`
+    );
+    console.log(
+      `[CREDIT-PREPARE] Account: ${entry.account}, Amount: ${entry.amount}, Symbol: ${entry.symbol}`
+    );
+    console.log(
+      `[CREDIT-PREPARE] Action state: ${
+        entry.actions[entry.processingAction]?.state
+      }`
+    );
+
+    console.log(`[CREDIT-PREPARE] About to call waitForInput...`);
+    await waitForInput(
+      `\n[CREDIT-PREPARE] Press Enter to continue with notification to ledger...`
+    );
+    console.log(`[CREDIT-PREPARE] waitForInput completed, continuing...`);
+
     // Stop Action processing and save the result.
     await endAction(entry);
   }
@@ -52,6 +72,7 @@ async function processPrepareCredit(entry) {
     const { address, symbol, amount } = extractAndValidateData({
       entry,
       schema: "credit",
+      walletOverride: "bancorojo.co",
     });
 
     // Save extracted data into Entry, we will need this for other Actions.

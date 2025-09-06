@@ -48,7 +48,7 @@ const claim = {
   action: "transfer",
 
   source: {
-    handle: "svgs:234234234@alianza.com.co",
+    handle: "svgs:2@alianza.com.co",
     custom: {
       documentNumber: "123456789",
       documentType: "txid",
@@ -57,7 +57,7 @@ const claim = {
     },
   },
   target: {
-    handle: "svgs:1234567@bancorojo.co",
+    handle: "svgs:1@bancorojo.co",
     custom: {
       accountRef: "3123454333",
       documentNumber: "321654987",

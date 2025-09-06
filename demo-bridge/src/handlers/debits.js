@@ -1,6 +1,7 @@
 import core from "../core.js";
 import { ledgerSigner, notifyLedger } from "../ledger.js";
 import { updateEntry } from "../persistence.js";
+import { waitForInput } from "../utils/terminal-input.js";
 import {
   extractAndValidateData,
   validateAction,
@@ -47,6 +48,31 @@ export async function prepareDebit(req, res) {
     console.log(
       `[DEBIT-PREPARE] Completed processing, ending action for handle: ${entry?.handle}`
     );
+
+    // Wait for user input before continuing (for verification)
+    console.log(
+      `\n[DEBIT-PREPARE] Processing completed for handle: ${entry.handle}`
+    );
+    console.log(
+      `[DEBIT-PREPARE] Account: ${entry.account}, Amount: ${entry.amount}, Symbol: ${entry.symbol}`
+    );
+    console.log(
+      `[DEBIT-PREPARE] Action state: ${
+        entry.actions[entry.processingAction]?.state
+      }`
+    );
+    console.log(
+      `[DEBIT-PREPARE] Core transaction ID: ${
+        entry.actions[entry.processingAction]?.coreId
+      }`
+    );
+
+    console.log(`[DEBIT-PREPARE] About to call waitForInput...`);
+    await waitForInput(
+      `\n[DEBIT-PREPARE] Press Enter to continue with notification to ledger...`
+    );
+    console.log(`[DEBIT-PREPARE] waitForInput completed, continuing...`);
+
     await endAction(entry);
   } else {
     console.log(

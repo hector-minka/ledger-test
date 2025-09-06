@@ -10,7 +10,7 @@ const ADDRESS_REGEX =
 
 export function validateEntity(entity, signer) {}
 
-export function extractAndValidateAddress(address) {
+export function extractAndValidateAddress(address, BANK_WALLET_OVERRIDE) {
   const result = ADDRESS_REGEX.exec(address);
   if (!result) {
     throw new Error(`Invalid address, got ${address}`);
@@ -20,9 +20,10 @@ export function extractAndValidateAddress(address) {
   console.log("parent", parent);
   console.log("schema", schema);
 
-  if (parent !== BANK_WALLET) {
+  const expectedWallet = BANK_WALLET_OVERRIDE || BANK_WALLET;
+  if (parent !== expectedWallet) {
     throw new Error(
-      `Expected address parent to be ${BANK_WALLET}, got ${parent}`
+      `Expected address parent to be ${expectedWallet}, got ${parent}`
     );
   }
   if (schema !== "svgs") {
@@ -68,14 +69,14 @@ export function validateSchema(schema, expected) {
   }
 }
 
-export function extractAndValidateData({ entry, schema }) {
+export function extractAndValidateData({ entry, schema, walletOverride }) {
   const data = entry?.data;
 
   validateSchema(data?.schema, schema);
 
   const rawAddress =
     data?.schema === "credit" ? data.target.handle : data.source.handle;
-  const address = extractAndValidateAddress(rawAddress);
+  const address = extractAndValidateAddress(rawAddress, walletOverride);
   const amount = extractAndValidateAmount(data.amount);
   const symbol = extractAndValidateSymbol(data.symbol.handle);
 

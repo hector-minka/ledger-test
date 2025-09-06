@@ -1,9 +1,9 @@
-RECEIVED POST /v2/debits
+RECEIVED POST /api/v2/debits
 {
   "data": {
-    "luid": "$ben.-0w11VnbzsU-f68N9",
-    "amount": 400,
-    "handle": "deb_02CQQiYS0mRY2yfBS",
+    "luid": "$ben.-0wigRLOQzeYx5-sH",
+    "amount": 4000,
+    "handle": "deb_02DC0qoFmvjKoiiAy",
     "inputs": [
       0
     ],
@@ -28,7 +28,7 @@ RECEIVED POST /v2/debits
         "claims": [
           {
             "action": "transfer",
-            "amount": 400,
+            "amount": 4000,
             "source": {
               "custom": {
                 "name": "Mi Negocio",
@@ -36,7 +36,7 @@ RECEIVED POST /v2/debits
                 "documentType": "txid",
                 "documentNumber": "123456789"
               },
-              "handle": "svgs:1234567@alianza.com.co"
+              "handle": "svgs:2@alianza.com.co"
             },
             "symbol": {
               "handle": "cop"
@@ -49,93 +49,93 @@ RECEIVED POST /v2/debits
                 "documentType": "txid",
                 "documentNumber": "321654987"
               },
-              "handle": "svgs:1234567@bancorojo.co"
+              "handle": "svgs:1@bancorojo.co"
             }
           }
         ],
-        "handle": "20250903834327742TFY742840352166425",
+        "handle": "20250905767274748TFY939537649863281",
         "schema": "b2p-send"
       },
-      "hash": "03098c1bfe071172c0f61db3d79b9bbf09e9b7e2d37d7d371290875f125a8179",
-      "luid": "$int.-0w11Ux0xQlgr_Bno",
+      "hash": "ebade8041359415ecb84205ec58f1ef72a332644a34c1206ab77e72a751e8611",
+      "luid": "$int.-0wigRxzi5wWLEgCR",
       "meta": {
-        "moment": "2025-09-03T19:22:05.867Z",
+        "moment": "2025-09-05T22:10:33.995Z",
         "owners": [
           "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw="
         ],
         "proofs": [
           {
             "custom": {
-              "moment": "2025-09-03T19:22:05.491Z",
+              "moment": "2025-09-05T22:10:33.439Z",
               "status": "created"
             },
-            "digest": "c491bc996db4dd9821551f46a88009ee1583e2da2940f2822334733a696d92ab",
+            "digest": "3116a532676e2b170d06bdde65179be43e110a97704ea38ed05276cd76b7090d",
             "method": "ed25519-v2",
             "public": "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw=",
-            "result": "pOGUgx8MRMwKtTWfaFcVloD2aNnTeu8OBSO8CBpUvJEUHPfTp5n08J8XnUgKcH4OcZVHT9OnUooIb7NklqwmCQ=="
+            "result": "QOUzoDXI6NxwrdusbTYVCcI1hDfB6MeX3yd2DTaSf6hWqy+1AiELfLu9JLhw5q5CjueSlYaTy09nhh1HXIIXBA=="
           },
           {
             "custom": {
-              "moment": "2025-09-03T19:22:05.867Z",
+              "moment": "2025-09-05T22:10:34.002Z",
               "status": "pending"
             },
-            "digest": "921de31e2bcf5a9e212dfda1296384536b5a2b16a5e971a800d44891ee0a1498",
+            "digest": "7621d5bc31eb0150b173fbdaded6659d6543b9557d072bc83c5da51e8b5a7af9",
             "method": "ed25519-v2",
             "public": "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=",
-            "result": "Ml2goR1WunyAyWwEC1fX9UcBwN37sYizzBsM3uGRW7xtO/zWQji8QyEzIlMs38SiiQHpt2DFhuAWKVTedbEYBA=="
+            "result": "cRIWDOMRFESHM4E6Ld9GkUBcE4G3ExjWmK0EBz8tbs76nkUb7PDmvMDcUGVA+WDpePNBR84k+PYITvoix2jnBg=="
           },
           {
             "custom": {
-              "luid": "$int.-0w11Ux0xQlgr_Bno",
-              "moment": "2025-09-03T19:22:05.895Z",
+              "luid": "$int.-0wigRxzi5wWLEgCR",
+              "moment": "2025-09-05T22:10:34.026Z",
               "status": "pending"
             },
-            "digest": "5aa66c22e2bfbf845c5454c4381ef6238107ebea18167128b3f957eda824cbb8",
+            "digest": "aa45423a2fe521582ea43f282743af8286419a75ff18947bbd471e1e74c6a0d7",
             "method": "ed25519-v2",
             "public": "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=",
-            "result": "IweBNOAQz43DpZAwow08jIELNcXVMaAzbpdgEqjNFiaJKTjI/imDF71IKvmMWP0CdhC/0KX52zg9CUWeqcH9Dg=="
+            "result": "6qkiq37cQuIfhBAkfBMiGH+K/dgfSVeO96tSOMM2CirieRmW0mHFloxZ//7DUoIzOMxj4TnMZb2PaEyRf3DxDQ=="
           },
           {
             "custom": {
-              "amount": 400,
-              "bridge": "demo-bridge",
-              "handle": "deb_02CQQiVgaNAaDj6eL",
+              "amount": 4000,
+              "bridge": "source-bridge",
+              "handle": "deb_02DC0qqw0PQ81JL6s",
               "inputs": [
                 0
               ],
-              "moment": "2025-09-03T19:22:06.220Z",
+              "moment": "2025-09-05T22:10:34.154Z",
               "schema": "debit",
               "status": "resolved",
               "symbol": "cop",
               "wallet": "alianza.com.co"
             },
-            "digest": "d22fb6f974832393d9e73d631f4934adb3709cf4eead3de18bdf1372bc77c3dc",
+            "digest": "61cf15759f598a38f530805822aa5f8286eb1ad7f2c8a7345e25dca156bc32a0",
             "method": "ed25519-v2",
             "public": "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=",
-            "result": "VZCexeMUxLYiLNy4ehOpLw28h7AnDIg+h0+Slh8fnM9GeZ2/8EDKi0fEkIEjWP7nL2KGHJcbHbYDU5tpedxdBw=="
+            "result": "HNeRh7AAfFsf2dxD6Onu+23/tIS8h3r+4em/j/VUdH0P2wNh0wLJ0z5843OqmtmJ3YCBbQrry+gWx7q3meFoBg=="
           },
           {
             "custom": {
-              "amount": 400,
-              "bridge": "tfy-bridge",
-              "handle": "cre_02CQQiykcCG1dQHfX",
+              "amount": 4000,
+              "bridge": "target-bridge",
+              "handle": "cre_02DC0qKMTY7bXiERX",
               "inputs": [
                 0
               ],
-              "moment": "2025-09-03T19:22:06.222Z",
+              "moment": "2025-09-05T22:10:34.155Z",
               "schema": "credit",
               "status": "resolved",
               "symbol": "cop",
               "wallet": "transfiya"
             },
-            "digest": "d5661acde16f04940595ec8c1b8d203248e9a277d0edf5774b27d351e8c6f0c0",
+            "digest": "d457e3c8522a28dae88611ffe896272554e2ab1777a956b70c0625462ffdbc7f",
             "method": "ed25519-v2",
             "public": "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=",
-            "result": "CPYwBMI5SmqG1slKqJrRMMsQG5D6AJH5yySigkm7DVI1lnSuRUnC5c1nckLxs/MsIPD8QLwnXC1+YSv7TBPTBw=="
+            "result": "4ShiV4IAeKwLiyj6DZ/Y20czVVyaOf373pjv+/9qV0hu0y5Dw3MLHDwLUBcxdLrssQ8Ay8KO7KJsjxYra1YZCA=="
           }
         ],
         "status": "pending",
-        "thread": "-0w11UsMvGP9FhddF"
+        "thread": "-0wigRI-KlmanofXH"
       }
     },
     "schema": "debit",
@@ -146,7 +146,7 @@ RECEIVED POST /v2/debits
         "documentType": "txid",
         "documentNumber": "123456789"
       },
-      "handle": "svgs:1234567@alianza.com.co"
+      "handle": "svgs:2@alianza.com.co"
     },
     "symbol": {
       "handle": "cop"
@@ -159,20 +159,20 @@ RECEIVED POST /v2/debits
         "documentType": "txid",
         "documentNumber": "321654987"
       },
-      "handle": "svgs:1234567@bancorojo.co"
+      "handle": "svgs:1@bancorojo.co"
     }
   },
-  "hash": "d220a4ea112a45cbf3306ff137aaca88eec74feaeb98a454332c747ef548b702",
+  "hash": "8971eafd0fdc9efcc03639823c956799e9b17ff3ad49cf39d0591c1a4decc974",
   "meta": {
     "proofs": [
       {
         "custom": {
-          "moment": "2025-09-03T19:22:06.316Z"
+          "moment": "2025-09-05T22:10:34.240Z"
         },
-        "digest": "244fb463c252e774767af3424554d6c239c9348f1d320dc44908819239c6d0d3",
+        "digest": "bf8f8b28a3dd58f12fcc431cfc1e40db678841124cd6c317c65168826e6c2adf",
         "method": "ed25519-v2",
         "public": "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=",
-        "result": "Mq0gE4O6lXPTWigu7rw1rhr0+pRKJGr4ZWQGSG8YKKk22kjyR/RoxYmCdhy3lt7qtzMQk1hZ2/iBlflNPBngCg=="
+        "result": "zTsMsfteZ3b6PkB6qAmeEwn2YL9uKw7fa+qrZ5z2XFmtIpn9XG8zRxNipOKiCPdvdhwOE7PH75FthvW41fjuDw=="
       }
     ]
   }

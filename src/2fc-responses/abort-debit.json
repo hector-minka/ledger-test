@@ -1,8 +1,8 @@
-RECEIVED POST /api/v2/debits/deb_02DC0qoFmvjKoiiAy/commit
+RECEIVED POST /api/v2/debits/deb_02DByHJXkEtp8qNFX/abort
 {
   "data": {
-    "action": "commit",
-    "handle": "deb_02DC0qoFmvjKoiiAy",
+    "action": "abort",
+    "handle": "deb_02DByHJXkEtp8qNFX",
     "intent": {
       "data": {
         "access": [
@@ -45,151 +45,154 @@ RECEIVED POST /api/v2/debits/deb_02DC0qoFmvjKoiiAy/commit
                 "documentType": "txid",
                 "documentNumber": "321654987"
               },
-              "handle": "svgs:1@bancorojo.co"
+              "handle": "svgs:4@bancorojo.co"
             }
           }
         ],
-        "handle": "20250905767274748TFY939537649863281",
+        "handle": "20250905486988951TFY514771560669952",
         "schema": "b2p-send"
       },
-      "hash": "ebade8041359415ecb84205ec58f1ef72a332644a34c1206ab77e72a751e8611",
-      "luid": "$int.-0wigRxzi5wWLEgCR",
+      "hash": "d8ce471762ddc411690910b7718762b2cd66e0cde87f3103aecf7cac96967ad6",
+      "luid": "$int.-0widxpj1YwxOWIAw",
       "meta": {
-        "moment": "2025-09-05T22:10:33.995Z",
+        "moment": "2025-09-05T22:07:55.200Z",
         "owners": [
           "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw="
         ],
         "proofs": [
           {
             "custom": {
-              "moment": "2025-09-05T22:10:33.439Z",
+              "moment": "2025-09-05T22:07:54.590Z",
               "status": "created"
             },
-            "digest": "3116a532676e2b170d06bdde65179be43e110a97704ea38ed05276cd76b7090d",
+            "digest": "fe6949e95cfb1d33922fb62fdf3d57cf647745fcd13d3f553f1b2340842f144b",
             "method": "ed25519-v2",
             "public": "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw=",
-            "result": "QOUzoDXI6NxwrdusbTYVCcI1hDfB6MeX3yd2DTaSf6hWqy+1AiELfLu9JLhw5q5CjueSlYaTy09nhh1HXIIXBA=="
+            "result": "kkZYtAgosKjvtsLGHyRIyt0Zw6OAhLGo8cIakdL/fOUB46qDj/U2Nm6GCe0tp/hInU9IC4r7OnLmYvFLn9ZmCQ=="
           },
           {
             "custom": {
-              "moment": "2025-09-05T22:10:34.002Z",
+              "moment": "2025-09-05T22:07:55.200Z",
               "status": "pending"
             },
-            "digest": "7621d5bc31eb0150b173fbdaded6659d6543b9557d072bc83c5da51e8b5a7af9",
+            "digest": "83588062a0f5bebc6df1e0e84540b3e1101de24aaa45e682359d22139e0c5d44",
             "method": "ed25519-v2",
             "public": "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=",
-            "result": "cRIWDOMRFESHM4E6Ld9GkUBcE4G3ExjWmK0EBz8tbs76nkUb7PDmvMDcUGVA+WDpePNBR84k+PYITvoix2jnBg=="
+            "result": "brx/UA0fLh2AuvYI9DHyMnsel8lSewZ6QZXPOqb0tZPM8fTXjOg4cHTzfGZlAjSJlaYWkIdreItNKj34/KHiDQ=="
           },
           {
             "custom": {
-              "luid": "$int.-0wigRxzi5wWLEgCR",
-              "moment": "2025-09-05T22:10:34.026Z",
+              "luid": "$int.-0widxpj1YwxOWIAw",
+              "moment": "2025-09-05T22:07:55.215Z",
               "status": "pending"
             },
-            "digest": "aa45423a2fe521582ea43f282743af8286419a75ff18947bbd471e1e74c6a0d7",
+            "digest": "9165c1d2aff7058035d91362e242f2be54b85f5146e6f674be87e3772b374880",
             "method": "ed25519-v2",
             "public": "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=",
-            "result": "6qkiq37cQuIfhBAkfBMiGH+K/dgfSVeO96tSOMM2CirieRmW0mHFloxZ//7DUoIzOMxj4TnMZb2PaEyRf3DxDQ=="
+            "result": "tzCIUONiMj95rFilTO6/cEOu2AwCannz/gwqBV5mo92Eses2gW37XYovWR7eUa7QFGPJqTbfTJM27VlRmrSrDA=="
           },
           {
             "custom": {
               "amount": 4000,
               "bridge": "source-bridge",
-              "handle": "deb_02DC0qqw0PQ81JL6s",
+              "handle": "deb_02DByHkheWwJuJbyM",
               "inputs": [
                 0
               ],
-              "moment": "2025-09-05T22:10:34.154Z",
+              "moment": "2025-09-05T22:07:55.522Z",
               "schema": "debit",
               "status": "resolved",
               "symbol": "cop",
               "wallet": "alianza.com.co"
             },
-            "digest": "61cf15759f598a38f530805822aa5f8286eb1ad7f2c8a7345e25dca156bc32a0",
+            "digest": "ba686a88d06e3cea54560eec8cff3caa18d7cb8542a4e7b35cde47452d77ca68",
             "method": "ed25519-v2",
             "public": "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=",
-            "result": "HNeRh7AAfFsf2dxD6Onu+23/tIS8h3r+4em/j/VUdH0P2wNh0wLJ0z5843OqmtmJ3YCBbQrry+gWx7q3meFoBg=="
+            "result": "mPgutDeMCQ4I2StFr8xWglCO7zNaxrnu6Qbiz1sRUgqCzwXP3F+CVXIRf4fa0iLALXKVHW/2+7ikMJvFWRI/BA=="
           },
           {
             "custom": {
               "amount": 4000,
               "bridge": "target-bridge",
-              "handle": "cre_02DC0qKMTY7bXiERX",
+              "handle": "cre_02DByHHKgJ7bqsVCz",
               "inputs": [
                 0
               ],
-              "moment": "2025-09-05T22:10:34.155Z",
+              "moment": "2025-09-05T22:07:55.524Z",
               "schema": "credit",
               "status": "resolved",
               "symbol": "cop",
               "wallet": "transfiya"
             },
-            "digest": "d457e3c8522a28dae88611ffe896272554e2ab1777a956b70c0625462ffdbc7f",
+            "digest": "73be9abd26c0f3fddac797731c52ea9e31be5763b61ab10fc69ad4b8415074ac",
             "method": "ed25519-v2",
             "public": "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=",
-            "result": "4ShiV4IAeKwLiyj6DZ/Y20czVVyaOf373pjv+/9qV0hu0y5Dw3MLHDwLUBcxdLrssQ8Ay8KO7KJsjxYra1YZCA=="
+            "result": "Ldy/bWOahu34UnQb5p41sB+efAeQjTazkcLeI6d9veMRBINgqY6y1VJ2vEfwBbMbRPXTSFjV4VYiDx88lMr0BA=="
           },
           {
             "custom": {
               "coreId": "8",
-              "handle": "deb_02DC0qoFmvjKoiiAy",
-              "moment": "2025-09-05T22:10:34.468Z",
+              "handle": "deb_02DByHJXkEtp8qNFX",
+              "moment": "2025-09-05T22:07:56.428Z",
               "status": "prepared"
             },
-            "digest": "550a4298011d9e1853375f99aa2c090def642f7d765a0f5b2d35436f56a24269",
+            "digest": "2e4a7c4cff9eb5e02c48c7d0fce88d853e9386fcb0f508602a05519725919f71",
             "method": "ed25519-v2",
             "public": "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw=",
-            "result": "Bf5+TTjcYpCqip2/sHq6pVTtPU0xsofTGUGKzlCpglZ6b6Nh4nZHHglWY5Hl2289ZFJSBWDLM4rjyvWFSjpLDA=="
+            "result": "oEiOBKrYrkksxd888fVX+e774p6zVTDGw4p0ngCmj5jXSRTQ6L/g11pV17c66eEcLk0Aq6Qj+PHcRK8YDZcwCg=="
           },
           {
             "custom": {
-              "handle": "cre_02DC0qxm9vVlpPoTm",
-              "moment": "2025-09-05T22:10:35.818Z",
-              "status": "prepared"
+              "detail": "Account 4 is inactive",
+              "handle": "cre_02DByH3E5wRbcplcN",
+              "moment": "2025-09-05T22:07:58.410Z",
+              "reason": "bridge.unexpected-error",
+              "status": "failed"
             },
-            "digest": "77acd1dc8face3463d398bd4b6a85d06805ca48b6d4b6520e857161fbdff7ee2",
+            "digest": "6685badd976c8ef8746d63e8d9240b548281c6526568b3efc4b83cacbcc3fd87",
             "method": "ed25519-v2",
             "public": "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw=",
-            "result": "S4xpp+ALt6wD20NwIA277IzSBlAjo/Fuby0j8OnV5v4x+8oHIizFgJNBAFkmRyiTMAU54F0vBpnmHO2esVlNAw=="
+            "result": "o2lKZa3Ptzh0PzjTOuA9SytYxiGaermvPkLBNyX+tow/rX3hoUJck1RUASSmIqT9hjBHe/dYHF2WbjZXpTJSBA=="
           },
           {
             "custom": {
-              "moment": "2025-09-05T22:10:36.354Z",
-              "status": "prepared"
+              "detail": "Bridge(s) failed to process intent: target-bridge",
+              "moment": "2025-09-05T22:07:59.150Z",
+              "reason": "core.bridge-prepare-failed",
+              "status": "failed"
             },
-            "digest": "5791adbc67d7cfc13297a9a939c68b43533b37ce638bb1f39c20e7536b06dbd8",
+            "digest": "1764cfc9545af4ffc3fd6227ab542ff36c2f3c1c48ba509d11cfcfdb5ba16b55",
             "method": "ed25519-v2",
             "public": "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=",
-            "result": "82ql9Exggvk0nl1UyDtWp7xvEIETfSq4aEAmVz4aLsHbQGIHlrMBVV2u8Q09TblFOVuxzOlUSqH5m1xuK6q7AA=="
+            "result": "323LlhrcGRJy4OEhvn+9aI/X5jRvqrq1PTMhPILt7rUWKP86FcEelKThdLWSzv5hBLWd4qquGVySy8TN/ybpAA=="
           },
           {
             "custom": {
-              "moment": "2025-09-05T22:10:36.492Z",
-              "status": "committed"
+              "moment": "2025-09-05T22:07:59.279Z",
+              "status": "aborted"
             },
-            "digest": "ec7e5c0052770e9969baa57c256fec4a3bb5235c24297aa68f35b19e2e1b9aa1",
+            "digest": "f0bf221ad55ff6ff12b5b357587253b168241320c9ebe39c8625614b042246b2",
             "method": "ed25519-v2",
             "public": "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=",
-            "result": "zEWl2YQ+80RBznzjR8c4HQc1cYum8cbQ2O2U89+7eehvt7YYxLGxSYb0qtFmhUw2hp46/zFwk3Xa3SZZAVmhCw=="
+            "result": "4mqTuFqWB6Jq/sr5A/1LwIWKWZfWF3gBsojJrlxkisFAKo7j781oLU37SrrfPMxeVtR+0k43NMvzkUSQB974DQ=="
           }
         ],
-        "routed": true,
-        "status": "committed",
-        "thread": "-0wigRI-KlmanofXH"
+        "status": "aborted",
+        "thread": "-0widxiaaOjjG07AA"
       }
     }
   },
-  "hash": "f747f89bea10704701f3c4e7efc8f8aebb2ad245b77805d9603459b04257af85",
+  "hash": "3b85d10e6d85594d6b83d90714796eced0b0546634a5562c8a6795c779b7de61",
   "meta": {
     "proofs": [
       {
         "custom": {
-          "moment": "2025-09-05T22:10:36.642Z"
+          "moment": "2025-09-05T22:07:59.414Z"
         },
-        "digest": "d2501cc8018b90a8519914c68f6fc7ad1ecfa37b70aa8197a29d4806f4f9fb01",
+        "digest": "e5a70ee55f99eaeb7c714214f21aea6b689415f79f1805b67762e4764af48085",
         "method": "ed25519-v2",
         "public": "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=",
-        "result": "+/Y9i+NxiBE6jwSt0CVdoLtHEJftUQjLtOjD3KVeq+X1O+5cwmpESvYV0ZdAgbdDo1/MeynPxxCUQh0MDhZLAA=="
+        "result": "7OicoRF/ZwdU2Rz4ote8sSwQhNTEJcinnhqhh+8vIoznDNb+veZjgztTAs99J+WtFCGDz6mevXRhZwJjmhN3BA=="
       }
     ]
   }
