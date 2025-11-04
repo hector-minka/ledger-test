@@ -1,0 +1,126 @@
+{
+  "entities": [
+    {
+      "transferId": "02EI6ZH7DVtRTAe2d",
+      "txId": "20250908900515759TFY000000000000027",
+      "txRef": "02EI6ZH7DVtRTAe2d",
+      "source": "wNC1ZVuuxV51e71vciFAo5MubRdfadj6Jc",
+      "sourceWallet": null,
+      "sourceSigner": "wNC1ZVuuxV51e71vciFAo5MubRdfadj6Jc",
+      "sourceSignerBalance": null,
+      "sourceBank": "Banco Crezcamos",
+      "sourceBankBicfi": "1816",
+      "target": "wbsLxH5psbBdAB17Mk4fjXPGnUzqxYTfnu",
+      "targetWallet": null,
+      "targetSigner": "wbsLxH5psbBdAB17Mk4fjXPGnUzqxYTfnu",
+      "targetSignerBalance": null,
+      "targetBank": "Banco de la Republica",
+      "targetBankBicfi": "5555",
+      "amount": "422.00",
+      "symbol": "$tin",
+      "type": "SENDMOL",
+      "status": "ERROR",
+      "description": null,
+      "created": "2025-09-08T17:53:01-05:00",
+      "updated": "2025-09-09T05:31:28-05:00",
+      "domain": "tin",
+      "owner": null,
+      "error": {
+        "code": 317,
+        "message": "Financial entity does not confirm transaction status"
+      },
+      "labels": {
+        "hash": "PENDING",
+        "type": "SENDMOL",
+        "tx_id": "20250908900515759TFY000000000000027",
+        "domain": "tin",
+        "status": "ERROR",
+        "tx_ref": "02EI6ZH7DVtRTAe2d",
+        "created": "2025-09-08T17:53:01-05:00",
+        "updated": "2025-09-09T05:31:28-05:00",
+        "sourceChannel": "APP",
+        "transactionPurpose": "TRANSFER",
+        "numberOfTransactions": "1",
+        "deviceFingerPrint": {
+          "hash": "3c38e4826bd1c0dbfc0f14010d1b0f447bc92b4f6a6815c8aa0959fb6caa3c07",
+          "ipAddress": "181.204.36.53",
+          "country": "Colombia",
+          "city": "Bucaramanga",
+          "mobileDevice": "E7A22304-3AEE-4296-B534-662605029786",
+          "SIMCardId": "NOT AVAILABLE",
+          "model": "iPhone",
+          "operator": "--"
+        },
+        "invoiceId": null,
+        "invoiceDetail": null
+      },
+      "snapshot": {
+        "target": {
+          "wallet": { "labels": {} },
+          "signer": {
+            "handle": "wbsLxH5psbBdAB17Mk4fjXPGnUzqxYTfnu",
+            "labels": {
+              "identification": "700000963414",
+              "bankBicfi": "5555",
+              "bankName": "Banco de la Republica",
+              "proprietary": "NIT"
+            }
+          }
+        },
+        "source": {
+          "wallet": {},
+          "signer": {
+            "handle": "wNC1ZVuuxV51e71vciFAo5MubRdfadj6Jc",
+            "labels": {
+              "type": "PERSON",
+              "bankId": "900515759",
+              "mobile": "573027151155",
+              "status": "ACTIVE",
+              "created": "2025-08-22T11:02:05-05:00",
+              "bankName": "Banco Crezcamos",
+              "diceSync": true,
+              "lastName": "SINUCO",
+              "received": "2025-08-22T11:02:03.441-05:00",
+              "aliasType": "EMAIL",
+              "bankBicfi": "1816",
+              "consented": "2025-08-22T11:01:58.268-05:00",
+              "createdBy": "e0hv3VuAQmxk4EVPACj5",
+              "firstName": "GABRIELA",
+              "aliasValue": "analistahexa@gmail.com",
+              "dispatched": "2025-08-22T11:02:04.786-05:00",
+              "proprietary": "CC",
+              "identification": "1095911309",
+              "secondLastName": "LOPEZ",
+              "bankAccountType": "SVGS",
+              "routerReference": "$crezcamos",
+              "targetSpbviCode": "TFY",
+              "bankAccountNumber": "60100000077"
+            }
+          }
+        },
+        "symbol": {
+          "wallet": {
+            "labels": {
+              "type": "SYMBOL",
+              "created": "2018-10-19T20:22:48.350Z",
+              "updated": "1970-01-01T15:38:20-05:00",
+              "createdBy": "ZhrQA3vcm17h2RRO4LrJ"
+            },
+            "handle": "$tin",
+            "signer": ["wMxKCAzsQBiUURDU3xD3xuSbVo1S9jmf3d"],
+            "default": "wMxKCAzsQBiUURDU3xD3xuSbVo1S9jmf3d"
+          },
+          "signer": {
+            "handle": "wMxKCAzsQBiUURDU3xD3xuSbVo1S9jmf3d",
+            "labels": {
+              "created": "2018-10-19T20:23:22.041Z",
+              "createdBy": "ZhrQA3vcm17h2RRO4LrJ"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "pagination": { "pageNum": "0", "pageSize": "50", "totalResults": "1" },
+  "error": { "code": 0, "message": "Success" }
+}

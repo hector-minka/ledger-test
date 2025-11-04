@@ -1,0 +1,49 @@
+{
+  "hash": "cd137b17fdd6c7bb26818ff8893d8cf422fbbd09f0b89991400c23c3871e7e2d",
+  "data": {
+    "reason": "auth.unauthorized",
+    "detail": "Invalid token.",
+    "custom": {
+      "trace": "Error: Invalid token.\n    at ValidateToken.handleAssertTokenError (/usr/dist/app/main.js:1:1248533)\n    at ValidateToken.execute (/usr/dist/app/main.js:1:1248207)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async ValidateToken.wrappedMiddleware.tracer (/usr/dist/app/main.js:1:1246967)\n    at async ValidateToken.<anonymous> (/usr/dist/app/main.js:1:647458)\n    at async ValidateToken.use (/usr/dist/app/main.js:1:1249710)"
+    }
+  },
+  "meta": {
+    "proofs": [
+      {
+        "method": "ed25519-v2",
+        "public": "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=",
+        "digest": "369d7d264833e9d1cc1d76c889956f56bc77ed3a5d38ec379287d28bb517e72b",
+        "result": "trWR9MKqFyPCikwRnP5uJbWzEEeUT0ACmbcUE1th0N5Q6moqEAfpk0gXgZeHwb6adKc1PAslDgzrNTPMdgtmBg==",
+        "custom": {
+          "moment": "2025-09-18T17:09:44.604Z"
+        }
+      }
+    ],
+    "moment": "2025-09-18T17:09:44.606Z"
+  }
+}
+
+{
+    "hash": "996e19182f498feee36f12b25cb423dc0a073f8f9b72200e3936d8b4453fb68c",
+    "data": {
+        "reason": "crypto.hash-invalid",
+        "detail": "Invalid record hash: 39336447c6fc38db7d73c87e5af5c36ddf28713175a1bfa8f4359401d7cc6536",
+        "custom": {
+            "trace": "Error: Invalid record hash: 39336447c6fc38db7d73c87e5af5c36ddf28713175a1bfa8f4359401d7cc6536\n    at t.ValidateRecordSignatures (/usr/dist/app/main.js:1:648142)\n    at Layer.handle [as handle_request] (/usr/dist/app/node_modules/express/lib/router/layer.js:95:5)\n    at next (/usr/dist/app/node_modules/express/lib/router/route.js:149:13)\n    at /usr/dist/app/main.js:1:199989\n    at Layer.handle [as handle_request] (/usr/dist/app/node_modules/express/lib/router/layer.js:95:5)\n    at next (/usr/dist/app/node_modules/express/lib/router/route.js:149:13)\n    at /usr/dist/app/main.js:1:647507\n    at AsyncLocalStorage.run (node:async_hooks:346:14)\n    at AsyncLocalStorageContextManager.with (/usr/dist/app/node_modules/@opentelemetry/context-async-hooks/build/src/AsyncLocalStorageContextManager.js:33:40)\n    at ContextAPI.with (/usr/dist/app/node_modules/@opentelemetry/api/build/src/api/context.js:60:46)\n    at /usr/dist/app/main.js:1:647499"
+        }
+    },
+    "meta": {
+        "proofs": [
+            {
+                "method": "ed25519-v2",
+                "public": "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=",
+                "digest": "a1258dfa880e37baff2382e1067c255247c2a81ada52f24142cbf80742639e39",
+                "result": "ThfYIHrafbEfzuNCfHEtqiGHTXiT3pUfTvfCC3d9YEhruh+boNYJA2yMt0ON1nRURLzXRj87JR971AVH/gjwDw==",
+                "custom": {
+                    "moment": "2025-09-18T17:16:22.305Z"
+                }
+            }
+        ],
+        "moment": "2025-09-18T17:16:22.306Z"
+    }
+}

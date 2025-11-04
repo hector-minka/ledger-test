@@ -1,0 +1,204 @@
+{
+  "hash": "58824eed3bd6aa84e4faefc3b269a87d2811bdbb9d2b2c5e1b0085249265c354",
+  "data": {
+    "handle": "20250903427544581TFY001410717896815",
+    "claims": [
+      {
+        "action": "transfer",
+        "amount": 400,
+        "source": {
+          "custom": {
+            "name": "Mi Negocio",
+            "entityType": "business",
+            "documentType": "txid",
+            "documentNumber": "123456789"
+          },
+          "handle": "svgs:1234567@alianza.com.co"
+        },
+        "symbol": {
+          "handle": "cop"
+        },
+        "target": {
+          "custom": {
+            "name": "Hector Toro",
+            "accountRef": "3123454333",
+            "entityType": "individual",
+            "documentType": "txid",
+            "documentNumber": "321654987"
+          },
+          "handle": "svgs:1234567@bancorojo.co"
+        }
+      }
+    ],
+    "schema": "b2p-send",
+    "access": [
+      {
+        "action": "any",
+        "signer": {
+          "public": "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw="
+        }
+      },
+      {
+        "action": "read",
+        "bearer": {
+          "$signer": {
+            "public": "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw="
+          }
+        }
+      }
+    ]
+  },
+  "luid": "$int.-0w0yhTXypvYQ6D4S",
+  "meta": {
+    "proofs": [
+      {
+        "custom": {
+          "moment": "2025-09-03T19:18:02.764Z",
+          "status": "created"
+        },
+        "digest": "6dbf4067ea1b42691b0fb7ca56fee2722da3b470747d217b5f2682f718a28e1d",
+        "method": "ed25519-v2",
+        "public": "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw=",
+        "result": "+ZRR3CZBbuEyHClZWJBdn5XdWlj6b3RRkegO1Syc40XTmmRsV9zsB6N4qOefo5WH9lqTh/WqB+vbmBQgDmwAAA=="
+      },
+      {
+        "custom": {
+          "moment": "2025-09-03T19:18:03.521Z",
+          "status": "pending"
+        },
+        "digest": "64a5abc8de6e51f1688ca2fb994228e6df3d9073ab30df70d8cf5f6165315785",
+        "method": "ed25519-v2",
+        "public": "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=",
+        "result": "WbaSfLpLRmmUJGjBjVpKJ5q731rZjzn/P7GGjLhK3zmp5djdwz4j/jq2Vs0CppjKysQimyfwpXjn8CEdWUGFBQ=="
+      },
+      {
+        "custom": {
+          "luid": "$int.-0w0yhTXypvYQ6D4S",
+          "moment": "2025-09-03T19:18:03.547Z",
+          "status": "pending"
+        },
+        "digest": "6452f62135acf8800f317658bb5758c2882ddd58c4e8d981480e8020160a5d6e",
+        "method": "ed25519-v2",
+        "public": "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=",
+        "result": "z6IAx+vxVOwBn6Dgq4gi+iZbJ/f1SSq2kKodbJcYBhreDLIiQQRqdbovBca0mvKi5PsEZO3IGYFy8ULj8qIGCw=="
+      },
+      {
+        "custom": {
+          "amount": 400,
+          "bridge": "alianza-bridge",
+          "handle": "deb_02CQMnUGovi6KqzBJ",
+          "inputs": [0],
+          "moment": "2025-09-03T19:18:03.736Z",
+          "schema": "debit",
+          "status": "resolved",
+          "symbol": "cop",
+          "wallet": "alianza.com.co"
+        },
+        "digest": "d8e3372d7cc370ae740bb68626f316bc4da1270315105762cb2d7caed24c1964",
+        "method": "ed25519-v2",
+        "public": "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=",
+        "result": "xe4v8in1+0klyEuyxNWuUPa09721mHMOALAmCjGgC4hpdTH5wcw6kVk9wpNuZOobe7K77zM8sZ18xOhQRNZcDQ=="
+      },
+      {
+        "custom": {
+          "amount": 400,
+          "bridge": "tfy-bridge",
+          "handle": "cre_02CQMnMDe2xxnhpvK",
+          "inputs": [0],
+          "moment": "2025-09-03T19:18:03.738Z",
+          "schema": "credit",
+          "status": "resolved",
+          "symbol": "cop",
+          "wallet": "transfiya"
+        },
+        "digest": "74dbb7ac5084dc01872cbc73b48cecc8fdc9e9ade8e4890669a63cc14e468d67",
+        "method": "ed25519-v2",
+        "public": "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=",
+        "result": "UWfcKx2vvboqF/+arMwPThuy7CN9ZTS/O8HfSE4LAzPlhn/Rgv1Yof9TO5V8sLRA3hR3avdFGJ64TkO/xu7zBw=="
+      },
+      {
+        "custom": {
+          "coreId": "deb-12345",
+          "handle": "deb_02CQMnHaTNH9UL1XP",
+          "moment": "2025-09-03T19:18:48.436Z",
+          "status": "prepared"
+        },
+        "digest": "203a83d768b756758784bba76346343f7c5e0e3e6bf37b5dbfce0db32111ae7f",
+        "method": "ed25519-v2",
+        "public": "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw=",
+        "result": "X6W3wVClDt3pDdF21n9yIc6lYNO/oYemtNAJYcJ21MjaA91pxj2rvimhokO/Hpu71pxr1PqmmoRnkVN2cLUWBA=="
+      },
+      {
+        "custom": {
+          "coreId": "cre-12345",
+          "handle": "cre_02CQMnYF7e6m1IdJp",
+          "moment": "2025-09-03T19:18:59.522Z",
+          "status": "prepared"
+        },
+        "digest": "bcf9cbed50b08dfe481729db5e352c6e805826c2979b897754b740fb32d7a060",
+        "method": "ed25519-v2",
+        "public": "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw=",
+        "result": "1iANNVTLFjImfLNHzFzmWE2HxazMte1v8ZN0K//ql5AvGOKGLfBfX5S49dA/NjUTIpHPwMtxqtlHDkwOcYNKDg=="
+      },
+      {
+        "custom": {
+          "moment": "2025-09-03T19:19:00.344Z",
+          "status": "prepared"
+        },
+        "digest": "0168558ef8a5ac63bc91a458b083e8361f5eee7bf7927cfc3a385672611a9f0d",
+        "method": "ed25519-v2",
+        "public": "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=",
+        "result": "FP+GOnAlmTjoVX0OI2CslYUWZKDvPUxqRjHzQ8iY16mPhL05RrlfY7xSGoDBM/Tye0ibs4KFW4+0jshinUY6DQ=="
+      },
+      {
+        "custom": {
+          "moment": "2025-09-03T19:19:00.557Z",
+          "status": "committed"
+        },
+        "digest": "5203a5e4da37aaa23d991aafeb1daff17a8b03a8f7d9ed5b448ab512035b6373",
+        "method": "ed25519-v2",
+        "public": "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=",
+        "result": "tvonoqVYH97JyjVAzJNAJrMa+GaeSs0JdaUtH9ly+mldgFBN5jZbSOKNSKzAQ6S2e755CDo65igTzNbY3ew4Ag=="
+      },
+      {
+        "custom": {
+          "coreId": "deb_1234535",
+          "handle": "deb_02CQMnHaTNH9UL1XP",
+          "moment": "2025-09-03T19:19:12.799Z",
+          "status": "committed"
+        },
+        "digest": "d4b3950038c887e8fc313a0b38ceea8875e228b1b9c89a0ef57925a80c980194",
+        "method": "ed25519-v2",
+        "public": "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw=",
+        "result": "+fd5qxocoJ49pZ+qx1AEQ5EU8ZUrSOWVjkzmqhkEL1F4ADUQvT5pCO+hMdKXyMOdjxegyaG7/tOB17YsUn0mAg=="
+      },
+      {
+        "custom": {
+          "coreId": "cre_12312123",
+          "handle": "cre_02CQMnYF7e6m1IdJp",
+          "moment": "2025-09-03T19:19:17.924Z",
+          "status": "committed"
+        },
+        "digest": "f7731ac07d20991712281b39c46ece8c5f39b3bb83b09f176cb01c7ba96ec2cf",
+        "method": "ed25519-v2",
+        "public": "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw=",
+        "result": "3oIr79yPipdwO+BwqrPQsmtQsLu8hxYCR2o/5B/urS+YZNrk1psTahm5SEfmDEHwBKDcSQviFPTAXLorS/K/AA=="
+      },
+      {
+        "custom": {
+          "moment": "2025-09-03T19:19:18.666Z",
+          "status": "completed"
+        },
+        "digest": "1f81c6a9d20da65248c5c7ec2443221989c3f3a5b9b523a3e84ad254e448fed2",
+        "method": "ed25519-v2",
+        "public": "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=",
+        "result": "bx1RN95D9poWA+ECHhEUlUZYPbaD0JQEJv3HQdmwkta0f+psj949E/ouStTGv7afP2eoCO8/UrNQT8+RwTSzAQ=="
+      }
+    ],
+    "routed": true,
+    "status": "completed",
+    "thread": "-0w0yhQKfIsgHJu1x",
+    "moment": "2025-09-03T19:18:03.520Z",
+    "owners": ["YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw="]
+  }
+}

@@ -1,5 +1,5 @@
 // Populate this with the wallet handle you created
-const BANK_WALLET = "alianza.com.co"; //this is the target wallet
+const BANK_WALLET = "alianza"; //this is the target wallet
 
 // Factor for usd is 100
 const USD_FACTOR = 100;
@@ -41,11 +41,26 @@ export function extractAndValidateAddress(address, BANK_WALLET_OVERRIDE) {
 }
 
 export function extractAndValidateAmount(rawAmount) {
+  console.log(`[VALIDATOR] Raw amount received:`, rawAmount, typeof rawAmount);
+
   const amount = Number(rawAmount);
-  if (!Number.isInteger(amount) || amount <= 0) {
+  console.log(`[VALIDATOR] Converted to number:`, amount);
+
+  // Handle negative amounts for debits (ledger might send negative values)
+  const absoluteAmount = Math.abs(amount);
+  console.log(`[VALIDATOR] Absolute amount:`, absoluteAmount);
+
+  if (!Number.isInteger(absoluteAmount) || absoluteAmount <= 0) {
     throw new Error(`Positive integer amount expected, got ${amount}`);
   }
-  return amount / USD_FACTOR;
+
+  const finalAmount = absoluteAmount / USD_FACTOR;
+  console.log(
+    `[VALIDATOR] Final amount after division by ${USD_FACTOR}:`,
+    finalAmount
+  );
+
+  return finalAmount;
 }
 
 export function extractAndValidateSymbol(symbol) {

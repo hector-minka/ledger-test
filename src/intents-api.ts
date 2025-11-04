@@ -6,6 +6,7 @@ import path from "path";
 import util from "util";
 import { createHash, createSignatureDigest } from "./hash";
 import { signJWT } from "./jwt-auth";
+import { generateISOTimestamp, generateTimestampHandle } from "./utils/handle";
 
 // Informacion para firmar los proof
 
@@ -25,13 +26,17 @@ const SECRET_KEY = "fiCwMZ406y4uzpCvB+bZZAemToHooagwLGn15We+m0s=";
 
 // const LEDGER = "toro-ledger";
 // const LEDGER = "hector-ledger-test";
-const SERVER = "https://ldg-stg.one/api/v2";
 // // const PUBLIC_SERVER_KEY = "9nwKxTS2IT2CQMtFGw0oWbOWPCkD7NRwSVMin2EQlzA=";
 // const PUBLIC_SERVER_KEY = "MMko0OM/+lNtdKR+D9SvgZul1KiZXjZ5slLkGEBTO9s=";
-console.log("SERVER:", SERVER);
-const LEDGER = "payment-hub-staging";
+const LEDGER = "alianza-stg";
+// const SERVER = "https://ldg-stg.one/api/v2";
 // const SERVER = "https://ldg-stg.one/api/v2";
 // const PUBLIC_SERVER_KEY = "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=";
+
+// const LEDGER = "ph-demo";
+const SERVER = "https://ldg-stg.one/api/v2";
+// const PUBLIC_SERVER_KEY = "F1jP1QlOt2stfMYmP4E39gMclnuHVEG3Tlo/zIq7vbs=";
+// console.log("SERVER:", SERVER);
 
 const getOwnerAccessRules = (publicKey: string) => {
   return [
@@ -86,39 +91,86 @@ const getOwnerAccessRules = (publicKey: string) => {
 //   amount: 400,
 // } as any;
 
+//DEMO CLAIM:
 const claim = {
   action: "transfer",
-
+  //   source: {
+  //     handle: "svgs:234234234@fineract.com.co",
+  //     custom: {
+  //       documentNumber: "123456789",
+  //       documentType: "txid",
+  //       entityType: "business",
+  //       name: "Mi Negocio",
+  //     },
+  //   },
   source: {
-    handle: "svgs:234234234@alianza.com.co",
+    handle: "svgs:123456789@alianza.com.co",
     custom: {
-      documentNumber: "123456789",
-      documentType: "txid",
+      name: "My Business",
       entityType: "business",
-      name: "Mi Negocio",
+      aliasType: "merchcode",
+      documentType: "txid",
+      documentNumber: "08239020232966",
     },
   },
   target: {
-    handle: "svgs:1234567@bancorojo.co",
+    handle: "svgs:12345654321@bancorojo",
     custom: {
-      accountRef: "3123454333",
-      documentNumber: "321654987",
-      documentType: "txid",
+      accountRef: "wiZnZK3D7BFrJdv5KhPnTGnWtE3j1cSq3z",
+      documentNumber: "1010501010",
+      documentType: "cc",
       entityType: "individual",
-      name: "Hector Toro",
+      name: "Mario Alfonso Ruiz Lopez",
     },
   },
-
-  symbol: { handle: "cop" },
-  amount: 400,
+  symbol: {
+    handle: "cop",
+  },
+  amount: 100,
 } as any;
+
+//for ph-demo test with fineract and bancorojo
+// const claim = {
+//   action: "transfer",
+
+//   source: {
+//     handle: "svgs:1543534534534@fineract.com.co",
+//     custom: {
+//       documentNumber: "080119860745",
+//       documentType: "cc",
+//       entityType: "individual",
+//       name: "Hector Toro",
+//     },
+//   },
+//   target: {
+//     // handle: "@BBVA32230398554",
+//     handle: "svgs:01780053450@banrep",
+//     schema: "individual",
+//     symbol: "usd",
+//     custom: {
+//       entityType: "individual",
+//       name: "ADOLFO RUIZ",
+//       aliasType: "username",
+//       documentType: "cc",
+//       documentNumber: "3131920",
+//       accountRef: "wSW1vpZRFtWyR4b8VoBtjWYmVbSmH1ry5s",
+//     },
+//   },
+
+//   symbol: { handle: "cop" },
+//   amount: 400,
+// } as any;
 const data = {
-  handle: "20250903795828547TFY595495513812965", //generateTimestampHandle(),
+  handle: generateTimestampHandle(),
   claims: [claim],
-  schema: "b2p-send", // Changed from "b2p-send" to "transfer" to match SDK
+  schema: "payment", // Changed from "b2p-send" to "payment" to match SDK
   access: getOwnerAccessRules(PUBLIC_KEY),
   config: {
     commit: "auto",
+  },
+  custom: {
+    routingCode: "TFY",
+    useCase: "send.b2p",
   },
 };
 
@@ -131,8 +183,11 @@ const data = {
 // };
 
 const signatureCustom = {
-  moment: "2025-09-04T10:10:31.616Z",
+  moment: generateISOTimestamp(), //"2025-07-16T00:51:50.904Z",
+  dispatched: generateISOTimestamp(), //"2025-07-16T00:51:50.904Z",
   status: "created",
+  //   consented: generateISOTimestamp(), //"2025-07-16T00:51:50.904Z",
+  received: generateISOTimestamp(), //"2025-07-16T00:51:50.904Z",
 };
 
 const keyPair = {
@@ -171,6 +226,7 @@ export const createIntentWithApi = async () => {
     const request = {
       data,
       hash,
+
       meta: {
         proofs: [
           {
@@ -189,8 +245,8 @@ export const createIntentWithApi = async () => {
         iss: SIGNER,
         sub: `signer:${SIGNER}`,
         aud: LEDGER,
-        iat: Math.floor(new Date("2025-09-04T10:10:31.616Z").getTime() / 1000), //Math.floor(Date.now() / 1000),
-        exp: Math.floor(new Date("2025-09-05T11:10:31.616Z").getTime() / 1000), //Math.floor(Date.now() / 1000) + 60,
+        iat: Math.floor(new Date().getTime() / 1000), //Math.floor(Date.now() / 1000),
+        exp: Math.floor(new Date().getTime() / 1000) + 6000, //Math.floor(Date.now() / 1000) + 60,
       },
       SECRET_KEY,
       PUBLIC_KEY
@@ -202,19 +258,19 @@ export const createIntentWithApi = async () => {
     );
     // Add the required headers without JWT authentication for now
 
-    // const response = await axios.post(`${SERVER}/intents`, request, {
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     "x-ledger": LEDGER,
-    //     Authorization: `Bearer ${jwt}`, // Temporarily removed
-    //   },
-    // });
+    const response = await axios.post(`${SERVER}/intents`, request, {
+      headers: {
+        "Content-Type": "application/json",
+        "x-ledger": LEDGER,
+        Authorization: `Bearer ${jwt}`, // Temporarily removed
+      },
+    });
 
     // console.info("RESPONSE:", response.data);
-    // console.info(
-    //   "RESPONSE:",
-    //   util.inspect(response.data, { depth: null, colors: true })
-    // );
+    console.info(
+      "RESPONSE:",
+      util.inspect(response.data, { depth: null, colors: true })
+    );
   } catch (error: any) {
     console.info(
       "RESPONSE ERROR:",

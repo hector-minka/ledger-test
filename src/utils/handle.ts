@@ -22,3 +22,8 @@ export const generateTimestampHandle = (): string => {
 
   return timestamp + randomDigits + fixedChars + randomDigits15;
 };
+
+// Function to generate an ISO 8601 timestamp
+export const generateISOTimestamp = (): string => {
+  return new Date().toISOString();
+};

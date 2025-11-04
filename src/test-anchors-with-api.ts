@@ -1,19 +1,31 @@
 import axios from "axios";
 import crypto from "crypto";
+import dayjs from "dayjs";
 import fs from "fs";
 import util from "util";
 import { createHash, createSignatureDigest } from "./hash";
 import { signJWT } from "./jwt-auth";
 
 // Configuration constants
-const SIGNER = "htorohn";
-const PUBLIC_KEY = "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw=";
-const SECRET_KEY = "fiCwMZ406y4uzpCvB+bZZAemToHooagwLGn15We+m0s=";
-const LEDGER = "payment-hub-staging";
+// const SIGNER = "htorohn";
+// const PUBLIC_KEY = "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw=";
+// const SECRET_KEY = "fiCwMZ406y4uzpCvB+bZZAemToHooagwLGn15We+m0s=";
+// const LEDGER = "payment-hub-staging";
 const SERVER = "https://ldg-stg.one/api/v2";
 // const PUBLIC_SERVER_KEY = "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=";
 // const AUDIENCE = "payments-hub-hector-test";
-const AUDIENCE = "payment-hub-staging";
+// const AUDIENCE = "payment-hub-staging";
+
+const LEDGER = "alianza-stg";
+const AUDIENCE = "alianza-stg";
+// Llaves Alianza
+// const SIGNER = "alianza-bridge";
+// const PUBLIC_KEY = "bBIoixdgfoRkT6doMqA04bU0Maa02fiimVvmufo1cQA=";
+// const SECRET_KEY = "vyFN95ZVwv0_ZXigHFvIL3-Hc0n4fzezci32D8UsJz8=";
+
+const SIGNER = "alianza_stg";
+const PUBLIC_KEY = "qDHTI5K69OEVUvdYqmhnp7ZIJfou6tJTwTa3cgqz/as=";
+const SECRET_KEY = "PWinr3kv7wI46SlfNLHJZu54IO2aann4H8hHYr3Ij/s=";
 
 const keyPair = {
   format: "ed25519-raw" as const,
@@ -34,8 +46,8 @@ const getPrivateKey = () => {
 const createJWT = async () => {
   return await signJWT(
     {
-      iss: PUBLIC_KEY,
-      sub: "signer:htorohn",
+      iss: SIGNER,
+      sub: `signer:${SIGNER}`,
       aud: AUDIENCE,
       iat: Math.floor(Date.now() / 1000),
       exp: Math.floor(Date.now() / 1000) + 60,
@@ -221,29 +233,66 @@ export async function updateAnchorStatus() {
 
     // First, get the existing anchor
     const jwt = await createJWT();
-    const getResponse = await axios.get(`${SERVER}/anchors/carlos59@minka.io`, {
+    // const getResponse = await axios.get(`${SERVER}/anchors/3107944087`, {
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     "x-ledger": LEDGER,
+    //     Authorization: `Bearer ${jwt}`,
+    //   },
+    // });
+    const anchorHandle = "3107944087";
+    const getResponse = await axios.get(`${SERVER}/anchors/${anchorHandle}`, {
       headers: {
         "Content-Type": "application/json",
         "x-ledger": LEDGER,
         Authorization: `Bearer ${jwt}`,
+        "x-received": dayjs().toISOString(),
+        "x-dispatched": dayjs().toISOString(),
+        "x-domain": "transfiya",
+        "x-use-case": "send.b2p",
       },
     });
-
     const existingAnchor = getResponse.data.data;
-
+    console.log("EXISTING ANCHOR:", existingAnchor);
     const signatureCustom = {
-      status: "active",
+      status: "SUSPENDED",
       moment: "2025-04-14T14:23:45.123Z",
+      domain: "transfiya",
     };
 
-    const { hash, signatureDigest, signatureBase64 } = createSignature(
-      existingAnchor.data,
-      signatureCustom
-    );
+    // const { hash, signatureDigest, signatureBase64 } = createSignature(
+    //   JSON.parse(JSON.stringify(existingAnchor.data)),
+    //   signatureCustom
+    // );
+
+    // const existingAnchor = getResponse.data.data;
+    const existingHash = getResponse.data.hash;
+    // const existingLuid = getResponse.data.luid;
+
+    // Calculate hash for the drop operation data
+    const updateData = {
+      parent: existingHash, // Reference to previous state
+    };
+    // You need to calculate the hash of this drop data
+    const newHash = createHash(updateData); // Use your hash function
+
+    // const signatureCustom = {
+    //   status: "CANCELLED",
+    //   moment: "2025-04-15T14:23:45.123Z", // or use new Date().toISOString()
+    // };
+
+    // Use the existing hash for the signature digest
+    const signatureDigest = createSignatureDigest(newHash, signatureCustom);
+
+    const digestBuffer = Buffer.from(signatureDigest, "hex");
+    const privateKey = getPrivateKey();
+    const signatureBase64 = crypto
+      .sign(undefined, digestBuffer, privateKey)
+      .toString("base64");
 
     const request = {
       data: existingAnchor.data,
-      hash,
+      hash: newHash,
       meta: {
         ...existingAnchor.meta,
         proofs: [
@@ -259,7 +308,7 @@ export async function updateAnchorStatus() {
     };
 
     const response = await axios.put(
-      `${SERVER}/anchors/carlos59@minka.io`,
+      `${SERVER}/anchors/${anchorHandle}`,
       request,
       {
         headers: {
@@ -381,7 +430,7 @@ export async function dropAnchor() {
         "x-ledger": LEDGER,
         Authorization: `Bearer ${jwt}`,
         // tyesting new headers
-        "x-use-case": "p2p",
+        "x-use-case": "send.b2p",
         "x-domain": "TFY",
       },
     });

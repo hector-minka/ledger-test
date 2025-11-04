@@ -1,0 +1,61 @@
+{
+  "hash": "c88fb7846285dfd416f4501c6a95469ddac77f07f9b6ab66495faba33cfec9d2",
+  "data": {
+    "handle": "intent:status",
+    "custom": {
+      "description": "Defines quorum for changing an intent status"
+    },
+    "values": [
+      {
+        "quorum": [
+          {
+            "handle": "system"
+          }
+        ],
+        "status": {
+          "$in": [
+            "created",
+            "pending",
+            "prepared",
+            "committed",
+            "completed",
+            "failed",
+            "aborted",
+            "rejected",
+            "expired"
+          ]
+        }
+      }
+    ],
+    "record": "intent",
+    "filter": {
+      "schema": {
+        "$in": ["payment", "credit-unregulated"]
+      }
+    },
+    "schema": "status"
+  },
+  "luid": "$plc.-1CmLsgFwLjIV-w8O",
+  "meta": {
+    "proofs": [
+      {
+        "digest": "4e45ad7e078ae10ff4a4f58f104edc0258a662b8f36d5101d8d383dc275fb82d",
+        "method": "ed25519-v2",
+        "public": "z3W4g3JxHZynkCssRzm6Gv4IU0RekNUQPOcRz5rXGHM=",
+        "result": "p8mANjIEzCOV1jZ4jhFOyqq4TGBL1axzPR5d/DdDL+XLMTZsGIROZl64pquThHBH+xVjlsFJuby2ji4oLickDw=="
+      },
+      {
+        "custom": {
+          "luid": "$plc.-1CmLsgFwLjIV-w8O",
+          "moment": "2025-10-27T16:14:46.715Z"
+        },
+        "digest": "dc27ad89290c15a8d641f0a20d5e58472096778518d581d13ab6180c1e214657",
+        "method": "ed25519-v2",
+        "public": "z3W4g3JxHZynkCssRzm6Gv4IU0RekNUQPOcRz5rXGHM=",
+        "result": "HVdWHMWWAkiQrcy6kex0MnPGOxyaiGAvJjtnxEp35rG5y9Rs2WCDsATEDUJnaRgFPNfBfrqhT9nRjVqUO67jCg=="
+      }
+    ],
+    "moment": "2025-10-27T16:14:46.435Z",
+    "owners": ["z3W4g3JxHZynkCssRzm6Gv4IU0RekNUQPOcRz5rXGHM="]
+  }
+}

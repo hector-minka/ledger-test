@@ -1,6 +1,7 @@
 import { LedgerSdk } from "@minka/ledger-sdk";
+import { IntentCommitMode } from "@minka/ledger-sdk/types";
 import util from "util";
-import { generateTimestampHandle } from "./utils/handle";
+import { generateISOTimestamp, generateTimestampHandle } from "./utils/handle";
 
 // Informacion para firmar los proof
 
@@ -15,9 +16,24 @@ const SECRET_KEY = "fiCwMZ406y4uzpCvB+bZZAemToHooagwLGn15We+m0s=";
 // const LEDGER = "hector-ledger-test";
 // const LEDGER = "payments-hub-hector-test";
 // const SERVER = "https://ldg-dev.one/api/v2";
-const LEDGER = "payment-hub-staging";
+// const LEDGER = "payment-hub-staging";
+
+const LEDGER = "quorum-demo";
 const SERVER = "https://ldg-stg.one/api/v2";
 const PUBLIC_SERVER_KEY = "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A="; // htorohn lpayments-hub-hector-test dev server
+
+// const LEDGER = "ph-demo";
+// const SERVER = "https://ldg-stg.one/api/v2";
+// const PUBLIC_SERVER_KEY = "F1jP1QlOt2stfMYmP4E39gMclnuHVEG3Tlo/zIq7vbs="; // htorohn lpayments-hub-hector-test dev server
+
+// const LEDGER = "alianza-beta";
+// const SERVER = "https://ldg-stg.one/api/v2";
+// const PUBLIC_SERVER_KEY = "kuVd5x0aRp9RsDciy948pcnRT6v2ResWjECHH7TPhO0="; // htorohn lpayments-hub-hector-test dev server
+
+// const LEDGER = "alianza-stg";
+// const SERVER = "https://ldg-stg.one/api/v2";
+// const PUBLIC_SERVER_KEY = "r4H7Zvpxih7dlW3MeTH0M9aqOUMkDuZUOWsFMz3lHFw=";
+
 // const LEDGER = "ledger-bridge-test";
 // const SERVER = "https://ldg-stg.one/api/v2";
 // const PUBLIC_SERVER_KEY = "9nwKxTS2IT2CQMtFGw0oWbOWPCkD7NRwSVMin2EQlzA="; // htorohn server key
@@ -44,75 +60,116 @@ const getOwnerAccessRules = (publicKey: string) => {
   ] as any;
 };
 
-const claim = {
-  action: "transfer",
-
-  source: {
-    handle: "svgs:2@alianza.com.co",
-    custom: {
-      documentNumber: "123456789",
-      documentType: "txid",
-      entityType: "business",
-      name: "Mi Negocio",
-    },
-  },
-  target: {
-    handle: "svgs:1@bancorojo.co",
-    custom: {
-      accountRef: "3123454333",
-      documentNumber: "321654987",
-      documentType: "txid",
-      entityType: "individual",
-      name: "Hector Toro",
-    },
-  },
-
-  symbol: { handle: "cop" },
-  amount: 4000,
-} as any;
-// const claim2 = {
+//transfer to test for ph
+// const claim = {
 //   action: "transfer",
-
 //   source: {
-//     // handle: "svgs:1234567@ficohsa.com.hn",
-//     // handle: "svgs:1234567@bac.com.hn",
-//     // handle: "svgs:1234567@bank.com.co",
-//     handle: "svgs:wLExoGUFuGoBv69VrKvMzRVRJi96HaYTUC@bank.com.co",
+//     handle: "svgs:123456789@alianza.com.co",
 //     custom: {
 //       documentNumber: "123456789",
 //       documentType: "txid",
 //       entityType: "business",
-//       name: "Toro Studio",
+//       name: "Mi Negocio",
 //     },
-//     // custom: {
-//     //   entityType: "individual",
-//     //   idNumber: "1234567",
-//     //   idType: "txid",
-//     //   name: "Hector Toro",
-//     //   phoneNumber: "98761065",
-//     // },
 //   },
 //   target: {
-//     handle: "svgs:w0000002",
+//     handle: "svgs:20240915400@transfiya",
 //     custom: {
-//       accountRef: "3123454333",
+//       accountRef: "wi2UauFZ8ARN5vYhVY57r4LSmA2aWsGiwL",
 //       documentNumber: "321654987",
 //       documentType: "txid",
 //       entityType: "individual",
+//       name: "BIBIANA CAUSIL",
+//     },
+//   },
+//   symbol: { handle: "cop" },
+//   amount: 4000,
+// } as any;
+
+//transfer to test quorum-demo
+const claim = {
+  action: "transfer",
+
+  source: {
+    // handle: "svgs:1234567@ficohsa.com.hn",
+    // handle: "svgs:1234567@bac.com.hn",
+    // handle: "svgs:1234567@bank.com.co",
+    handle: "svgs:2@ach",
+    custom: {
+      idNumber: "123456789",
+      idType: "txid",
+      entityType: "business",
+      name: "Toro Studio",
+    },
+    // custom: {
+    //   entityType: "individual",
+    //   idNumber: "1234567",
+    //   idType: "txid",
+    //   name: "Hector Toro",
+    //   phoneNumber: "98761065",
+    // },
+  },
+  target: {
+    handle: "svgs:3@alianza",
+    custom: {
+      //   accountRef: "3123454333",
+      idNumber: "321654987",
+      idType: "txid",
+      entityType: "individual",
+      name: "Hector Toro",
+    },
+    // handle: "svgs:1234567@bac.com.hn",
+    // custom: {
+    //   entityType: "individual",
+    //   idNumber: "7654321",
+    //   idType: "txid",
+    //   name: "Alfredo del Cid",
+    // },
+  },
+
+  symbol: { handle: "cop" },
+  amount: 500,
+} as any;
+
+//transfer to ph-demo
+// const claim = {
+//   action: "transfer",
+
+//   source: {
+//     handle: "svgs:1543534534534@fineract.com.co",
+//     custom: {
+//       documentNumber: "080119860745",
+//       documentType: "cc",
+//       entityType: "individual",
 //       name: "Hector Toro",
 //     },
-//     // handle: "svgs:1234567@bac.com.hn",
-//     // custom: {
-//     //   entityType: "individual",
-//     //   idNumber: "7654321",
-//     //   idType: "txid",
-//     //   name: "Alfredo del Cid",
-//     // },
+//   },
+//   target: {
+//     // handle: "@BBVA32230398554",
+//     handle: "svgs:01780053450@bancorojo.co",
+//     schema: "individual",
+//     symbol: "usd",
+//     custom: {
+//       entityType: "individual",
+//       name: "ADOLFO RUIZ",
+//       aliasType: "username",
+//       documentType: "cc",
+//       documentNumber: "3131920",
+//       accountRef: "wSW1vpZRFtWyR4b8VoBtjWYmVbSmH1ry5s",
+//     },
 //   },
 
 //   symbol: { handle: "cop" },
-//   amount: 500,
+//   amount: 400,
 // } as any;
+
+const customProof = {
+  moment: generateISOTimestamp(), //"2025-07-16T00:51:50.904Z",
+  dispatched: generateISOTimestamp(), //"2025-07-16T00:51:50.904Z",
+  status: "created",
+  consented: generateISOTimestamp(), //"2025-07-16T00:51:50.904Z",
+  received: generateISOTimestamp(), //"2025-07-16T00:51:50.904Z",
+};
 
 const keyPair = {
   // Public-secret key pair used to sign tokens
@@ -165,26 +222,78 @@ const sdk = new LedgerSdk({
 //   return timestamp + randomDigits + fixedChars + randomDigits15;
 // };
 
-export const createIntentWithSdk = async () => {
-  const response = await sdk.intent
-    .init()
-    .data({
-      // handle: sdk.handle.unique(), // will return a random unique handle
-      claims: [claim],
-      schema: "b2p-send",
-      handle: generateTimestampHandle(),
-      access: getOwnerAccessRules(keyPair.public),
-    })
-    .hash()
-    .sign([{ keyPair }])
-    .send();
+const data = {
+  // handle: sdk.handle.unique(), // will return a random unique handle
+  claims: [claim],
+  //   schema: "transfer",
+  handle: generateTimestampHandle(),
+  access: getOwnerAccessRules(keyPair.public),
+  config: {
+    commit: IntentCommitMode.Auto,
+  },
+  custom: {
+    routingCode: "TFY",
+    useCase: "send.b2p",
+  },
+};
 
-  // Get just the actual intent data
-  const intentData = (response as any).data?.data || (response as any).intent;
-  console.info(
-    "INTENT DATA:",
-    util.inspect(intentData, { depth: null, colors: true })
+export const createIntentWithSdk = async () => {
+  console.log(
+    "Request data to send:",
+    util.inspect(data, { depth: null, colors: true })
   );
+  try {
+    const response = await sdk.intent
+      .init()
+      .data({
+        // handle: sdk.handle.unique(), // will return a random unique handle
+        claims: [claim],
+        // schema: "payment",
+        schema: "transfer", //esta es para probar quorum-demo
+        handle: generateTimestampHandle(),
+        access: getOwnerAccessRules(keyPair.public),
+        config: {
+          commit: IntentCommitMode.Auto,
+        },
+        custom: {
+          description: "Test transaction",
+          //   routingCode: "TFY",
+          //   useCase: "send.b2p",
+        },
+      })
+      .hash()
+      .sign([{ keyPair, custom: customProof }])
+      .send();
+    // Get just the actual intent data
+    const intentData = (response as any).data?.data || (response as any).intent;
+    console.info(
+      "INTENT DATA:",
+      util.inspect(intentData, { depth: null, colors: true })
+    );
+  } catch (error: any) {
+    console.error(
+      `❌ Error occurred:`,
+      util.inspect(error, { depth: 1, colors: true })
+    );
+
+    // Log all enumerable properties
+    // console.log("Error properties:", Object.keys(error.custom.causedBy));
+
+    // // Log each property individually
+    // // Object.keys(error.custom.trace.custom).forEach((key) => {
+    // //   console.log(`${key}:`, error[key]);
+    // // });
+
+    // if (error.custom.causedBy.request) {
+    //   console.error(
+    //     `🔍 Custom request object:`,
+    //     util.inspect(error.custom.causedBy.request, {
+    //       depth: 2,
+    //       colors: true,
+    //     })
+    //   );
+    // }
+  }
 };
 
 export const prepareDebitWithSdk = async (intentHandle: string) => {

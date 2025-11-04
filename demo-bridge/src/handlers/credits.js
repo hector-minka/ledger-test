@@ -1,5 +1,5 @@
 import core from "../core.js";
-import { ledgerSigner, notifyLedger } from "../ledger.js";
+import { ledgerSigner, notifyCreditLedger } from "../ledger.js";
 import { updateEntry } from "../persistence.js";
 import { waitForInput } from "../utils/terminal-input.js";
 import {
@@ -44,18 +44,19 @@ export async function prepareCredit(req, res) {
       }`
     );
 
-    console.log(`[CREDIT-PREPARE] About to call waitForInput...`);
     await waitForInput(
       `\n[CREDIT-PREPARE] Press Enter to continue with notification to ledger...`
     );
-    console.log(`[CREDIT-PREPARE] waitForInput completed, continuing...`);
 
     // Stop Action processing and save the result.
     await endAction(entry);
   }
 
   // If Entry is in final state, return the result to Ledger
-  await notifyLedger(entry, action, ["prepared", "failed"]);
+  await notifyCreditLedger(entry, action, ["prepared", "failed"]);
+  console.log(
+    `[CREDIT-PREPARE] Completed prepare credit flow for handle: ${entry?.handle}`
+  );
 }
 
 async function processPrepareCredit(entry) {
@@ -72,7 +73,6 @@ async function processPrepareCredit(entry) {
     const { address, symbol, amount } = extractAndValidateData({
       entry,
       schema: "credit",
-      walletOverride: "bancorojo.co",
     });
 
     // Save extracted data into Entry, we will need this for other Actions.
@@ -120,7 +120,7 @@ export async function commitCredit(req, res) {
     await endAction(entry);
   }
 
-  await notifyLedger(entry, action, ["committed"]);
+  await notifyCreditLedger(entry, action, ["committed"]);
 }
 
 async function processCommitCredit(entry) {
@@ -171,7 +171,7 @@ export async function abortCredit(req, res) {
     await endAction(entry);
   }
 
-  await notifyLedger(entry, action, ["aborted"]);
+  await notifyCreditLedger(entry, action, ["aborted"]);
 }
 
 async function processAbortCredit(entry) {

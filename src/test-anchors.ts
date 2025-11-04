@@ -4,6 +4,7 @@ import {
   LedgerKeyPair,
 } from "@minka/ledger-sdk/types";
 import util from "util";
+import { generateISOTimestamp } from "./utils/handle";
 
 //CARLOS
 /*const PUBLIC_KEY = 'ak40/ebXaPHdSwypXWHDlFaZZx0zdajPBz/dijLvdaE=';
@@ -46,9 +47,22 @@ const SECRET_KEY = "fiCwMZ406y4uzpCvB+bZZAemToHooagwLGn15We+m0s=";
 // const PUBLIC_SERVER_KEY = "vY5WiTerOBs7FVHLQcz+Y4L0pXXs6HtasskooJwcyqw="; // htorohn ledger-bridge-test
 // const PUBLIC_SERVER_KEY = "sWf+wVQmbs+1lrjOpfwetHHMchQxDdEHVoCl6+1v1CI="; // htorohn lpayments-hub-hector-test dev server
 
-const LEDGER = "payment-hub-staging";
+// const LEDGER = "payment-hub-staging";
+// const SERVER = "https://ldg-stg.one/api/v2";
+// const PUBLIC_SERVER_KEY = "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=";
+
+// const LEDGER = "alianza-beta";
+// const SERVER = "https://ldg-stg.one/api/v2";
+// const PUBLIC_SERVER_KEY = "kuVd5x0aRp9RsDciy948pcnRT6v2ResWjECHH7TPhO0=";
+
+// const LEDGER = "alianza-stg";
+// const SERVER = "https://ldg-stg.one/api/v2";
+// const PUBLIC_SERVER_KEY = "r4H7Zvpxih7dlW3MeTH0M9aqOUMkDuZUOWsFMz3lHFw=";
+
+const LEDGER = "quorum-demo";
 const SERVER = "https://ldg-stg.one/api/v2";
-const PUBLIC_SERVER_KEY = "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=";
+const PUBLIC_SERVER_KEY = "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A="; // htorohn lpayments-hub-hector-test dev server
+
 //CARLOS_DEV
 //const PUBLIC_KEY = 'nAgcwbd3YA/agRjwLee3GGd2eXscnaQIX5i7rS8x7p0=';
 //const SECRET_KEY = 'LsGSbpNtWqvza/J1k0gbYlYCuayT3bD727dj46R4M/g=';
@@ -111,6 +125,11 @@ export async function createAnchor() {
     },
   });
 
+  sdk.anchor.setHeader("X-Received", generateISOTimestamp()); // value is an example without the proper format
+  sdk.anchor.setHeader("X-Dispatched", generateISOTimestamp()); // value is an example without the proper format
+  sdk.anchor.setHeader("X-use-case", "b2p"); // value is an example without the proper format
+  sdk.anchor.setHeader("X-domain", "TFY"); // value is an example without the proper format
+
   const keyPair: LedgerKeyPair = {
     format: "ed25519-raw",
     public: PUBLIC_KEY,
@@ -118,8 +137,8 @@ export async function createAnchor() {
   };
 
   const anchorData = {
-    handle: "htorohn@icloud.com",
-    target: "svgs:1543534534534@bancoamarillo.co",
+    handle: "@htorohn",
+    target: "svgs:1543534534534@alianza.com.co",
     symbol: "cop",
     custom: {
       aliasType: "username",
@@ -131,7 +150,7 @@ export async function createAnchor() {
       secondName: "Alfredo",
       lastName: "Toro",
       secondLastName: "del Cid",
-      participantCode: "891234918",
+      participantCode: "860531315",
       routingCode: "TFY",
     },
     schema: "individual",
@@ -151,11 +170,11 @@ export async function createAnchor() {
           keyPair,
           custom: {
             domain: null,
-            status: "active",
-            moment: "2025-04-14T14:23:45.123Z",
-            consented: "2025-04-14T14:23:45.123Z",
-            received: "2025-04-14T14:23:45.123Z",
-            dispatched: "2025-04-14T14:23:45.123Z",
+            status: "ACTIVE",
+            moment: generateISOTimestamp(),
+            consented: generateISOTimestamp(),
+            received: generateISOTimestamp(),
+            dispatched: generateISOTimestamp(),
           },
         },
       ])
@@ -208,10 +227,10 @@ async function getAnchor() {
     },
   });
 
-  sdk.anchor.setHeader("X-Received", "2025-04-14T14:23:45.123Z"); // value is an example without the proper format
-  sdk.anchor.setHeader("X-Dispatched", "2025-04-14T14:23:45.123Z"); // value is an example without the proper format
-  sdk.anchor.setHeader("X-use-case", "p2p"); // value is an example without the proper format
-  sdk.anchor.setHeader("X-domain", "TFY"); // value is an example without the proper format
+  sdk.anchor.setHeader("X-Received", generateISOTimestamp()); // value is an example without the proper format
+  sdk.anchor.setHeader("X-Dispatched", generateISOTimestamp()); // value is an example without the proper format
+  sdk.anchor.setHeader("X-use-case", "send.b2p"); // value is an example without the proper format
+  sdk.anchor.setHeader("X-domain", "transfiya"); // value is an example without the proper format
 
   /*
 	const anchor = (await  sdk.anchor
@@ -222,10 +241,10 @@ async function getAnchor() {
 
   try {
     // const { response } = await sdk.anchor.read("@zeljko11");
-    const { response } = await sdk.anchor.read("ricardo");
+    const { response } = await sdk.anchor.read("@bbva32230398554");
 
-    console.log("<br>El Anchor response request es:", response.request);
-    console.log("<br>El Anchor config es:", response.config);
+    // console.log("<br>El Anchor response request es:", response.request);
+    // console.log("<br>El Anchor config es:", response.config);
     console.log(
       "<br>El Anchor response es:",
       util.inspect(response.data, { depth: null, colors: true })
@@ -273,14 +292,17 @@ async function getAnchors() {
       },
     },
   });
+  //   const params: AnchorListParams = {
+  //     documentType: 'cc',
+  //       documentNumber: '1010101010',
+  //   };
+
   const params: AnchorListParams = {
-    "meta.labels": "nidn:0801198607268",
+    "data.custom.documentNumber": "1010101010",
+    "data.custom.documentType": "cc",
   };
 
-  /*const params:AnchorListParams = {
-        "data.custom.documentNumber":"0801198607268",
-        "data.custom.documentType":"nidn"
-    }*/
+  sdk.anchor.setHeader("X-domain", "transfiya");
 
   const anchors = await sdk.anchor.list(params);
 
@@ -295,15 +317,15 @@ async function updateAnchorStatus() {
     ledger: LEDGER,
     server: SERVER,
     timeout: 15000,
-    verifyResponseProofs: true,
+    verifyResponseProofs: false,
     signer: {
       format: "ed25519-raw",
       public: PUBLIC_SERVER_KEY,
     },
     secure: {
-      iss: "carlos",
-      sub: "signer:carlos",
-      aud: "rtpswitch-servibanca-v02",
+      iss: PUBLIC_KEY,
+      sub: "signer:htorohn",
+      aud: AUDIENCE,
       exp: 60,
       keyPair: {
         format: "ed25519-raw",
@@ -313,7 +335,12 @@ async function updateAnchorStatus() {
     },
   });
 
-  const record = (await sdk.anchor.read("carlos59@minka.io")).response.data;
+  sdk.anchor.setHeader("X-Received", generateISOTimestamp()); // value is an example without the proper format
+  sdk.anchor.setHeader("X-Dispatched", generateISOTimestamp()); // value is an example without the proper format
+  sdk.anchor.setHeader("X-use-case", "send.b2p"); // value is an example without the proper format
+  sdk.anchor.setHeader("X-domain", "transfiya"); // value is an example without the proper format
+
+  const record = (await sdk.anchor.read("@htorohn")).response.data;
 
   console.log("El Anchor es:", record);
   const keyPair: LedgerKeyPair = {
@@ -324,7 +351,7 @@ async function updateAnchorStatus() {
 
   await sdk.anchor
     //.with('carlos@minka.io')  ofr  signing for POST ALIAS AND POST INTENT
-    .from(record)
+    .from({ ...record })
     .data({
       ...record.data,
     })
@@ -333,7 +360,7 @@ async function updateAnchorStatus() {
       {
         keyPair,
         custom: {
-          status: "active",
+          status: "SUSPENDED",
           moment: "2025-04-14T14:23:45.123Z",
         },
       },

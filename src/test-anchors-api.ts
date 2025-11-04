@@ -10,9 +10,14 @@ import { signJWT } from "./jwt-auth";
 // Informacion para firmar los proof
 
 // htorohn
-const SIGNER = "htorohn";
-const PUBLIC_KEY = "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw=";
-const SECRET_KEY = "fiCwMZ406y4uzpCvB+bZZAemToHooagwLGn15We+m0s=";
+// const SIGNER = "htorohn";
+// const PUBLIC_KEY = "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw=";
+// const SECRET_KEY = "fiCwMZ406y4uzpCvB+bZZAemToHooagwLGn15We+m0s=";
+
+// Llaves Alianza
+// const SIGNER = "alianza-bridge";
+// const PUBLIC_KEY = "bBIoixdgfoRkT6doMqA04bU0Maa02fiimVvmufo1cQA=";
+// const SECRET_KEY = "vyFN95ZVwv0_ZXigHFvIL3-Hc0n4fzezci32D8UsJz8=";
 
 // hector-bac
 // const PUBLIC_KEY = "mZgQf7MvGjSHgevAF0ZhVfXGjX5Jyd8bHMdZJ0msEcE=";
@@ -24,11 +29,22 @@ const SECRET_KEY = "fiCwMZ406y4uzpCvB+bZZAemToHooagwLGn15We+m0s=";
 // const SECRET_KEY = "fiCwMZ406y4uzpCvB+bZZAemToHooagwLGn15We+m0s=";
 
 // const LEDGER = "toro-ledger";
-const LEDGER = "payments-hub-hector-test";
-const SERVER = "https://ldg-dev.one/api/v2";
+// const LEDGER = "payments-hub-hector-test";
+// const SERVER = "https://ldg-dev.one/api/v2";
 // const PUBLIC_SERVER_KEY = "9nwKxTS2IT2CQMtFGw0oWbOWPCkD7NRwSVMin2EQlzA=";
 // const PUBLIC_SERVER_KEY = "MMko0OM/+lNtdKR+D9SvgZul1KiZXjZ5slLkGEBTO9s=";
 // const PUBLIC_SERVER_KEY = "sWf+wVQmbs+1lrjOpfwetHHMchQxDdEHVoCl6+1v1CI="; // htorohn lpayments-hub-hector-test dev server
+
+const LEDGER = "alianza-stg";
+const SERVER = "https://ldg-stg.one/api/v2";
+// const PUBLIC_SERVER_KEY = "r4H7Zvpxih7dlW3MeTH0M9aqOUMkDuZUOWsFMz3lHFw=";
+
+const SIGNER = "alianza_stg";
+const PUBLIC_KEY = "qDHTI5K69OEVUvdYqmhnp7ZIJfou6tJTwTa3cgqz/as=";
+const SECRET_KEY = "PWinr3kv7wI46SlfNLHJZu54IO2aann4H8hHYr3Ij/s=";
+
+// const LEDGER = "ph-demo";
+// const PUBLIC_SERVER_KEY = "F1jP1QlOt2stfMYmP4E39gMclnuHVEG3Tlo/zIq7vbs=";
 
 // const getOwnerAccessRules = (publicKey: string) => {
 //   return [
@@ -50,36 +66,45 @@ const SERVER = "https://ldg-dev.one/api/v2";
 // };
 
 // Anchor data structure based on test-anchors.ts
+// const anchorData = {
+//   handle: "3123454335",
+//   target: "svgs:20359303@bancorojo.co",
+//   symbol: "cop",
+//   schema: "individual",
+//   custom: {
+//     lastName: "Carrasquillo",
+//     aliasType: "tel",
+//     firstName: "Alejandra",
+//     secondName: "Lourdes",
+//     routingCode: "TFY",
+//     documentType: "cc",
+//     documentNumber: "1239374708",
+//     secondLastName: "Palomo",
+//     participantCode: "8224",
+//   },
+// };
 const anchorData = {
-  handle: "3123454335",
-  target: "svgs:20359303@bancorojo.co",
-  // wallet: "svgs:20359303@bancorojo.co",
+  handle: "0078945614",
+  target: "svgs:123456780@alianza.com.co",
   symbol: "cop",
-  schema: "individual",
+  schema: "business",
   custom: {
-    lastName: "Carrasquillo",
-    aliasType: "tel",
-    firstName: "Alejandra",
-    secondName: "Lourdes",
+    name: "My Business",
+    aliasType: "merchcode",
     routingCode: "TFY",
-    documentType: "cc",
-    documentNumber: "1239374708",
-    secondLastName: "Palomo",
-    participantCode: "8224",
+    documentType: "txid",
+    documentNumber: "08239020232966",
+    participantCode: "86053", //Alianza NIT
   },
-  //   access: getOwnerAccessRules(PUBLIC_KEY),
-  //   config: {
-  //     commit: "auto",
-  //   },
 };
 
 const signatureCustom = {
   moment: dayjs().toISOString(),
-  status: "active",
+  status: "ACTIVE",
   consented: dayjs().toISOString(),
   received: dayjs().toISOString(),
   dispatched: dayjs().toISOString(),
-  domain: null,
+  // domain: null,
 };
 
 const keyPair = {
@@ -126,7 +151,7 @@ export const createAnchorWithApi = async () => {
       data: anchorData,
       hash,
       meta: {
-        labels: ["ndin:0801198607268"],
+        // labels: ["ndin:0801198607268"],
         proofs: [
           {
             method: "ed25519-v2",
@@ -155,6 +180,7 @@ export const createAnchorWithApi = async () => {
       SECRET_KEY,
       PUBLIC_KEY
     );
+
     console.log("JWT:", jwt);
 
     // Create anchor using the same API logic but with /anchors endpoint
@@ -198,7 +224,19 @@ export const getAnchorWithApi = async (anchorHandle: string) => {
       SECRET_KEY,
       PUBLIC_KEY
     );
-
+    console.log("JWT VALUES: ", {
+      payload: {
+        iss: SIGNER,
+        sub: `signer:${SIGNER}`,
+        aud: LEDGER,
+        iat: Math.floor(Date.now() / 1000),
+        exp: Math.floor(Date.now() / 1000) + 60,
+      },
+      SECRET_KEY,
+      PUBLIC_KEY,
+    });
+    console.log("JWT: ", jwt);
+    console.log("URL: ", `${SERVER}/anchors/${anchorHandle}`);
     const response = await axios.get(`${SERVER}/anchors/${anchorHandle}`, {
       headers: {
         "Content-Type": "application/json",
@@ -206,8 +244,61 @@ export const getAnchorWithApi = async (anchorHandle: string) => {
         Authorization: `Bearer ${jwt}`,
         "x-received": dayjs().toISOString(),
         "x-dispatched": dayjs().toISOString(),
+        "x-domain": "transfiya",
+        "x-use-case": "send.b2p",
+        "x-directory": "rail",
       },
     });
+
+    console.info("ANCHOR GET RESPONSE:", response.data);
+    console.info(
+      "ANCHOR GET RESPONSE DETAILS:",
+      util.inspect(response.data, { depth: null, colors: true })
+    );
+
+    return response.data;
+  } catch (error: any) {
+    console.error("ANCHOR GET ERROR:", error.message);
+    if (error.response) {
+      console.info(
+        "ANCHOR GET ERROR RESPONSE:",
+        util.inspect(error.response.data, { depth: 4, colors: true })
+      );
+    }
+    throw error;
+  }
+};
+
+export const getAnchorsWithApi = async () => {
+  try {
+    const jwt = await signJWT(
+      {
+        iss: SIGNER,
+        sub: `signer:${SIGNER}`,
+        aud: LEDGER,
+        iat: Math.floor(Date.now() / 1000),
+        exp: Math.floor(Date.now() / 1000) + 60,
+      },
+      SECRET_KEY,
+      PUBLIC_KEY
+    );
+    console.log("URL: ", `${SERVER}/anchors/`);
+    const response = await axios.get(`${SERVER}/anchors/`, {
+      params: {
+        "data.custom.documentNumber": "1010101010",
+        "data.custom.documentType": "cc",
+      },
+      headers: {
+        "Content-Type": "application/json",
+        "x-ledger": LEDGER,
+        Authorization: `Bearer ${jwt}`,
+        "x-received": dayjs().toISOString(),
+        "x-dispatched": dayjs().toISOString(),
+        "x-domain": "transfiya",
+        "x-use-case": "send.b2p",
+      },
+    });
+    // console.log("RESPONSE:", response);
 
     console.info("ANCHOR GET RESPONSE:", response.data);
     console.info(
@@ -249,17 +340,23 @@ async function main() {
         break;
       case "getAnchor":
         console.log("🔍 Getting anchor using API...");
-        const anchorHandle = args[1] || "3123454332"; // Default anchor handle
+        const anchorHandle = args[1] || "@BBVA32230398554"; // Default anchor handle
         await getAnchorWithApi(anchorHandle);
+        break;
+      case "getAnchors":
+        console.log("🔍 Getting anchor using API...");
+        // const anchorHandle = args[1] || "@BBVA32230398554"; // Default anchor handle
+        await getAnchorsWithApi();
         break;
       default:
         console.log(`❌ Unknown command: ${command}`);
-        console.log("Available commands: createAnchor, getAnchor");
+        console.log("Available commands: createAnchor, getAnchor, getAnchors");
     }
   } catch (error) {
     console.error(
       "❌ Error executing command:",
-      util.inspect(error, { depth: null, colors: true })
+      JSON.stringify(error, null, 4)
+      //   util.inspect(error, { depth: 1, colors: true })
     );
   }
 }

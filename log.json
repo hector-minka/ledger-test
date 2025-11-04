@@ -1,0 +1,96 @@
+{
+  "source": "wQcqfjS47N1heTwyKVWENHmANbuD7CLFgS",
+  "target": "wiZnZK3D7BFrJdv5KhPnTGnWtE3j1cSq3z",
+  "amount": "1.00",
+  "symbol": "$tin",
+  "labels": {
+    "type": "SEND",
+    "received": "2025-10-21T08:38:06.440-05:00",
+    "dispatched": "2025-10-21T08:38:06.440-05:00",
+    "description": "",
+    "domain": "tin",
+    "tx_ref": "02TjwROswvovgWPd0",
+    "flowId": "02TjwROswvovgWPd0",
+    "status": "CREATED",
+    "created": "2025-10-21T08:38:25-05:00",
+    "updated": "2025-10-21T08:38:25-05:00"
+  },
+  "snapshot": {
+    "source": {
+      "wallet": {},
+      "signer": {
+        "handle": "wQcqfjS47N1heTwyKVWENHmANbuD7CLFgS",
+        "labels": {
+          "name": "My Business",
+          "type": "BUSINESS",
+          "bankId": "860531315",
+          "status": "ACTIVE",
+          "created": "2025-10-16T15:42:29-05:00",
+          "received": "2025-10-16T15:42:28.180-05:00",
+          "aliasType": "MERCHANT",
+          "bankBicfi": "1815",
+          "consented": "2025-10-16T15:42:28.180-05:00",
+          "createdBy": "LjERdj8SP7LOxFy3rFsM",
+          "aliasValue": "0078945612",
+          "dispatched": "2025-10-16T15:42:28.180-05:00",
+          "proprietary": "NIT",
+          "identification": "08239020232966",
+          "bankAccountType": "SVGS",
+          "routerReference": "$alianza",
+          "targetSpbviCode": "TFY",
+          "bankAccountNumber": "123456789"
+        }
+      }
+    },
+    "target": {
+      "wallet": {},
+      "signer": {
+        "handle": "wiZnZK3D7BFrJdv5KhPnTGnWtE3j1cSq3z",
+        "labels": {
+          "type": "PERSON",
+          "bankId": "900504002",
+          "status": "ACTIVE",
+          "created": "2025-08-29T16:59:57-05:00",
+          "bankName": "Banco Rojo",
+          "lastName": "Ruiz",
+          "received": "2024-10-11T11:59:22.241-05:00",
+          "aliasType": "ALPHANUM",
+          "bankBicfi": "7095",
+          "consented": "2024-10-11T11:59:24.241-05:00",
+          "createdBy": "lTmBEuI6uhvdANiH9ji3",
+          "firstName": "Mario",
+          "aliasValue": "@MARIO1821",
+          "dispatched": "2024-10-11T11:59:22.517-05:00",
+          "secondName": "Alfonso",
+          "proprietary": "CE",
+          "identification": "1010501010",
+          "secondLastName": "Lopez",
+          "bankAccountType": "SVGS",
+          "routerReference": "$bancorojo",
+          "targetSpbviCode": "TFY",
+          "bankAccountNumber": "12345654321"
+        }
+      }
+    },
+    "symbol": {
+      "wallet": {
+        "handle": "$tin",
+        "default": "wMxKCAzsQBiUURDU3xD3xuSbVo1S9jmf3d",
+        "signer": ["wMxKCAzsQBiUURDU3xD3xuSbVo1S9jmf3d"],
+        "labels": {
+          "type": "SYMBOL",
+          "created": "2018-10-19T20:22:48.350Z",
+          "updated": "1970-01-01T15:38:20-05:00",
+          "createdBy": "ZhrQA3vcm17h2RRO4LrJ"
+        }
+      },
+      "signer": {
+        "handle": "wMxKCAzsQBiUURDU3xD3xuSbVo1S9jmf3d",
+        "labels": {
+          "created": "2018-10-19T20:23:22.041Z",
+          "createdBy": "ZhrQA3vcm17h2RRO4LrJ"
+        }
+      }
+    }
+  }
+}

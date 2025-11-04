@@ -1,0 +1,80 @@
+{
+  "hash": "b7856d262c4ca2fcd9ffd058a571a476082add6fcfbbcb8ebc4cdd40ad756f0e",
+  "data": {
+    "parent": "d7ddb9f810bd3a92d979721b76ece03158ddc44b4ce44538142d5d531641bc32",
+    "handle": "intent:status",
+    "custom": {
+      "description": "Defines quorum for changing an intent status"
+    },
+    "values": [
+      {
+        "quorum": [
+          {
+            "handle": "system"
+          }
+        ],
+        "status": {
+          "$in": [
+            "created",
+            "pending",
+            "prepared",
+            "completed",
+            "failed",
+            "aborted",
+            "rejected",
+            "expired"
+          ]
+        }
+      },
+      {
+        "quorum": [
+          {
+            "handle": "system"
+          },
+          {
+            "public": "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw="
+          },
+          {
+            "$circle": "services"
+          }
+        ],
+        "status": {
+          "$in": ["committed"]
+        }
+      }
+    ],
+    "record": "intent",
+    "filter": {
+      "schema": {
+        "$in": ["credit-regulated"]
+      }
+    },
+    "schema": "status"
+  },
+  "luid": "$plc.-0wk_8-9q0p6hzHAF",
+  "meta": {
+    "proofs": [
+      {
+        "custom": {
+          "moment": "2025-10-13T21:02:15.073Z"
+        },
+        "digest": "4ade3e148c2b38ecf407907ca815c3a219ea07f2eddf6fb1ed7b6cf06207cd42",
+        "method": "ed25519-v2",
+        "public": "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw=",
+        "result": "KmQ3x6yq/RgcwQtQgpLW/iF8cSIiZzWUQ4H9ZLSVsLb6oevaGZOUX2Kr1yKZRI1DrA/f3kSV6kIH7zLmcO0uAA=="
+      },
+      {
+        "custom": {
+          "luid": "$plc.-0wk_8-9q0p6hzHAF",
+          "moment": "2025-10-13T21:02:15.482Z"
+        },
+        "digest": "4d536a84766c07c44dc1f1692d90c0efde97191c439a986e5b2849333a3a7432",
+        "method": "ed25519-v2",
+        "public": "ilGgrwrVLr30aZG97iOyM1kywXh5mIIp0kxsgRNXs/A=",
+        "result": "V+4DYGcnVLsSkT5LkEAUNFS+VhHkilBQhEWPv/aSBEYlhES7c8ppmk+UfhU8ZYy2oM0Xer8h1xKcC67nvzKyCg=="
+      }
+    ],
+    "moment": "2025-10-13T21:02:15.478Z",
+    "owners": ["ilGgrwrVLr30aZG97iOyM1kywXh5mIIp0kxsgRNXs/A="]
+  }
+}

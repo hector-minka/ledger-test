@@ -1,10 +1,14 @@
 import express from "express";
+import { anchorProofAddedEffect } from "./handlers/anchors-proof.js";
+import { anchorEffect } from "./handlers/anchors.js";
 import {
   abortCredit,
   commitCredit,
   prepareCredit,
 } from "./handlers/credits.js";
 import { abortDebit, commitDebit, prepareDebit } from "./handlers/debits.js";
+import { intentEffect } from "./handlers/intents.js";
+import { intentProofAdded } from "./handlers/ledger.js";
 import { asyncErrorWrapper, handleErrors } from "./middleware/errors.js";
 import { logRequest } from "./middleware/logging.js";
 
@@ -16,6 +20,13 @@ const port = process.env.PORT || process.argv[2] || 3001;
 app.use(express.json());
 app.use(logRequest);
 
+app.post("/ledger/intent-proof-added", asyncErrorWrapper(intentProofAdded));
+app.post("/ledger/intent-effect", asyncErrorWrapper(intentEffect));
+app.post("/ledger/anchor-effect", asyncErrorWrapper(anchorEffect));
+app.post(
+  "/ledger/anchor-proof-added",
+  asyncErrorWrapper(anchorProofAddedEffect)
+);
 app.post("/api/v2/credits/:handle/commit", asyncErrorWrapper(commitCredit));
 app.post("/api/v2/credits/:handle/abort", asyncErrorWrapper(abortCredit));
 app.post("/api/v2/credits", asyncErrorWrapper(prepareCredit));

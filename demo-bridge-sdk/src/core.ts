@@ -1,5 +1,7 @@
 export class CoreError extends Error {
-  constructor(message) {
+  protected code: string;
+
+  constructor(message: string) {
     super(message);
     this.name = "CoreError";
     this.code = "100";
@@ -7,7 +9,7 @@ export class CoreError extends Error {
 }
 
 export class InsufficientBalanceError extends CoreError {
-  constructor(message) {
+  constructor(message: string) {
     super(message);
     this.name = "InsufficientBalanceError";
     this.code = "101";
@@ -15,7 +17,7 @@ export class InsufficientBalanceError extends CoreError {
 }
 
 export class InactiveAccountError extends CoreError {
-  constructor(message) {
+  constructor(message: string) {
     super(message);
     this.name = "InactiveAccountError";
     this.code = "102";
@@ -23,7 +25,7 @@ export class InactiveAccountError extends CoreError {
 }
 
 export class UnknownAccountError extends CoreError {
-  constructor(message) {
+  constructor(message: string) {
     super(message);
     this.name = "UnknownAccountError";
     this.code = "103";
@@ -31,14 +33,19 @@ export class UnknownAccountError extends CoreError {
 }
 
 export class Account {
-  constructor(id, active = true) {
+  public id: string;
+  public active: boolean;
+  public balance: number;
+  public onHold: number;
+
+  constructor(id: string, active = true) {
     this.id = id;
     this.active = active;
     this.balance = 0;
     this.onHold = 0;
   }
 
-  debit(amount) {
+  debit(amount: number) {
     this.assertIsActive();
 
     if (this.getAvailableBalance() < amount) {
@@ -50,13 +57,13 @@ export class Account {
     this.balance = this.balance - amount;
   }
 
-  credit(amount) {
+  credit(amount: number) {
     this.assertIsActive();
 
     this.balance = this.balance + amount;
   }
 
-  hold(amount) {
+  hold(amount: number) {
     this.assertIsActive();
 
     if (this.getAvailableBalance() < amount) {
@@ -68,7 +75,7 @@ export class Account {
     this.onHold = this.onHold + amount;
   }
 
-  release(amount) {
+  release(amount: number) {
     this.assertIsActive();
 
     if (this.onHold < amount) {
@@ -102,13 +109,36 @@ export class Account {
     }
   }
 
-  setActive(active) {
+  setActive(active: boolean) {
     this.active = active;
   }
 }
 
 export class Transaction {
-  constructor({ id, type, account, amount, status, idempotencyToken }) {
+  public id: string;
+  public type: string;
+  public account: string;
+  public amount: number;
+  public status: string;
+  public idempotencyToken?: string | undefined;
+  public errorReason?: string | undefined;
+  public errorCode?: string | undefined;
+
+  constructor({
+    id,
+    type,
+    account,
+    amount,
+    status,
+    idempotencyToken,
+  }: {
+    id: string;
+    type: string;
+    account: string;
+    amount: number;
+    status: string;
+    idempotencyToken?: string | undefined;
+  }) {
     this.id = id;
     this.type = type;
     this.account = account;
@@ -116,46 +146,51 @@ export class Transaction {
     this.status = status;
     this.errorReason = undefined;
     this.errorCode = undefined;
-    this.idempotencyToken = idempotencyToken;
+    this.idempotencyToken = idempotencyToken ?? undefined;
   }
 }
 
 export class Ledger {
-  accounts = new Map();
-  transactions = [];
+  accounts = new Map<string, Account>();
+  transactions: Transaction[] = [];
 
   constructor() {
     // account with no balance
-    this.accounts.set(1, new Account(1));
+    this.accounts.set("1", new Account("1"));
 
     // account with available balance 70
-    this.accounts.set(2, new Account(2));
-    this.credit(2, 1000);
-    this.debit(2, 10);
-    this.hold(2, 20);
+    this.accounts.set("2", new Account("2"));
+    this.credit("2", 100);
+    this.debit("2", 10);
+    this.hold("2", 20);
 
     // account with no available balance 0
-    this.accounts.set(3, new Account(3));
-    this.credit(3, 300);
-    this.debit(3, 200);
-    this.hold(3, 100);
+    this.accounts.set("3", new Account("3"));
+    this.credit("3", 300);
+    this.debit("3", 200);
+    this.hold("3", 100);
 
     // inactive account
-    this.accounts.set(4, new Account(4));
-    this.credit(4, 200);
-    this.debit(4, 20);
-    this.inactivate(4);
+    this.accounts.set("4", new Account("4"));
+    this.credit("4", 200);
+    this.debit("4", 20);
+    this.inactivate("4");
   }
 
-  getAccount(accountId) {
-    let account = this.accounts.get(accountId);
+  getAccount(accountId: string) {
+    const account = this.accounts.get(accountId);
     if (!account) {
       throw new UnknownAccountError(`Account ${accountId} does not exist`);
     }
     return account;
   }
 
-  processTransaction(type, accountId, amount, idempotencyToken) {
+  processTransaction(
+    type: string,
+    accountId: string,
+    amount: number,
+    idempotencyToken?: string
+  ) {
     if (idempotencyToken) {
       const existing = this.transactions.filter(
         (t) => t.idempotencyToken === idempotencyToken
@@ -165,18 +200,18 @@ export class Ledger {
       }
     }
 
-    let nextTransactionId = this.transactions.length;
-    let transaction = new Transaction({
-      id: nextTransactionId,
+    const nextTransactionId = this.transactions.length;
+    const transaction = new Transaction({
+      id: nextTransactionId.toString(),
       type,
       account: accountId,
       amount,
       status: "PENDING",
-      idempotencyToken,
+      idempotencyToken: idempotencyToken ?? undefined,
     });
     this.transactions[nextTransactionId] = transaction;
     try {
-      let account = this.getAccount(accountId);
+      const account = this.getAccount(accountId);
       switch (type) {
         case "CREDIT":
           account.credit(amount);
@@ -191,7 +226,7 @@ export class Ledger {
           account.release(amount);
           break;
       }
-    } catch (error) {
+    } catch (error: any) {
       transaction.errorReason = error.message;
       transaction.errorCode = error.code;
       transaction.status = "FAILED";
@@ -201,7 +236,7 @@ export class Ledger {
     return transaction;
   }
 
-  credit(accountId, amount, idempotencyToken) {
+  credit(accountId: string, amount: number, idempotencyToken?: string) {
     return this.processTransaction(
       "CREDIT",
       accountId,
@@ -210,7 +245,7 @@ export class Ledger {
     );
   }
 
-  debit(accountId, amount, idempotencyToken) {
+  debit(accountId: string, amount: number, idempotencyToken?: string) {
     return this.processTransaction(
       "DEBIT",
       accountId,
@@ -219,11 +254,11 @@ export class Ledger {
     );
   }
 
-  hold(accountId, amount, idempotencyToken) {
+  hold(accountId: string, amount: number, idempotencyToken?: string) {
     return this.processTransaction("HOLD", accountId, amount, idempotencyToken);
   }
 
-  release(accountId, amount, idempotencyToken) {
+  release(accountId: string, amount: number, idempotencyToken: string) {
     return this.processTransaction(
       "RELEASE",
       accountId,
@@ -232,15 +267,15 @@ export class Ledger {
     );
   }
 
-  activate(accountId) {
+  activate(accountId: string) {
     return this.getAccount(accountId).setActive(true);
   }
 
-  inactivate(accountId) {
+  inactivate(accountId: string) {
     return this.getAccount(accountId).setActive(false);
   }
 
-  printAccountTransactions(accountId) {
+  printAccountTransactions(accountId: string) {
     console.log(
       `Id\t\tType\t\tAccount\t\tAmount\t\tStatus\t\t\tError Reason\t\tIdempotency Token`
     );
@@ -255,8 +290,8 @@ export class Ledger {
       );
   }
 
-  printAccount(accountId) {
-    let account = this.getAccount(accountId);
+  printAccount(accountId: string) {
+    const account = this.getAccount(accountId);
     console.log(
       JSON.stringify(
         {

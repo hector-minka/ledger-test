@@ -1,5 +1,5 @@
 import core from "../core.js";
-import { ledgerSigner, notifyLedger } from "../ledger.js";
+import { ledgerSigner, notifyDebitLedger } from "../ledger.js";
 import { updateEntry } from "../persistence.js";
 import { waitForInput } from "../utils/terminal-input.js";
 import {
@@ -83,7 +83,7 @@ export async function prepareDebit(req, res) {
   console.log(
     `[DEBIT-PREPARE] Notifying ledger for handle: ${entry?.handle}, action: ${action}`
   );
-  await notifyLedger(entry, action, ["prepared", "failed"]);
+  await notifyDebitLedger(entry, action, ["prepared", "failed"]);
   console.log(
     `[DEBIT-PREPARE] Completed prepare debit flow for handle: ${entry?.handle}`
   );
@@ -131,9 +131,21 @@ async function processPrepareDebit(entry) {
     console.log(
       `[DEBIT-PREPARE-PROCESS] Extracting and validating debit data for handle: ${entry.handle}`
     );
+
+    // Debug: Log raw entry data
+    console.log(
+      `[DEBIT-PREPARE-PROCESS] Raw entry data:`,
+      JSON.stringify(entry.data, null, 2)
+    );
+    console.log(
+      `[DEBIT-PREPARE-PROCESS] Raw amount from data:`,
+      entry.data.amount
+    );
+
     const { address, symbol, amount } = extractAndValidateData({
       entry,
       schema: "debit",
+      walletOverride: "ach",
     });
     console.log(
       `[DEBIT-PREPARE-PROCESS] Extracted data - Account: ${address.account}, Symbol: ${symbol}, Amount: ${amount}`
@@ -256,7 +268,7 @@ export async function commitDebit(req, res) {
   console.log(
     `[DEBIT-COMMIT] Notifying ledger for handle: ${entry?.handle}, action: ${action}`
   );
-  await notifyLedger(entry, action, ["committed"]);
+  await notifyDebitLedger(entry, action, ["committed"]);
   console.log(
     `[DEBIT-COMMIT] Completed commit debit flow for handle: ${entry?.handle}`
   );
@@ -412,7 +424,7 @@ export async function abortDebit(req, res) {
   console.log(
     `[DEBIT-ABORT] Notifying ledger for handle: ${entry?.handle}, action: ${action}`
   );
-  await notifyLedger(entry, action, ["aborted"]);
+  await notifyDebitLedger(entry, action, ["aborted"]);
   console.log(
     `[DEBIT-ABORT] Completed abort debit flow for handle: ${entry?.handle}`
   );
