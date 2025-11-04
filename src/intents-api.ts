@@ -1,11 +1,9 @@
 import axios from "axios";
 import crypto from "crypto";
 import dayjs from "dayjs";
-import fs from "fs";
-import path from "path";
 import util from "util";
 import { createHash, createSignatureDigest } from "./hash";
-import { signJWT } from "./jwt-auth";
+import { importPrivateKey, signJWT } from "./jwt-auth";
 import { generateISOTimestamp, generateTimestampHandle } from "./utils/handle";
 
 // Informacion para firmar los proof
@@ -198,12 +196,8 @@ const keyPair = {
 };
 
 const getPrivateKey = () => {
-  const keyDer = fs.readFileSync(path.resolve(__dirname, "../htorohn-key.der"));
-  return crypto.createPrivateKey({
-    key: keyDer,
-    format: "der",
-    type: "pkcs8",
-  });
+  // Convert raw base64 private key to DER format in memory (just like Minka SDK does)
+  return importPrivateKey(SECRET_KEY);
 };
 
 export const createIntentWithApi = async () => {
