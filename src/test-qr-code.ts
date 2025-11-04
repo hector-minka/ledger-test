@@ -52,44 +52,35 @@ export async function createTransfiyaAnchor() {
     target: "target:test-account",
     schema: "qr-code",
     custom: {
-      // Point of Initiation Method - Required
-      pointOfInitiationMethod: "DINAMICO", // or "ESTATICO"
-
-      // Merchant Account Information - Required
+      // Dynamic QR Code
+      pointOfInitiationMethod: "DINAMICO",
       merchantAccountInformation: {
         aliasType: "CELULAR", // IDENTIFICACION, CELULAR, EMAIL, TEXT, MERCHANTID
         aliasValue: "+573001234567", // The "llave" - this goes to EMVco field 26-01
         merchantCode: "MERCH-001", // Optional merchant code
       },
-
-      // Merchant Information - Required
       merchantName: "Test Merchant",
       merchantCity: "Bogotá",
-      postalCode: "110111", // Required by
-
-      // Transaction Details - Required
-      merchantCategoryCode: "5411", // MCC code (0000 for PN, ISO 18245 for PJ)
-
-      // Additional Merchant Information - Required
+      postalCode: "110111",
+      merchantCategoryCode: "5411", // MCC code
       additionalMerchantInformation: {
-        terminal: "TERM-001", // Required terminal identifier
+        terminal: "TERM-001",
         transactionPorpose: "COMPRAS", // COMPRAS, ANULACIONES, TRANSFERENCIAS, RETIRO, RECAUDO, RECARGAS, DEPOSITO
       },
-
-      // Transaction - Required
       transaction: {
-        amount: "50000.00", // Transaction amount (required)
+        amount: "50000", // Transaction amount (required for dynamic)
       },
-
-      // Custom Data (Tax Information) - Optional but useful
       customData: {
-        valorIva: "9500.00", // IVA amount (optional)
-        baseIva: "50000.00", // Base IVA (optional)
-        valorInc: "0.00", // INC amount (optional)
+        valorIva: "9500",
+        baseIva: "50000",
+        valorInc: "0",
       },
-
-      // Channel - Required
+      idQr: `QR-${Date.now()}-${Math.random().toString(36).substring(7)}`,
       channel: "POS", // IM, POS, APP, ECOMM, MPOS, ATM, CB, OFC
+      // Transfiya-specific: Currency and Country (required for Transfiya BRE-B compliance)
+      currencyCode: "170", // COP (Colombian Peso) - required for Transfiya
+      countryCode: "CO", // Colombia - required for Transfiya
+      duration: 3600, // Duration in seconds
     },
   };
 

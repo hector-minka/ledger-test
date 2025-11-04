@@ -1,7 +1,9 @@
 import axios from "axios";
+import crypto from "crypto";
 import dayjs from "dayjs";
 import util from "util";
-import { generateSignature, signJWT } from "../crypto-utils";
+import { createHash, createSignatureDigest } from "./hash";
+import { importPrivateKey, signJWT } from "./jwt-auth";
 import { generateISOTimestamp, generateTimestampHandle } from "./utils/handle";
 
 // Informacion para firmar los proof
@@ -193,30 +195,40 @@ const keyPair = {
   secret: SECRET_KEY,
 };
 
+const getPrivateKey = () => {
+  // Convert raw base64 private key to DER format in memory (just like Minka SDK does)
+  return importPrivateKey(SECRET_KEY);
+};
+
 export const createIntentWithApi = async () => {
   try {
-    // Use the new crypto-utils module to generate signature
-    const { hash, digest, result } = generateSignature(
-      data,
-      SECRET_KEY,
-      signatureCustom
-    );
-
+    const hash = createHash(data);
     console.log("HASH:", hash);
-    console.log("SIGNATURE DIGEST:", digest);
-    console.log("SIGNATURE BASE64:", result);
+    const signatureDigest = createSignatureDigest(hash, signatureCustom);
+    console.log("SIGNATURE DIGEST:", signatureDigest);
+    const digestBuffer = Buffer.from(signatureDigest, "hex");
+    const privateKey = getPrivateKey();
+    console.info(
+      "PRIVATE KEY:",
+      util.inspect(privateKey, { depth: null, colors: true })
+    );
+    const signatureBase64 = crypto
+      .sign(undefined, digestBuffer, privateKey)
+      .toString("base64");
 
+    console.log("SIGNATURE BASE64:", signatureBase64);
     const request = {
       data,
       hash,
+
       meta: {
         proofs: [
           {
             method: "ed25519-v2",
             custom: signatureCustom,
-            digest,
+            digest: signatureDigest,
             public: keyPair.public,
-            result,
+            result: signatureBase64,
           },
         ],
       },

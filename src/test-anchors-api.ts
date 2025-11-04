@@ -244,9 +244,9 @@ export const getAnchorWithApi = async (anchorHandle: string) => {
         Authorization: `Bearer ${jwt}`,
         "x-received": dayjs().toISOString(),
         "x-dispatched": dayjs().toISOString(),
-        "x-domain": "transfiya",
-        "x-use-case": "send.b2p",
-        "x-directory": "rail",
+        // "x-domain": "transfiya",
+        // "x-use-case": "send.b2p",
+        // "x-directory": "rail",
       },
     });
 
