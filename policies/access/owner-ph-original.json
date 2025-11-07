@@ -1,0 +1,116 @@
+{
+  "hash": "85802bb0759e7d83d46cecea02914d47df8931e683e4179b8ae4406ed180fa95",
+  "data": {
+    "parent": "4804278f7b6b9bf9fc8f0c6bd6c03bc9b3bcc216832bb7a6d97f5db8abab530b",
+    "handle": "owner",
+    "access": [
+      {
+        "action": "any",
+        "signer": {
+          "$record": "owner"
+        }
+      },
+      {
+        "action": "read",
+        "bearer": {
+          "$signer": {
+            "$record": "owner"
+          }
+        }
+      }
+    ],
+    "values": [
+      {
+        "action": "create",
+        "record": {
+          "$in": [
+            "ledger",
+            "circle",
+            "circle-signer",
+            "signer",
+            "policy",
+            "schema",
+            "symbol",
+            "wallet",
+            "anchor",
+            "anchor-proof",
+            "domain",
+            "intent",
+            "intent-proof",
+            "report-proof",
+            "bridge"
+          ]
+        },
+        "signer": {
+          "$circle": "owner"
+        }
+      },
+      {
+        "action": {
+          "$in": ["update", "read", "query", "drop", "manage", "access"]
+        },
+        "record": "any",
+        "signer": {
+          "$circle": "owner"
+        }
+      },
+      {
+        "action": "create",
+        "change": {
+          "schema": {
+            "$in": [
+              "billing",
+              "reconciliation",
+              "export-changes",
+              "export-journal",
+              "trans_details_rep",
+              "ledger_movement_rep",
+              "ledger_participants_rep"
+            ]
+          }
+        },
+        "record": "report",
+        "signer": {
+          "$circle": "owner"
+        }
+      },
+      {
+        "action": "read",
+        "bearer": {
+          "$signer": {
+            "$circle": "owner"
+          }
+        }
+      }
+    ],
+    "record": "any",
+    "schema": "access"
+  },
+  "luid": "$plc.-13c4wBoOzcEvS3XA",
+  "meta": {
+    "proofs": [
+      {
+        "custom": {
+          "moment": "2025-09-30T21:41:34.220Z"
+        },
+        "digest": "ab7a03c3d6f24538910ddbc1a34ffafc038c67fea686c6d7d3d81322778c808e",
+        "method": "ed25519-v2",
+        "public": "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw=",
+        "result": "LIojqNk6bJPc9u3AhAbopb93Lb2b8e8tnB1sohY2mZIElGmQMhiFsb0eKS9d1eZQW68E814G+USka7MPAxU+DQ=="
+      },
+      {
+        "custom": {
+          "luid": "$plc.-13c4wBoOzcEvS3XA",
+          "moment": "2025-09-30T21:41:34.377Z"
+        },
+        "digest": "96ba21d455a2ebf439799cffc3b30b6dd89207a009c487b15095fc6339900814",
+        "method": "ed25519-v2",
+        "public": "F1jP1QlOt2stfMYmP4E39gMclnuHVEG3Tlo/zIq7vbs=",
+        "result": "L6ZLcP5WilRY4LBzTSr2RlYWh7nRz1mj1H871eX/ew05eoJ4WDdnIqNUfg+GnRwxAL15R+ScpkFsmfkDwO2aBA=="
+      }
+    ],
+    "status": "created",
+    "moment": "2025-09-30T21:41:34.373Z",
+    "owners": ["YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw="]
+  }
+}

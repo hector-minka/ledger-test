@@ -1,0 +1,113 @@
+{
+  "hash": "",
+  "data": {
+    "handle": "security",
+    "access": [
+      {
+        "action": "any",
+        "signer": {
+          "$record": "owner"
+        }
+      },
+      {
+        "action": "read",
+        "bearer": {
+          "$signer": {
+            "$record": "owner"
+          }
+        }
+      }
+    ],
+    "values": [
+      {
+        "action": "any",
+        "filter": {
+          "handle": {
+            "$in": ["admin", "security", "operations", "support"]
+          }
+        },
+        "record": {
+          "$in": ["circle", "circle-signer"]
+        },
+        "signer": {
+          "$circle": "security"
+        }
+      },
+      {
+        "action": "create",
+        "record": "circle",
+        "signer": {
+          "$circle": "security"
+        }
+      },
+      {
+        "action": "create",
+        "change": {
+          "schema": {
+            "$in": ["access"]
+          }
+        },
+        "record": "policy",
+        "signer": {
+          "$circle": "security"
+        }
+      },
+      {
+        "action": "any",
+        "record": {
+          "$in": [
+            "anchor",
+            "anchor-proof",
+            "bridge-proof",
+            "circle-proof",
+            "domain-proof",
+            "effect",
+            "effect-proof",
+            "intent",
+            "intent-proof",
+            "ledger",
+            "ledger-proof",
+            "policy-proof",
+            "report-proof",
+            "request",
+            "schema",
+            "schema-proof",
+            "server",
+            "signer",
+            "signer-proof",
+            "signer-factor",
+            "signer-factor-proof",
+            "signer-factor-secret",
+            "symbol",
+            "symbol-proof",
+            "wallet",
+            "wallet-proof"
+          ]
+        },
+        "signer": {
+          "$circle": "security"
+        }
+      },
+      {
+        "action": {
+          "$in": ["read", "query"]
+        },
+        "bearer": {
+          "$signer": {
+            "$circle": "security"
+          }
+        }
+      }
+    ],
+    "record": "any",
+    "schema": "access"
+  },
+  "luid": "",
+  "meta": {
+    "proofs": [],
+    "status": "created",
+    "moment": "",
+    "owners": []
+  }
+}
+

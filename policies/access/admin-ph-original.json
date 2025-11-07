@@ -1,0 +1,143 @@
+{
+  "hash": "895874106d6c6fa69078651914df52970fba1d1e223914eb70b99f0ae2baa3c8",
+  "data": {
+    "handle": "admin",
+    "access": [
+      {
+        "action": "any",
+        "signer": {
+          "$record": "owner"
+        }
+      },
+      {
+        "action": "read",
+        "bearer": {
+          "$signer": {
+            "$record": "owner"
+          }
+        }
+      }
+    ],
+    "values": [
+      {
+        "action": "any",
+        "filter": {
+          "handle": {
+            "$regex": "^(?!.*owner).*$|^owner@.*$"
+          }
+        },
+        "record": {
+          "$in": ["circle", "circle-signer"]
+        },
+        "signer": {
+          "$circle": "admin"
+        }
+      },
+      {
+        "action": "create",
+        "record": "circle",
+        "signer": {
+          "$circle": "admin"
+        }
+      },
+      {
+        "action": {
+          "$in": ["create", "update"]
+        },
+        "record": "policy",
+        "signer": {
+          "$circle": "admin"
+        }
+      },
+      {
+        "action": {
+          "$in": ["update", "read", "drop"]
+        },
+        "record": "report",
+        "signer": {
+          "$circle": "admin"
+        }
+      },
+      {
+        "action": "create",
+        "change": {
+          "schema": {
+            "$in": [
+              "billing",
+              "reconciliation",
+              "export-changes",
+              "export-journal"
+            ]
+          }
+        },
+        "record": "report",
+        "signer": {
+          "$circle": "admin"
+        }
+      },
+      {
+        "action": "any",
+        "record": {
+          "$in": [
+            "ledger",
+            "signer",
+            "schema",
+            "symbol",
+            "wallet",
+            "anchor",
+            "anchor-proof",
+            "domain",
+            "intent",
+            "intent-proof",
+            "report-proof",
+            "bridge"
+          ]
+        },
+        "signer": {
+          "$circle": "admin"
+        }
+      },
+      {
+        "action": {
+          "$in": ["read", "query"]
+        },
+        "bearer": {
+          "$signer": {
+            "$circle": "admin"
+          }
+        }
+      }
+    ],
+    "record": "any",
+    "schema": "access"
+  },
+  "luid": "$plc.-13c4wgKF5xeVCeK8",
+  "meta": {
+    "proofs": [
+      {
+        "custom": {
+          "moment": "2025-09-29T21:12:26.795Z",
+          "status": "created"
+        },
+        "digest": "adb007d46f02e9b3ffbd1a2d2bf793bf68c7eefd5200c71179ef213b2b2d9246",
+        "method": "ed25519-v2",
+        "public": "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw=",
+        "result": "IYyegIaIteFeSisHmV/gZC4ZTovYM7iVtJRJhI+tcdf3aghqQEmDZB4GDRCZw5Foy6NEQRqcnQSXTkH2nYTLDg=="
+      },
+      {
+        "custom": {
+          "luid": "$plc.-13c4wgKF5xeVCeK8",
+          "moment": "2025-09-29T21:12:26.981Z",
+          "status": "created"
+        },
+        "digest": "537d00b459ea0e244b827c46c0f6fbb9ced8fa755ed0e1f7444ae15e64075878",
+        "method": "ed25519-v2",
+        "public": "F1jP1QlOt2stfMYmP4E39gMclnuHVEG3Tlo/zIq7vbs=",
+        "result": "ydmxCMCVAgGeORB4VPHxo+ffeEJ0oBh5YE7Aog2b9LLp9E8simGVIFnrTeSSIVRNZKWct/NqMzipVjO3p3U+Aw=="
+      }
+    ],
+    "status": "created",
+    "moment": "2025-09-29T21:12:26.976Z",
+    "owners": ["YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw="]
+  }
+}

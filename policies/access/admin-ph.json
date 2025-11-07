@@ -1,0 +1,140 @@
+{
+  "hash": "",
+  "data": {
+    "handle": "admin",
+    "access": [
+      {
+        "action": "any",
+        "signer": {
+          "$record": "owner"
+        }
+      },
+      {
+        "action": "read",
+        "bearer": {
+          "$signer": {
+            "$record": "owner"
+          }
+        }
+      }
+    ],
+    "values": [
+      {
+        "action": "any",
+        "filter": {
+          "handle": {
+            "$regex": "^(?!.*owner).*$|^owner@.*$"
+          }
+        },
+        "record": {
+          "$in": ["circle", "circle-signer"]
+        },
+        "signer": {
+          "$circle": "admin"
+        }
+      },
+      {
+        "action": "create",
+        "record": "circle",
+        "signer": {
+          "$circle": "admin"
+        }
+      },
+      {
+        "action": {
+          "$in": ["create", "update"]
+        },
+        "record": "policy",
+        "signer": {
+          "$circle": "admin"
+        }
+      },
+      {
+        "action": {
+          "$in": ["update", "read", "drop"]
+        },
+        "record": "report",
+        "signer": {
+          "$circle": "admin"
+        }
+      },
+      {
+        "action": "create",
+        "change": {
+          "schema": {
+            "$in": [
+              "billing",
+              "reconciliation",
+              "export-changes",
+              "export-journal",
+              "trans_details_rep",
+              "ledger_movement_rep",
+              "ledger_participants_rep"
+            ]
+          }
+        },
+        "record": "report",
+        "signer": {
+          "$circle": "admin"
+        }
+      },
+      {
+        "action": "any",
+        "record": {
+          "$in": [
+            "anchor",
+            "anchor-proof",
+            "bridge",
+            "bridge-proof",
+            "circle-proof",
+            "domain",
+            "domain-proof",
+            "effect",
+            "effect-proof",
+            "intent",
+            "intent-proof",
+            "ledger",
+            "ledger-proof",
+            "policy-proof",
+            "report-proof",
+            "request",
+            "schema",
+            "schema-proof",
+            "server",
+            "signer",
+            "signer-proof",
+            "signer-factor",
+            "signer-factor-proof",
+            "signer-factor-secret",
+            "symbol",
+            "symbol-proof",
+            "wallet",
+            "wallet-proof"
+          ]
+        },
+        "signer": {
+          "$circle": "admin"
+        }
+      },
+      {
+        "action": {
+          "$in": ["read", "query"]
+        },
+        "bearer": {
+          "$signer": {
+            "$circle": "admin"
+          }
+        }
+      }
+    ],
+    "record": "any",
+    "schema": "access"
+  },
+  "luid": "",
+  "meta": {
+    "proofs": [],
+    "status": "created",
+    "moment": "",
+    "owners": []
+  }
+}

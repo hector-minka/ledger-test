@@ -1,0 +1,44 @@
+{
+  "hash": "",
+  "data": {
+    "handle": "support",
+    "access": [
+      {
+        "action": "any",
+        "signer": {
+          "$record": "owner"
+        }
+      },
+      {
+        "action": "read",
+        "bearer": {
+          "$signer": {
+            "$record": "owner"
+          }
+        }
+      }
+    ],
+    "values": [
+      {
+        "action": {
+          "$in": ["read", "query"]
+        },
+        "bearer": {
+          "$signer": {
+            "$circle": "support"
+          }
+        }
+      }
+    ],
+    "record": "any",
+    "schema": "access"
+  },
+  "luid": "",
+  "meta": {
+    "proofs": [],
+    "status": "created",
+    "moment": "",
+    "owners": []
+  }
+}
+

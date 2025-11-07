@@ -1,0 +1,148 @@
+{
+  "hash": "9d80923eb1663bffdd03bfeba4a60148a5bea088de4aa6de525d971e2d042d7c",
+  "data": {
+    "parent": "b09e6eee7713caff844e93703e88c4512a730d7bd72e2bbbb43763572b3d2c2a",
+    "handle": "owner",
+    "access": [
+      {
+        "action": "any",
+        "signer": {
+          "$record": "owner"
+        }
+      },
+      {
+        "action": "read",
+        "bearer": {
+          "$signer": {
+            "$record": "owner"
+          }
+        }
+      }
+    ],
+    "values": [
+      {
+        "action": "create",
+        "record": {
+          "$in": [
+            "anchor",
+            "anchor-proof",
+            "bridge",
+            "bridge-proof",
+            "circle",
+            "circle-proof",
+            "circle-signer",
+            "domain",
+            "domain-proof",
+            "effect",
+            "effect-proof",
+            "intent",
+            "intent-proof",
+            "ledger",
+            "ledger-proof",
+            "policy",
+            "policy-proof",
+            "report-proof",
+            "request",
+            "schema",
+            "schema-proof",
+            "server",
+            "signer",
+            "signer-proof",
+            "signer-factor",
+            "signer-factor-proof",
+            "signer-factor-secret",
+            "symbol",
+            "symbol-proof",
+            "wallet",
+            "wallet-proof"
+          ]
+        },
+        "signer": {
+          "$circle": "owner"
+        }
+      },
+      {
+        "action": {
+          "$in": [
+            "abort",
+            "access",
+            "activate",
+            "assign-signer",
+            "commit",
+            "destroy",
+            "drop",
+            "issue",
+            "limit",
+            "lookup",
+            "manage",
+            "query",
+            "read",
+            "remove-signer",
+            "spend",
+            "update",
+            "reveal"
+          ]
+        },
+        "record": "any",
+        "signer": {
+          "$circle": "owner"
+        }
+      },
+      {
+        "action": "create",
+        "change": {
+          "schema": {
+            "$in": [
+              "billing",
+              "reconciliation",
+              "export-changes",
+              "export-journal",
+              "trans_details_rep"
+            ]
+          }
+        },
+        "record": "report",
+        "signer": {
+          "$circle": "owner"
+        }
+      },
+      {
+        "action": "read",
+        "bearer": {
+          "$signer": {
+            "$circle": "owner"
+          }
+        }
+      }
+    ],
+    "record": "any",
+    "schema": "access"
+  },
+  "luid": "$plc.-0wkaijrC-C-xJxB7",
+  "meta": {
+    "proofs": [
+      {
+        "custom": {
+          "moment": "2025-09-09T19:45:53.820Z"
+        },
+        "digest": "4cefce8d0c0ce9722a7278f4d293bebd9ede93376fd4cb6c63b8cfd41896e2c0",
+        "method": "ed25519-v2",
+        "public": "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw=",
+        "result": "3fpArW0KHxpMCQoeb1Ti29daVx+mZgpMP3pVCVQaSvVOl5ddyGbqs3VQy1HuqAQJMumAZa1xrAgZQ37cj4iAAw=="
+      },
+      {
+        "custom": {
+          "luid": "$plc.-0wkaijrC-C-xJxB7",
+          "moment": "2025-09-09T19:45:54.261Z"
+        },
+        "digest": "f61aa4ae3667a50d96ce714a7043f039a9cc562bfcbf4fb18b28ed0758bc4f88",
+        "method": "ed25519-v2",
+        "public": "ilGgrwrVLr30aZG97iOyM1kywXh5mIIp0kxsgRNXs/A=",
+        "result": "2lszj3t0tlE90j7oOm80+5SNe/LqqGz5yRVX9AGEYdDz0GNgl1N6WSQ6SSBq0ilbVWwKkHtKOfmxxfT0NFfeAw=="
+      }
+    ],
+    "status": "created",
+    "moment": "2025-09-09T19:45:54.249Z",
+    "owners": ["YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw="]
+  }
+}

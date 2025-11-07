@@ -1,0 +1,131 @@
+{
+  "hash": "",
+  "data": {
+    "parent": "",
+    "handle": "owner",
+    "access": [
+      {
+        "action": "any",
+        "signer": {
+          "$record": "owner"
+        }
+      },
+      {
+        "action": "read",
+        "bearer": {
+          "$signer": {
+            "$record": "owner"
+          }
+        }
+      }
+    ],
+    "values": [
+      {
+        "action": "create",
+        "record": {
+          "$in": [
+            "anchor",
+            "anchor-proof",
+            "bridge",
+            "bridge-proof",
+            "circle",
+            "circle-proof",
+            "circle-signer",
+            "domain",
+            "domain-proof",
+            "effect",
+            "effect-proof",
+            "intent",
+            "intent-proof",
+            "ledger",
+            "ledger-proof",
+            "policy",
+            "policy-proof",
+            "report-proof",
+            "request",
+            "schema",
+            "schema-proof",
+            "server",
+            "signer",
+            "signer-proof",
+            "signer-factor",
+            "signer-factor-proof",
+            "signer-factor-secret",
+            "symbol",
+            "symbol-proof",
+            "wallet",
+            "wallet-proof"
+          ]
+        },
+        "signer": {
+          "$circle": "owner"
+        }
+      },
+      {
+        "action": {
+          "$in": [
+            "abort",
+            "access",
+            "activate",
+            "assign-signer",
+            "commit",
+            "destroy",
+            "drop",
+            "issue",
+            "limit",
+            "lookup",
+            "manage",
+            "query",
+            "read",
+            "remove-signer",
+            "spend",
+            "update",
+            "reveal"
+          ]
+        },
+        "record": "any",
+        "signer": {
+          "$circle": "owner"
+        }
+      },
+      {
+        "action": "create",
+        "change": {
+          "schema": {
+            "$in": [
+              "billing",
+              "reconciliation",
+              "export-changes",
+              "export-journal",
+              "trans_details_rep",
+              "ledger_movement_rep",
+              "ledger_participants_rep"
+            ]
+          }
+        },
+        "record": "report",
+        "signer": {
+          "$circle": "owner"
+        }
+      },
+      {
+        "action": "read",
+        "bearer": {
+          "$signer": {
+            "$circle": "owner"
+          }
+        }
+      }
+    ],
+    "record": "any",
+    "schema": "access"
+  },
+  "luid": "",
+  "meta": {
+    "proofs": [],
+    "status": "created",
+    "moment": "",
+    "owners": []
+  }
+}
+

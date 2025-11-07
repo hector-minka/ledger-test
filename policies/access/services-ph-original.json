@@ -1,0 +1,97 @@
+{
+  "hash": "fcd10cded7b5f45871f540267f7eb5b1066dadb6cf1f4ed49a8f260c05b7d603",
+  "data": {
+    "parent": "66e1ff898b8e5b31d5296f8c40caded48a50e13d3b11451e9061922d5de597b7",
+    "handle": "services",
+    "access": [
+      {
+        "action": "any",
+        "signer": {
+          "public": "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw="
+        }
+      }
+    ],
+    "values": [
+      {
+        "action": {
+          "$in": ["read", "query"]
+        },
+        "bearer": {
+          "$signer": {
+            "$circle": "services"
+          }
+        },
+        "record": {
+          "$in": ["intent", "wallet"]
+        }
+      },
+      {
+        "action": "create",
+        "record": "intent",
+        "signer": {
+          "$circle": "services"
+        }
+      },
+      {
+        "action": "create",
+        "record": "intent-proof",
+        "signer": {
+          "$circle": "services"
+        }
+      },
+      {
+        "action": "spend",
+        "record": "wallet",
+        "signer": {
+          "$circle": "services"
+        }
+      },
+      {
+        "action": {
+          "$in": [
+            "create",
+            "update",
+            "read",
+            "query",
+            "drop",
+            "manage",
+            "access"
+          ]
+        },
+        "record": "anchor",
+        "signer": {
+          "$circle": "services"
+        }
+      }
+    ],
+    "record": "any",
+    "schema": "access"
+  },
+  "luid": "$plc.-1Bt7a6VwMJKy19JX",
+  "meta": {
+    "proofs": [
+      {
+        "custom": {
+          "moment": "2025-10-30T21:55:21.876Z"
+        },
+        "digest": "fe33fd8d63acef4eaba64f49e73b1538a6ab9b4ebc49e226e9c658b29369dcd2",
+        "method": "ed25519-v2",
+        "public": "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw=",
+        "result": "90coFRmK5qE1zFhgNzSzot/x16zqKPFBVUA+pi0PIYzpA8hI3hia9XfELinC4NAiBPE3wjiETOV9EsPibh7EBg=="
+      },
+      {
+        "custom": {
+          "luid": "$plc.-1Bt7a6VwMJKy19JX",
+          "moment": "2025-10-30T21:55:22.211Z"
+        },
+        "digest": "6cf1847da0c987f2fbf41e4bc51d270534961a754bcd868cc573b9f1f8f69f81",
+        "method": "ed25519-v2",
+        "public": "r4H7Zvpxih7dlW3MeTH0M9aqOUMkDuZUOWsFMz3lHFw=",
+        "result": "oH5rfAR/Ks8uT9ETCaYScZiQUs89BwjypXRooZ35RUUG4iZJLV16jtHKNADre1F7cFPbNioQD1gClF1ojW/3Bg=="
+      }
+    ],
+    "status": "created",
+    "moment": "2025-10-30T21:55:22.206Z",
+    "owners": ["YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw="]
+  }
+}

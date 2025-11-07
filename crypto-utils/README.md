@@ -90,13 +90,15 @@ const request = {
   data,
   hash,
   meta: {
-    proofs: [{
-      method: "ed25519-v2",
-      custom: signatureCustom,
-      digest,
-      public: PUBLIC_KEY,
-      result, // Base64-encoded signature
-    }],
+    proofs: [
+      {
+        method: "ed25519-v2",
+        custom: signatureCustom,
+        digest,
+        public: PUBLIC_KEY,
+        result, // Base64-encoded signature
+      },
+    ],
   },
 };
 ```
@@ -131,15 +133,14 @@ const headers = {
 ### Complete Example
 
 ```typescript
-import {
-  generateSignature,
-  signJWT,
-} from './crypto-utils';
+import { generateSignature, signJWT } from "./crypto-utils";
 
 async function createIntent() {
   const data = {
     handle: "intent:123",
-    claims: [/* ... */],
+    claims: [
+      /* ... */
+    ],
     schema: "payment",
     // ... other fields
   };
@@ -172,23 +173,25 @@ async function createIntent() {
   );
 
   // Make request
-  const response = await fetch('https://api.example.com/intents', {
-    method: 'POST',
+  const response = await fetch("https://api.example.com/intents", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${jwt}`,
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${jwt}`,
     },
     body: JSON.stringify({
       data,
       hash,
       meta: {
-        proofs: [{
-          method: "ed25519-v2",
-          custom: signatureCustom,
-          digest,
-          public: PUBLIC_KEY,
-          result,
-        }],
+        proofs: [
+          {
+            method: "ed25519-v2",
+            custom: signatureCustom,
+            digest,
+            public: PUBLIC_KEY,
+            result,
+          },
+        ],
       },
     }),
   });
@@ -229,4 +232,3 @@ async function createIntent() {
 - [Minka Ledger Documentation](https://docs.minka.io/ledger/how-to-guides/hash-and-sign-ledger-requests/)
 - [RFC 8785 - JSON Canonicalization Scheme](https://datatracker.ietf.org/doc/html/rfc8785)
 - [RFC 8410 - Ed25519 Algorithm](https://datatracker.ietf.org/doc/html/rfc8410)
-

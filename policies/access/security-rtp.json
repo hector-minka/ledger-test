@@ -1,0 +1,134 @@
+{
+  "hash": "2c053e7a8ca4874c38f55964ac01328a2129212bf8efe860e413766c463a2a22",
+  "data": {
+    "handle": "security",
+    "access": [
+      {
+        "action": "any",
+        "signer": {
+          "$record": "owner"
+        }
+      },
+      {
+        "action": "read",
+        "bearer": {
+          "$signer": {
+            "$record": "owner"
+          }
+        }
+      }
+    ],
+    "values": [
+      {
+        "action": "any",
+        "filter": {
+          "handle": {
+            "$in": ["admin", "security", "operation", "support"]
+          }
+        },
+        "record": {
+          "$in": ["circle", "circle-signer"]
+        },
+        "signer": {
+          "$circle": "security"
+        }
+      },
+      {
+        "action": "create",
+        "record": "circle",
+        "signer": {
+          "$circle": "security"
+        }
+      },
+      {
+        "action": "create",
+        "change": {
+          "schema": {
+            "$in": ["access"]
+          }
+        },
+        "record": "policy",
+        "signer": {
+          "$circle": "security"
+        }
+      },
+      {
+        "action": "any",
+        "record": {
+          "$in": [
+            "anchor",
+            "anchor-proof",
+            "bridge-proof",
+            "circle-proof",
+            "domain-proof",
+            "effect",
+            "effect-proof",
+            "intent",
+            "intent-proof",
+            "ledger",
+            "ledger-proof",
+            "policy-proof",
+            "report-proof",
+            "request",
+            "schema",
+            "schema-proof",
+            "server",
+            "signer",
+            "signer-proof",
+            "signer-factor",
+            "signer-factor-proof",
+            "signer-factor-secret",
+            "symbol",
+            "symbol-proof",
+            "wallet",
+            "wallet-proof"
+          ]
+        },
+        "signer": {
+          "$circle": "security"
+        }
+      },
+      {
+        "action": {
+          "$in": ["read", "query"]
+        },
+        "bearer": {
+          "$signer": {
+            "$circle": "security"
+          }
+        }
+      }
+    ],
+    "record": "any",
+    "schema": "access"
+  },
+  "luid": "$plc.-0wkaj8szIVXX1Ay9",
+  "meta": {
+    "proofs": [
+      {
+        "custom": {
+          "moment": "2025-09-06T00:21:01.032Z",
+          "status": "created"
+        },
+        "digest": "ea9dc3ba122080d2e403e229e7a3e878693b352185cb368622c5a3c109a286d9",
+        "method": "ed25519-v2",
+        "public": "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw=",
+        "result": "JR2p+pQxVWZe4uHAjkZnnYNgVdUSHoHghK7WEXmtIQx0cc87ZLxRESmEcmySj7Jap0WI0UdVnPB4eLipiihVCg=="
+      },
+      {
+        "custom": {
+          "luid": "$plc.-0wkaj8szIVXX1Ay9",
+          "moment": "2025-09-06T00:21:01.354Z",
+          "status": "created"
+        },
+        "digest": "75aeae501881aeea51b4c4b44d735266ffff49dac816d1ce10f09c95e45596b9",
+        "method": "ed25519-v2",
+        "public": "ilGgrwrVLr30aZG97iOyM1kywXh5mIIp0kxsgRNXs/A=",
+        "result": "cg5x9IMj2Gr0jluZRpWqgoH5m14lyUuje7hVm+jT6THGh3wk1SePxIWfFc9cC93KQnUa1Mz8p+nmRyETMGORAA=="
+      }
+    ],
+    "status": "created",
+    "moment": "2025-09-06T00:21:01.349Z",
+    "owners": ["YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw="]
+  }
+}

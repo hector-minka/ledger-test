@@ -1,0 +1,96 @@
+{
+  "hash": "d1806ec599c055f447d945e2ba99e36933a6ce3e2d5b374757f7ddba356b92b9",
+  "data": {
+    "handle": "operation",
+    "access": [
+      {
+        "action": "any",
+        "signer": {
+          "$record": "owner"
+        }
+      },
+      {
+        "action": "read",
+        "bearer": {
+          "$signer": {
+            "$record": "owner"
+          }
+        }
+      }
+    ],
+    "values": [
+      {
+        "action": {
+          "$in": ["read", "query"]
+        },
+        "bearer": {
+          "$signer": {
+            "$circle": "operation"
+          }
+        },
+        "record": {
+          "$in": [
+            "schema",
+            "wallet",
+            "report",
+            "domain",
+            "signer",
+            "circle",
+            "intent",
+            "circle-signer"
+          ]
+        }
+      },
+      {
+        "action": "create",
+        "record": "report-proof",
+        "signer": {
+          "$circle": "operation"
+        }
+      },
+      {
+        "action": "create",
+        "change": {
+          "schema": {
+            "$in": ["billing", "reconciliation"]
+          }
+        },
+        "record": "report",
+        "signer": {
+          "$circle": "operation"
+        }
+      }
+    ],
+    "record": "any",
+    "schema": "access"
+  },
+  "luid": "$plc.-0wkajgIci1BvSqD2",
+  "meta": {
+    "proofs": [
+      {
+        "custom": {
+          "moment": "2025-09-06T00:21:01.383Z",
+          "status": "created"
+        },
+        "digest": "a7c7d2d4b1a2e75511b674a6a5ef146103942698d383e5b50e672e4dc3daa054",
+        "method": "ed25519-v2",
+        "public": "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw=",
+        "result": "3q8LIvYi31tjnfnr+sAdLsmqSDlfShT5/Bwl9kL42j0qwXoJEAoKq1aTC4TPKRRSsTkpAGt7IWF4+aVqZqtWDw=="
+      },
+      {
+        "custom": {
+          "luid": "$plc.-0wkajgIci1BvSqD2",
+          "moment": "2025-09-06T00:21:01.714Z",
+          "status": "created"
+        },
+        "digest": "5f14127a0ddb89c3cfa82ade9e1519f38c9e4485e96537341c2a0391c0af89a5",
+        "method": "ed25519-v2",
+        "public": "ilGgrwrVLr30aZG97iOyM1kywXh5mIIp0kxsgRNXs/A=",
+        "result": "P7/vyGBlpapO2Kbc3ZYIfeL+to1O/okDnziGhhJ6FOjAgfMqkgsoGg9FZlCtkWeSDWJkA2KobiAzoJrIph/MCw=="
+      }
+    ],
+    "status": "created",
+    "moment": "2025-09-06T00:21:01.709Z",
+    "owners": ["YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw="]
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "hash": "29e808e095573e603f756e10872a98cbca5a82fe9b5840105a1aabd7f76a0cb1",
+  "data": {
+    "handle": "support",
+    "access": [
+      {
+        "action": "any",
+        "signer": {
+          "$record": "owner"
+        }
+      },
+      {
+        "action": "read",
+        "bearer": {
+          "$signer": {
+            "$record": "owner"
+          }
+        }
+      }
+    ],
+    "values": [
+      {
+        "action": {
+          "$in": ["read", "query"]
+        },
+        "bearer": {
+          "$signer": {
+            "$circle": "support"
+          }
+        }
+      }
+    ],
+    "record": "any",
+    "schema": "access"
+  },
+  "luid": "$plc.-13c4xmM_YWvc_PPE",
+  "meta": {
+    "proofs": [
+      {
+        "custom": {
+          "moment": "2025-09-29T21:12:27.630Z",
+          "status": "created"
+        },
+        "digest": "c3769f1243b715e94a231b0217c911eafa5e179aea8e796768132ba1e796be68",
+        "method": "ed25519-v2",
+        "public": "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw=",
+        "result": "0B4jHdbuOVwCTkr3vcM7A0zg02Ifht2d7h3RDPbkXW8ZqvMWVkgEs6WmUvMJODHshodW8OW2vBpXU3RbpHaKDw=="
+      },
+      {
+        "custom": {
+          "luid": "$plc.-13c4xmM_YWvc_PPE",
+          "moment": "2025-09-29T21:12:27.943Z",
+          "status": "created"
+        },
+        "digest": "63672bf4a2b1907c04d383973192f3e31945afa0db387e98222a8d99f2e8175b",
+        "method": "ed25519-v2",
+        "public": "F1jP1QlOt2stfMYmP4E39gMclnuHVEG3Tlo/zIq7vbs=",
+        "result": "B5MqldfX8SvVsieX6aCz/w7Fg7GYFHlYGqqJ4JgDUtzgk0D/Oxkw0wzh4KWAE9hM4TcD2/rUdC0qKp5oYkkqAg=="
+      }
+    ],
+    "status": "created",
+    "moment": "2025-09-29T21:12:27.889Z",
+    "owners": ["YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw="]
+  }
+}

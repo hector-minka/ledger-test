@@ -1,6 +1,6 @@
 import { LedgerSdk } from "@minka/ledger-sdk";
 import { LedgerKeyPair } from "@minka/ledger-sdk/types";
-import util from "util";
+import * as util from "util";
 // Utility function for ISO timestamp
 function generateISOTimestamp(): string {
   return new Date().toISOString();
@@ -46,41 +46,66 @@ export async function createTransfiyaAnchor() {
     secret: SECRET_KEY,
   };
 
-  // QR Code anchor data according to the schema
+  // QR Code anchor data according to the Colombia Dynamic QR Code Schema
+  // Amount in base 100 (without decimals): 50000.00 COP = 5000000
+  const transactionAmount = 5000000; // 50000.00 COP in base 100
+  const taxAmount = 950000; // 9500.00 COP in base 100 (optional)
+
   const anchorData = {
     handle: `QR-${Date.now()}-${Math.random().toString(36).substring(7)}`,
     target: "target:test-account",
-    schema: "qr-code",
     custom: {
-      // Dynamic QR Code
-      pointOfInitiationMethod: "DINAMICO",
-      merchantAccountInformation: {
-        aliasType: "CELULAR", // IDENTIFICACION, CELULAR, EMAIL, TEXT, MERCHANTID
-        aliasValue: "+573001234567", // The "llave" - this goes to EMVco field 26-01
-        merchantCode: "MERCH-001", // Optional merchant code
-      },
-      merchantName: "Test Merchant",
-      merchantCity: "Bogotá",
-      postalCode: "110111",
-      merchantCategoryCode: "5411", // MCC code
-      additionalMerchantInformation: {
-        terminal: "TERM-001",
-        transactionPorpose: "COMPRAS", // COMPRAS, ANULACIONES, TRANSFERENCIAS, RETIRO, RECAUDO, RECARGAS, DEPOSITO
-      },
+      // Transaction details (required)
       transaction: {
-        amount: "50000", // Transaction amount (required for dynamic)
+        amount: transactionAmount, // Transaction amount in base 100 (required for dynamic QR)
+        currencyCode: "170", // COP (Colombian Peso) - ISO 4217 code for Colombia
+        tax: taxAmount, // IVA amount in base 100 (optional)
+        referenceNumber: "INV-2024-001", // Merchant reference (optional)
+        channel: "POS", // IM, POS, APP, ECOMM, MPOS, ATM, CB, OFC (optional)
+        transactionPurpose: "COMPRAS", // COMPRAS, ANULACIONES, TRANSFERENCIAS, RETIRO, RECAUDO, RECARGAS, DEPOSITO (optional)
+        terminal: "TERM-001", // Terminal label (optional)
       },
-      customData: {
-        valorIva: "9500",
-        baseIva: "50000",
-        valorInc: "0",
+
+      // Remitant information (optional)
+      // NOTE: In dynamic QR, aliasType and aliasValue are NOT sent here -
+      // they are generated dynamically by the external service that the bridge consumes internally
+      remitant: {
+        name: "Test Merchant",
+        documentNumber: "1234567890",
+        documentType: "CC",
+        city: "Bogotá",
+        categoryCode: "5411", // MCC code (4 digits)
+        countryCode: "CO", // Colombia
+        postalCode: "110111",
       },
-      idQr: `QR-${Date.now()}-${Math.random().toString(36).substring(7)}`,
-      channel: "POS", // IM, POS, APP, ECOMM, MPOS, ATM, CB, OFC
-      // Transfiya-specific: Currency and Country (required for Transfiya BRE-B compliance)
-      currencyCode: "170", // COP (Colombian Peso) - required for Transfiya
-      countryCode: "CO", // Colombia - required for Transfiya
-      duration: 3600, // Duration in seconds
+
+      // Recipient information (optional)
+      // NOTE: In dynamic QR, aliasType and aliasValue are NOT sent here -
+      // they are generated dynamically by the external service that the bridge consumes internally
+      recipient: {
+        // For dynamic QR, these are generated dynamically:
+        // aliasType: "CELULAR", // IDENTIFICACION, CELULAR, EMAIL, TEXT, MERCHANTID, NIT, ACCOUNT_NUMBER
+        // aliasValue: "573001234567",
+        merchantCode: "MERCH-001", // Optional merchant code
+        name: "Test Recipient",
+        documentNumber: "9876543210",
+        documentType: "CC",
+        city: "Medellín",
+        categoryCode: "0000", // For PN: 0000, for PJ: ISO 18245 values
+        countryCode: "CO",
+        postalCode: "050001",
+      },
+
+      // Method options (optional)
+      methodOptions: {
+        subtype: "DINAMIC", // DINAMIC or STATIC
+        duration: 3600, // Duration in seconds from creation time (required for dynamic QR)
+      },
+
+      // Additional metadata (optional)
+      metadata: {
+        // Any additional metadata for payment processing
+      },
     },
   };
 
@@ -184,32 +209,55 @@ export async function createStaticTransfiyaAnchor() {
     secret: SECRET_KEY,
   };
 
-  // Static QR - no transaction amount needed
+  // Static QR Code anchor data according to the Colombia Dynamic QR Code Schema
+  // Note: This uses the same schema structure but with static-specific values
   const anchorData = {
     handle: `anchor:transfiya-static-${Date.now()}@minka.io`,
     target: "target:test-account",
-    schema: "transfiya-qr-code",
     custom: {
-      pointOfInitiationMethod: "ESTATICO", // Static QR
-      merchantAccountInformation: {
-        aliasType: "EMAIL",
+      // Transaction details (required)
+      // For static QR, amount can be 0 or omitted (user will enter it manually)
+      transaction: {
+        amount: 0, // Static QR - user enters amount manually
+        currencyCode: "170", // COP (Colombian Peso)
+      },
+
+      // Remitant information (optional)
+      remitant: {
+        name: "Static Merchant",
+        documentNumber: "1234567890",
+        documentType: "CC",
+        city: "Bogotá",
+        categoryCode: "5411", // MCC code
+        countryCode: "CO",
+        postalCode: "110111",
+      },
+
+      // Recipient information (optional)
+      // For static QR, aliasType and aliasValue can be provided
+      recipient: {
+        aliasType: "EMAIL", // IDENTIFICACION, CELULAR, EMAIL, TEXT, MERCHANTID, NIT, ACCOUNT_NUMBER
         aliasValue: "merchant@example.com",
         merchantCode: "MERCH-STATIC-001",
+        name: "Static Recipient",
+        documentNumber: "9876543210",
+        documentType: "CC",
+        city: "Bogotá",
+        categoryCode: "5411",
+        countryCode: "CO",
+        postalCode: "110111",
       },
-      merchantName: "Static Merchant",
-      merchantCity: "Bogotá",
-      postalCode: "110111",
-      merchantCategoryCode: "5411",
-      additionalMerchantInformation: {
-        terminal: "TERM-STATIC-001",
-        transactionPorpose: "COMPRAS",
+
+      // Method options (optional)
+      methodOptions: {
+        subtype: "STATIC", // DINAMIC or STATIC
+        duration: 31536000, // Duration in seconds (optional for static, but can be included - 1 year)
       },
-      // For static QR, transaction amount is optional (user will enter it manually)
-      transaction: {
-        amount: "0.00", // Can be omitted, but requires the field
+
+      // Additional metadata (optional)
+      metadata: {
+        // Any additional metadata for payment processing
       },
-      idQr: `QR-STATIC-${Date.now()}`,
-      channel: "APP",
     },
   };
 
@@ -286,17 +334,62 @@ export async function getTransfiyaAnchor(handle: string) {
     );
 
     // Check if it's a QR anchor
-    if (response.data?.data?.schema === "transfiya-qr-code") {
+    const custom = response.data?.data?.custom;
+    if (custom?.["transaction"]) {
       console.log("✅ This is a QR anchor");
-      console.log(
-        "🔑 Alias Value (llave):",
-        response.data?.data?.custom?.["merchantAccountInformation"]?.aliasValue
-      );
-      console.log("📱 QR ID:", response.data?.data?.custom?.["idQr"]);
-      console.log(
-        "💰 Amount:",
-        response.data?.data?.custom?.["transaction"]?.amount
-      );
+
+      // Display transaction information
+      const transaction = custom["transaction"] as any;
+      if (transaction?.amount) {
+        // Convert from base 100 to decimal
+        const amountInCOP = transaction.amount / 100;
+        console.log(
+          `💰 Amount: ${amountInCOP.toFixed(2)} COP (${
+            transaction.amount
+          } in base 100)`
+        );
+      }
+
+      if (transaction?.currencyCode) {
+        console.log(`💱 Currency Code: ${transaction.currencyCode}`);
+      }
+
+      if (transaction?.tax) {
+        const taxInCOP = transaction.tax / 100;
+        console.log(
+          `📊 Tax (IVA): ${taxInCOP.toFixed(2)} COP (${
+            transaction.tax
+          } in base 100)`
+        );
+      }
+
+      // Display recipient information
+      const recipient = custom["recipient"] as any;
+      if (recipient?.aliasValue) {
+        console.log(
+          `🔑 Recipient Alias Value (llave): ${recipient.aliasValue}`
+        );
+        if (recipient?.aliasType) {
+          console.log(`📋 Recipient Alias Type: ${recipient.aliasType}`);
+        }
+      }
+
+      // Display remitant information
+      const remitant = custom["remitant"] as any;
+      if (remitant?.name) {
+        console.log(`👤 Remitant Name: ${remitant.name}`);
+      }
+
+      const methodOptions = custom["methodOptions"] as any;
+      if (methodOptions?.subtype) {
+        console.log(`🔄 QR Type: ${methodOptions.subtype}`);
+      }
+
+      if (methodOptions?.duration) {
+        const duration = methodOptions.duration as number;
+        const hours = duration / 3600;
+        console.log(`⏱️  Duration: ${duration} seconds (${hours} hours)`);
+      }
     }
 
     return response.data;

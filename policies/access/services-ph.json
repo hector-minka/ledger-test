@@ -1,0 +1,79 @@
+{
+  "hash": "",
+  "data": {
+    "parent": "",
+    "handle": "services",
+    "access": [
+      {
+        "action": "any",
+        "signer": {
+          "public": "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw="
+        }
+      }
+    ],
+    "values": [
+      {
+        "action": {
+          "$in": ["read", "query"]
+        },
+        "bearer": {
+          "$signer": {
+            "$circle": "services"
+          }
+        },
+        "record": {
+          "$in": ["intent", "wallet"]
+        }
+      },
+      {
+        "action": "create",
+        "record": "intent",
+        "signer": {
+          "$circle": "services"
+        }
+      },
+      {
+        "action": "create",
+        "record": "intent-proof",
+        "signer": {
+          "$circle": "services"
+        }
+      },
+      {
+        "action": {
+          "$in": ["spend", "commit", "abort"]
+        },
+        "record": "wallet",
+        "signer": {
+          "$circle": "services"
+        }
+      },
+      {
+        "action": {
+          "$in": [
+            "create",
+            "update",
+            "read",
+            "query",
+            "drop",
+            "manage",
+            "access"
+          ]
+        },
+        "record": "anchor",
+        "signer": {
+          "$circle": "services"
+        }
+      }
+    ],
+    "record": "any",
+    "schema": "access"
+  },
+  "luid": "",
+  "meta": {
+    "proofs": [],
+    "status": "created",
+    "moment": "",
+    "owners": []
+  }
+}
