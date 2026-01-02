@@ -24,12 +24,12 @@ const SECRET_KEY = "fiCwMZ406y4uzpCvB+bZZAemToHooagwLGn15We+m0s=";
 // const LEDGER = "hector-ledger-test";
 // // const PUBLIC_SERVER_KEY = "9nwKxTS2IT2CQMtFGw0oWbOWPCkD7NRwSVMin2EQlzA=";
 // const PUBLIC_SERVER_KEY = "MMko0OM/+lNtdKR+D9SvgZul1KiZXjZ5slLkGEBTO9s=";
-// const LEDGER = "alianza-stg";
+const LEDGER = "alianza-stg";
 // const SERVER = "https://ldg-stg.one/api/v2";
 // const SERVER = "https://ldg-stg.one/api/v2";
 // const PUBLIC_SERVER_KEY = "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=";
 
-const LEDGER = "ph-demo";
+// const LEDGER = "ph-demo";
 const SERVER = "https://ldg-stg.one/api/v2";
 // const PUBLIC_SERVER_KEY = "F1jP1QlOt2stfMYmP4E39gMclnuHVEG3Tlo/zIq7vbs=";
 // console.log("SERVER:", SERVER);
@@ -90,25 +90,25 @@ const getOwnerAccessRules = (publicKey: string) => {
 //DEMO CLAIM:
 const claim = {
   action: "transfer",
-  source: {
-    handle: "svgs:234234234@fineract.com.co",
-    custom: {
-      documentNumber: "123456789",
-      documentType: "txid",
-      entityType: "business",
-      name: "Mi Negocio",
-    },
-  },
   //   source: {
-  //     handle: "cacc:62250591@alianza.com.co",
+  //     handle: "svgs:234234234@fineract.com.co",
   //     custom: {
-  //       name: "Portal2",
-  //       documentType: "cc",
-  //       documentNumber: "724609164",
-  //       aliasType: "username",
+  //       documentNumber: "123456789",
+  //       documentType: "txid",
   //       entityType: "business",
+  //       name: "Mi Negocio",
   //     },
   //   },
+  source: {
+    handle: "svgs:622505891@alianza.com.co",
+    custom: {
+      name: "Portal2",
+      documentType: "cc",
+      documentNumber: "724609164",
+      aliasType: "username",
+      entityType: "business",
+    },
+  },
   //   source: {
   //     handle: "svgs:123456789@alianza.com.co",
   //     custom: {

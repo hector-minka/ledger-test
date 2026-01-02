@@ -30,7 +30,7 @@
     "record": "intent",
     "filter": {
       "schema": {
-        "$in": ["payment", "credit-unregulated"]
+        "$in": ["payment"]
       }
     },
     "schema": "status"

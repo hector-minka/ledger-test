@@ -1,0 +1,291 @@
+Llave 3014231521 resuelta localmente en TFY
+
+{
+  "insertId": ".........Zvh6PgTnlx9_87nV1GwA2yR",
+  "jsonPayload": {
+    "level": 20,
+    "axiosReq": {
+      "query": {
+        "labels.aliasValue": "3014231521"
+      },
+      "method": "GET",
+      "url": "https://ach-minka.transferenciasinmediatas.com/v1/signer",
+      "headers": {
+        "Accept": "application/json, text/plain, */*",
+        "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnQiOiJmVDBaRmh0VDU1ang4WGVadkhmMSIsImNsaWVudElkIjoiNTg1NjM1ZTFmODYyOTEyNDUwOWM3MGMxM2U2MmUxOTMiLCJvcmdhbml6YXRpb24iOiIkYWxpYW56YTE4MTUiLCJkb21haW4iOiIkdGluIiwicmVhbG0iOiJvcmdhbml6YXRpb24iLCJzY29wZXMiOlsibWFuYWdlX293bl9yZXNvdXJjZXMiLCJyZWFkLWFsbC1zaWduZXJzIl0sInJvbGVzIjpbImJhbmstb3duZXIiXSwiYmFua0lkIjoiODYwNTMxMzE1IiwiaWF0IjoxNzY1NDY5NTUzLCJleHAiOjE3NjU0NzMxNTMsImlzcyI6Imh0dHBzOi8vbWlua2EuaW8ifQ.Gwac98UbG-d2ORe1pyr5WkADg_Iz62iz9MkRsu0l2yucMbEwomNsORP87SJgZntrSYtrYToXcqgrgDOEfOg8Cw",
+        "Accept-Encoding": "gzip, compress, deflate, br",
+        "User-Agent": "axios/1.12.2"
+      }
+    },
+    "req": {
+      "query": {},
+      "remotePort": 53816,
+      "method": "GET",
+      "params": {
+        "0": "v2/anchors/3014231521"
+      },
+      "remoteAddress": "::ffff:35.191.36.134",
+      "url": "/v2/anchors/3014231521",
+      "id": 425,
+      "headers": {
+        "authorization": "Bearer eyJhbGciOiJFZERTQSIsImtpZCI6Ikk1U0NCa0RJVEM2NlAvN0xxZ2hBU3g5T2YxVnpEV25sWnZ1R1BvQkVPWFU9In0.eyJpc3MiOiJsZWRnZXI6YWxpYW56YSIsInN1YiI6InN5c3RlbUBhbGlhbnphIiwiYXVkIjoidHJhbnNmaXlhLWJyaWRnZSIsImlhdCI6MTc2NTQ3MTk2MCwiZXhwIjoxNzY1NTU4MzYwfQ.4PHnDh52VrioIzT_SvyqCtu3eVuKvCyRZiN3OcFBIBFfPwLW5uxCQz4O35Eq4zGlPahp8oed71InXZV7QH2OCQ",
+        "b3": "0b83909601ddcd90882069043aa5c166-4458a7f5dd6de4e3-1",
+        "host": "alianza-tfy.ph.bridge.rest",
+        "x-cloud-trace-context": "e3a331621894d6df2188e3c7616b9d8a/14569846136040096695",
+        "x-b3-traceid": "0b83909601ddcd90882069043aa5c166",
+        "x-domain": "transfiya",
+        "via": "1.1 google, 1.1 google",
+        "x-use-case": "send.b2p",
+        "x-b3-sampled": "1",
+        "accept-encoding": "gzip, compress, deflate, br",
+        "x-directory": "local",
+        "x-dispatched": "2025-12-11T16:52:39.788Z",
+        "user-agent": "axios/1.11.0",
+        "x-received": "2025-12-11T16:52:39.788Z",
+        "x-b3-spanid": "4458a7f5dd6de4e3",
+        "x-forwarded-proto": "https",
+        "x-forwarded-authorization": "Bearer eyJhbGciOiJFZERTQSIsImtpZCI6ImRicnZhL3VvS3IrdTU0K1pja1NRcmR5NUxPOEVpZlFSdWpGU3VEanVxdGc9In0.eyJpc3MiOiJhbGlhbnphLXByZCIsInN1YiI6InNpZ25lcjphbGlhbnphLXByZCIsImF1ZCI6ImFsaWFuemEiLCJpYXQiOjE3NjU0NzE5NTksImV4cCI6MTc2NTQ3MjAxOX0.bgJuc0zO0p9wn7fYsIl1IvtXugDlqQizMuRysUiq-yROmdQkrdJkDcEcTBkvo8vld9p_X7CklGRrTdBtnTQNDg",
+        "traceparent": "00-0b83909601ddcd90882069043aa5c166-4458a7f5dd6de4e3-01",
+        "accept": "application/json, text/plain, */*",
+        "x-forwarded-for": "216.234.223.151,34.128.142.27,34.48.25.22,34.8.138.82"
+      }
+    },
+    "axiosRes": {
+      "statusCode": 200,
+      "headers": {
+        "date": "Thu, 11 Dec 2025 16:52:40 GMT",
+        "access-control-allow-origin": "*",
+        "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+        "etag": "W/\"432-iGxNLy3LSMTzOG+ah3XRf77IOHg\"",
+        "content-length": "1074",
+        "via": "1.1 google",
+        "content-type": "application/json; charset=utf-8"
+      },
+      "body": {
+        "error": {
+          "message": "Success",
+          "code": 0
+        },
+        "entities": [
+          {
+            "keeper": [
+              {
+                "public": "afe7ca0c847fc3a0627dbf7d4873244764144c3bd7899400305aa6db883b0037",
+                "scheme": "eddsa-ed25519"
+              }
+            ],
+            "handle": "wNtaRT9etBbok1RCWswZg4tnZpRkPMhmiE",
+            "signer_id": "406c39ae-e4f0-4886-88e1-2f485f58cc69",
+            "id": "406c39ae-e4f0-4886-88e1-2f485f58cc69",
+            "labels": {
+              "mobile": "573014231521",
+              "status": "ACTIVE",
+              "consented": "2025-10-09T17:50:10.345-05:00",
+              "bankId": "890903938",
+              "targetSpbviCode": "ENT",
+              "received": "2025-10-09T17:50:10.345-05:00",
+              "createdBy": "SiltL8q0VHwsOqSrknoA",
+              "routerReference": "$bancolombia",
+              "bankAccountType": "SVGS",
+              "bankAccountNumber": "47484813830",
+              "proprietary": "CC",
+              "dispatched": "2025-10-09T17:50:10.345-05:00",
+              "lastName": "RIVERA",
+              "secondName": "PAOLA",
+              "bankName": "Bancolombia",
+              "type": "PERSON",
+              "created": "2021-12-18T21:15:52-05:00",
+              "description": "573014231521",
+              "email": " ",
+              "identification": "1042446443",
+              "aliasType": "PHONE",
+              "secondLastName": "BERNAL",
+              "diceSync": false,
+              "bankBicfi": "1007",
+              "aliasValue": "3014231521",
+              "firstName": "DANIELA",
+              "countryOfResidence": "CO"
+            }
+          }
+        ],
+        "pagination": {
+          "pageSize": 50,
+          "pageNum": 0
+        }
+      }
+    },
+    "pid": 1,
+    "hostname": "v1-bridge-6c4b546d94-bzwx8",
+    "context": "AxiosLoggerInterceptor",
+    "serviceContext": {
+      "service": "v1-bridge-6c4b546d94-bzwx8"
+    },
+    "message": "axios request completed - with debug log data"
+  },
+  "resource": {
+    "type": "k8s_container",
+    "labels": {
+      "location": "us-east4",
+      "container_name": "v1-bridge",
+      "pod_name": "v1-bridge-6c4b546d94-bzwx8",
+      "project_id": "payments-hub-prd",
+      "cluster_name": "cluster",
+      "namespace_name": "alianza-application"
+    }
+  },
+  "timestamp": "2025-12-11T16:52:40.531Z",
+  "severity": "DEBUG",
+  "labels": {
+    "k8s-pod/app_kubernetes_io/instance": "v1-bridge",
+    "logging.gke.io/top_level_controller_name": "v1-bridge",
+    "k8s-pod/pod-template-hash": "6c4b546d94",
+    "logging.gke.io/top_level_controller_type": "Deployment",
+    "compute.googleapis.com/resource_name": "gke-cluster-node-pool-45745eb0-vudf",
+    "k8s-pod/app_kubernetes_io/name": "v1-bridge"
+  },
+  "logName": "projects/payments-hub-prd/logs/stdout",
+  "receiveTimestamp": "2025-12-11T16:52:42.598955897Z"
+}
+
+
+Llave 3014231521 resuelta por DICE
+
+{
+	"insertId": ".........abh6PgTnlx9_87nV1GwA2yR",
+	"jsonPayload": {
+	  "axiosRes": {
+		"statusCode": 200,
+		"body": {
+		  "handle": "wZmfsJDuvWzry5SvmfPoecZriAswQKZACE",
+		  "labels": {
+			"type": "PERSON",
+			"dispatched": "2025-12-11T11:54:56.092-05:00",
+			"lastName": "RIVERA",
+			"received": "2025-12-11T11:54:56.092-05:00",
+			"bankBicfi": "1833",
+			"bankAccountType": "DBMO",
+			"bankAccountNumber": "87042343723",
+			"diceSync": false,
+			"created": "2025-12-11T11:54:56-05:00",
+			"firstName": "DANIELA",
+			"secondName": "PAOLA",
+			"createdBy": "Xd5oO9fuzaDbEiZy5iGH",
+			"bankId": "345544001",
+			"aliasType": "PHONE",
+			"bankName": "BanRep",
+			"consented": "2025-12-11T11:54:56.092-05:00",
+			"status": "ACTIVE",
+			"identification": "1042446443",
+			"routerReference": "$banrep",
+			"aliasValue": "3014231521",
+			"secondLastName": "BERNAL",
+			"targetSpbviCode": "ENT",
+			"proprietary": "CC"
+		  },
+		  "id": "019b0e56-5045-7881-bd87-703c791b40e8",
+		  "signer_id": "019b0e56-5045-7881-bd87-703c791b40e8",
+		  "keeper": [
+			{
+			  "public": "0455875ddb63eab1541e713e0c2037fa2fd270a7803b8ef62e273663cf6d45d6f250fc80f73725b5866b24be6cb3640831702e918936abb6c589b61a00651dfc37",
+			  "scheme": "ecdsa-ed25519"
+			}
+		  ],
+		  "error": {
+			"message": "Success",
+			"code": 0
+		  },
+		  "requestId": "019b0e56-4e04-7000-9f8f-f15431f03ac2"
+		},
+		"headers": {
+		  "access-control-allow-origin": "*",
+		  "content-length": "1034",
+		  "date": "Thu, 11 Dec 2025 16:54:56 GMT",
+		  "via": "1.1 google",
+		  "etag": "W/\"40a-zbVPyrvGcWzyNs7q92T7tl+vSKE\"",
+		  "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+		  "content-type": "application/json; charset=utf-8"
+		}
+	  },
+	  "hostname": "v1-bridge-6c4b546d94-bzwx8",
+	  "req": {
+		"id": 446,
+		"query": {},
+		"remoteAddress": "::ffff:35.191.36.136",
+		"url": "/v2/anchors/3014231521",
+		"params": {
+		  "0": "v2/anchors/3014231521"
+		},
+		"method": "GET",
+		"remotePort": 49760,
+		"headers": {
+		  "traceparent": "00-2d15fb3e6dbbde88206318c10a606c8f-24803794b1bdf9dc-01",
+		  "x-b3-sampled": "1",
+		  "host": "alianza-tfy.ph.bridge.rest",
+		  "x-directory": "centralized",
+		  "x-domain": "transfiya",
+		  "b3": "2d15fb3e6dbbde88206318c10a606c8f-24803794b1bdf9dc-1",
+		  "x-b3-spanid": "24803794b1bdf9dc",
+		  "user-agent": "axios/1.11.0",
+		  "accept-encoding": "gzip, compress, deflate, br",
+		  "x-dispatched": "2025-12-11T16:54:55.030Z",
+		  "x-use-case": "send.b2p",
+		  "accept": "application/json, text/plain, */*",
+		  "x-received": "2025-12-11T16:54:55.029Z",
+		  "x-cloud-trace-context": "ea54914b5b195a1f873bb5e27e6b398c/13848455126101931608",
+		  "x-forwarded-authorization": "Bearer eyJhbGciOiJFZERTQSIsImtpZCI6ImRicnZhL3VvS3IrdTU0K1pja1NRcmR5NUxPOEVpZlFSdWpGU3VEanVxdGc9In0.eyJpc3MiOiJhbGlhbnphLXByZCIsInN1YiI6InNpZ25lcjphbGlhbnphLXByZCIsImF1ZCI6ImFsaWFuemEiLCJpYXQiOjE3NjU0NzIwOTUsImV4cCI6MTc2NTQ3MjE1NX0.zO9fe7-M6J1arlb4uYNGCalk8N84jYcqJRNPXDKNgda8o5g00ynFkCYBnTc3Aa7rxv47VzsYeqXLPieBG1XECg",
+		  "authorization": "Bearer eyJhbGciOiJFZERTQSIsImtpZCI6Ikk1U0NCa0RJVEM2NlAvN0xxZ2hBU3g5T2YxVnpEV25sWnZ1R1BvQkVPWFU9In0.eyJpc3MiOiJsZWRnZXI6YWxpYW56YSIsInN1YiI6InN5c3RlbUBhbGlhbnphIiwiYXVkIjoidHJhbnNmaXlhLWJyaWRnZSIsImlhdCI6MTc2NTQ3MjA5NSwiZXhwIjoxNzY1NTU4NDk1fQ.cF4V1h3kZUxbLZBeo8dw-OI_Qh5nQbYYxb_wJxLo85jXsnkKhMumnnqMmIlCAtpRY7D3q7o8qq5jZuiO3lnAAQ",
+		  "x-forwarded-proto": "https",
+		  "x-b3-traceid": "2d15fb3e6dbbde88206318c10a606c8f",
+		  "via": "1.1 google, 1.1 google",
+		  "x-forwarded-for": "216.234.223.151,34.128.142.27,34.48.25.22,34.8.138.82"
+		}
+	  },
+	  "level": 20,
+	  "message": "axios request completed - with debug log data",
+	  "serviceContext": {
+		"service": "v1-bridge-6c4b546d94-bzwx8"
+	  },
+	  "pid": 1,
+	  "axiosReq": {
+		"url": "https://ach-minka.transferenciasinmediatas.com/v1/signer/lookup.dice",
+		"method": "POST",
+		"body": {
+		  "aliasValue": "3014231521",
+		  "received": "2025-12-11T11:54:55.029-05:00",
+		  "dispatched": "2025-12-11T11:54:55.030-05:00"
+		},
+		"headers": {
+		  "Accept": "application/json, text/plain, */*",
+		  "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnQiOiJmVDBaRmh0VDU1ang4WGVadkhmMSIsImNsaWVudElkIjoiNTg1NjM1ZTFmODYyOTEyNDUwOWM3MGMxM2U2MmUxOTMiLCJvcmdhbml6YXRpb24iOiIkYWxpYW56YTE4MTUiLCJkb21haW4iOiIkdGluIiwicmVhbG0iOiJvcmdhbml6YXRpb24iLCJzY29wZXMiOlsibWFuYWdlX293bl9yZXNvdXJjZXMiLCJyZWFkLWFsbC1zaWduZXJzIl0sInJvbGVzIjpbImJhbmstb3duZXIiXSwiYmFua0lkIjoiODYwNTMxMzE1IiwiaWF0IjoxNzY1NDY5NTUzLCJleHAiOjE3NjU0NzMxNTMsImlzcyI6Imh0dHBzOi8vbWlua2EuaW8ifQ.Gwac98UbG-d2ORe1pyr5WkADg_Iz62iz9MkRsu0l2yucMbEwomNsORP87SJgZntrSYtrYToXcqgrgDOEfOg8Cw",
+		  "Accept-Encoding": "gzip, compress, deflate, br",
+		  "Content-Length": "115",
+		  "Content-Type": "application/json",
+		  "User-Agent": "axios/1.12.2"
+		}
+	  },
+	  "context": "AxiosLoggerInterceptor"
+	},
+	"resource": {
+	  "type": "k8s_container",
+	  "labels": {
+		"namespace_name": "alianza-application",
+		"project_id": "payments-hub-prd",
+		"cluster_name": "cluster",
+		"location": "us-east4",
+		"container_name": "v1-bridge",
+		"pod_name": "v1-bridge-6c4b546d94-bzwx8"
+	  }
+	},
+	"timestamp": "2025-12-11T16:54:56.448Z",
+	"severity": "DEBUG",
+	"labels": {
+	  "k8s-pod/pod-template-hash": "6c4b546d94",
+	  "logging.gke.io/top_level_controller_name": "v1-bridge",
+	  "logging.gke.io/top_level_controller_type": "Deployment",
+	  "compute.googleapis.com/resource_name": "gke-cluster-node-pool-45745eb0-vudf",
+	  "k8s-pod/app_kubernetes_io/instance": "v1-bridge",
+	  "k8s-pod/app_kubernetes_io/name": "v1-bridge"
+	},
+	"logName": "projects/payments-hub-prd/logs/stdout",
+	"receiveTimestamp": "2025-12-11T16:54:57.604196155Z"
+  }

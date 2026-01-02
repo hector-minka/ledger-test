@@ -42,15 +42,6 @@
       },
       {
         "action": {
-          "$in": ["create", "update"]
-        },
-        "record": "policy",
-        "signer": {
-          "$circle": "admin"
-        }
-      },
-      {
-        "action": {
           "$in": ["update", "read", "drop"]
         },
         "record": "report",
@@ -95,7 +86,6 @@
             "intent-proof",
             "ledger",
             "ledger-proof",
-            "policy-proof",
             "report-proof",
             "request",
             "schema",

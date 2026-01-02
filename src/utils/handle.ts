@@ -1,5 +1,5 @@
 // Function to generate a timestamp-based handle following the pattern ^\\d{8}\\d{9}.{3}\\d{15}$
-export const generateTimestampHandle = (): string => {
+export const generateTimestampHandle = (nit: string = "123456789"): string => {
   // Get current timestamp in YYYYMMDD format (8 digits)
   const now = new Date();
   const timestamp =
@@ -8,9 +8,9 @@ export const generateTimestampHandle = (): string => {
     now.getDate().toString().padStart(2, "0");
 
   // Generate 9 random digits
-  const randomDigits = Math.floor(Math.random() * 1000000000)
-    .toString()
-    .padStart(9, "0");
+  //   const randomDigits = Math.floor(Math.random() * 1000000000)
+  //     .toString()
+  //     .padStart(9, "0");
 
   // Fixed 3 characters (you can change these as needed)
   const fixedChars = "TFY";
@@ -20,7 +20,7 @@ export const generateTimestampHandle = (): string => {
     .toString()
     .padStart(15, "0");
 
-  return timestamp + randomDigits + fixedChars + randomDigits15;
+  return timestamp + nit + fixedChars + randomDigits15;
 };
 
 // Function to generate an ISO 8601 timestamp

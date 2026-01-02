@@ -21,7 +21,7 @@ const SECRET_KEY = "fiCwMZ406y4uzpCvB+bZZAemToHooagwLGn15We+m0s=";
 // const SERVER = "https://ldg-dev.one/api/v2";
 // const LEDGER = "payment-hub-staging";
 
-const LEDGER = "quorum-demo";
+const LEDGER = "ph-demo";
 const SERVER = "https://ldg-stg.one/api/v2";
 const PUBLIC_SERVER_KEY = "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A="; // htorohn lpayments-hub-hector-test dev server
 
@@ -104,11 +104,16 @@ async function createEffect() {
           "https://srv-mol-bridge-628322236251.us-east4.run.app/ledger/intent-proof-added",
       },
       filter: {
-        "proofs.0.custom.status": {
-          $in: ["prepared", "accepted", "failed"],
+        schema: {
+          $in: ["credit"],
         },
-        "proofs.0.public": PUBLIC_SERVER_KEY,
       },
+      //   filter: {
+      //     "proofs.0.custom.status": {
+      //       $in: ["prepared", "accepted", "failed"],
+      //     },
+      //     "proofs.0.public": PUBLIC_SERVER_KEY, //F1jP1QlOt2stfMYmP4E39gMclnuHVEG3Tlo/zIq7vbs=
+      //   },
 
       access: [
         {

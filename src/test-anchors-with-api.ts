@@ -79,33 +79,49 @@ export async function createAnchor() {
   try {
     console.log("🔄 Creating anchor with direct API...");
 
+    // const anchorData = {
+    //   handle: "@htorohn3",
+    //   target: "svgs:19345654998@bancorojo.co",
+    //   symbol: "cop",
+    //   custom: {
+    //     aliasType: "username",
+    //     documentType: "cc",
+    //     documentNumber: "0801198608",
+    //     accountType: "svgs",
+    //     accountNumber: "123457",
+    //     firstName: "Hector",
+    //     secondName: "Alfredo",
+    //     lastName: "Toro",
+    //     secondLastName: "del Cid",
+    //     participantCode: "891234918",
+    //     routingCode: "TFY",
+    //   },
+    //   schema: "individual",
+    // };
+
     const anchorData = {
-      handle: "@htorohn3",
-      target: "svgs:19345654998@bancorojo.co",
+      handle: "3023630180",
+      target: "cacc:62250591@alianza.com.co",
       symbol: "cop",
+      schema: "individual",
       custom: {
         aliasType: "username",
+        firstName: "Portal2",
+        lastName: "Equipo2",
         documentType: "cc",
-        documentNumber: "0801198608",
-        accountType: "svgs",
-        accountNumber: "123457",
-        firstName: "Hector",
-        secondName: "Alfredo",
-        lastName: "Toro",
-        secondLastName: "del Cid",
-        participantCode: "891234918",
+        documentNumber: "724609164",
+        participantCode: "800180687",
         routingCode: "TFY",
       },
-      schema: "individual",
     };
 
     const signatureCustom = {
       domain: null,
       status: "active",
-      moment: "2025-04-14T14:23:45.123Z",
-      consented: "2025-04-14T14:23:45.123Z",
-      received: "2025-04-14T14:23:45.123Z",
-      dispatched: "2025-04-14T14:23:45.123Z",
+      moment: dayjs().toISOString(),
+      consented: dayjs().toISOString(),
+      received: dayjs().toISOString(),
+      dispatched: dayjs().toISOString(),
     };
 
     const { hash, signatureDigest, signatureBase64 } = createSignature(

@@ -29,7 +29,7 @@ const SECRET_KEY = "fiCwMZ406y4uzpCvB+bZZAemToHooagwLGn15We+m0s=";
 // const SERVER = "https://ldg-stg.one/api/v2";
 // const PUBLIC_SERVER_KEY = "TXbyuxpHVEzqjaLOya1KCMRRNESZZd9oV9FFDD+1M/A=";
 
-const LEDGER = "ph-demo";
+const LEDGER = "coopcentral-stg";
 const SERVER = "https://ldg-stg.one/api/v2";
 // const PUBLIC_SERVER_KEY = "F1jP1QlOt2stfMYmP4E39gMclnuHVEG3Tlo/zIq7vbs=";
 // console.log("SERVER:", SERVER);
@@ -91,7 +91,7 @@ const getOwnerAccessRules = (publicKey: string) => {
 const claim = {
   action: "transfer",
   source: {
-    handle: "svgs:234234234@fineract.com.co",
+    handle: "svgs:234234235@coopcentral.com.co",
     custom: {
       documentNumber: "123456789",
       documentType: "txid",
@@ -99,50 +99,35 @@ const claim = {
       name: "Mi Negocio",
     },
   },
-  //   source: {
-  //     handle: "cacc:62250591@alianza.com.co",
-  //     custom: {
-  //       name: "Portal2",
-  //       documentType: "cc",
-  //       documentNumber: "724609164",
-  //       aliasType: "username",
-  //       entityType: "business",
-  //     },
-  //   },
-  //   source: {
-  //     handle: "svgs:123456789@alianza.com.co",
-  //     custom: {
-  //       name: "My Business",
-  //       entityType: "business",
-  //       aliasType: "merchcode",
-  //       documentType: "txid",
-  //       documentNumber: "08239020232966",
-  //     },
-  //   },
 
   target: {
     // Esta es una cuenta inactiva, para que el credito devuelva error
-    handle: "svgs:60100000110@crezcamos",
+    handle: "svgs:12345654321@bancorojo",
     custom: {
-      accountRef: "wTfFxPWiXfXfRcA4WMmiCFybKFDLxdMBDT",
-      documentNumber: "63555909",
-      documentType: "cc",
-      entityType: "individual",
-      name: "Mario Alfonso Ruiz Lopez",
-      participantCode: "900515759",
-      participantRef: "$crezcamos",
+      accountRef: "whuNP1sAxduKZWLHWxkiYEeDhMnuC4m2j4",
+      documentNumber: "900123456",
+      documentType: "txid",
+      entityType: "business",
+      name: "Casalinda Inc'",
+      participantCode: "900504001",
+      participantRef: "$bancorojo''",
+      routingCode: "TFY",
     },
   },
-  //   target: {
-  //     handle: "svgs:12345654321@bancorojo",
-  //     custom: {
-  //       accountRef: "wiZnZK3D7BFrJdv5KhPnTGnWtE3j1cSq3z",
-  //       documentNumber: "1010501010",
-  //       documentType: "cc",
-  //       entityType: "individual",
-  //       name: "Mario Alfonso Ruiz Lopez",
-  //     },
+  // target: {
+  //   // Esta es una cuenta inactiva, para que el credito devuelva error
+  //   handle: "svgs:0178005345@banrep",
+  //   custom: {
+  //     accountRef: "wSW1vpZRFtWyR4b8VoBtjWYmVbSmH1ry5s",
+  //     documentNumber: "3131920",
+  //     documentType: "cc",
+  //     entityType: "individual",
+  //     name: "ADOLFO RUIZ",
+  //     participantCode: "860003020",
+  //     participantRef: "$banrep'",
+  //     routingCode: "ENT",
   //   },
+  // },
   symbol: {
     handle: "cop",
   },
@@ -181,7 +166,7 @@ const claim = {
 //   amount: 400,
 // } as any;
 const data = {
-  handle: generateTimestampHandle(),
+  handle: generateTimestampHandle("890203088"),
   claims: [claim],
   schema: "payment", // Changed from "b2p-send" to "payment" to match SDK
   access: getOwnerAccessRules(PUBLIC_KEY),
@@ -190,7 +175,7 @@ const data = {
   },
   custom: {
     routingCode: "TFY",
-    useCase: "send.b2p",
+    useCase: "send.p2p",
   },
 };
 

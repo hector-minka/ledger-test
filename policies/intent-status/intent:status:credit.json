@@ -33,9 +33,6 @@
           },
           {
             "public": "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw="
-          },
-          {
-            "$circle": "services"
           }
         ],
         "status": {
@@ -46,7 +43,7 @@
     "record": "intent",
     "filter": {
       "schema": {
-        "$in": ["credit-regulated"]
+        "$in": ["credit"]
       }
     },
     "schema": "status"

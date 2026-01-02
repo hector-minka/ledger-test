@@ -7,13 +7,13 @@ import { signJWT } from "./jwt-auth";
 // Informacion para firmar los proof
 
 // htorohn
-const SIGNER = "htorohn";
-const PUBLIC_KEY = "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw=";
-const SECRET_KEY = "fiCwMZ406y4uzpCvB+bZZAemToHooagwLGn15We+m0s=";
+// const SIGNER = "htorohn";
+// const PUBLIC_KEY = "YiY9jEkH3wldB7YWGvc/Ht2VgsYY7JU2OSSaE7DvtYw=";
+// const SECRET_KEY = "fiCwMZ406y4uzpCvB+bZZAemToHooagwLGn15We+m0s=";
 
-// const SIGNER = "alianza";
-// const PUBLIC_KEY = "dbrva/uoKr+u54+ZckSQrdy5LO8EifQRujFSuDjuqtg=";
-// const SECRET_KEY = "kzBwqXeg/uqda3jMZ97pAeLIfXT9eMbd/m+psyyYlVo=";
+const SIGNER = "servibanca-stg";
+const PUBLIC_KEY = "A/HXGHvsJMDl9QF3I5unrYjtLGYqnvTkL7kfrbcOmRk=";
+const SECRET_KEY = "ojMpEpQIzAiX5pxTuf7ZwMZSdwoK0dxo9FJf1jZ7XTQ=";
 
 // Llaves Alianza
 // const SIGNER = "alianza-bridge";
@@ -36,7 +36,7 @@ const SECRET_KEY = "fiCwMZ406y4uzpCvB+bZZAemToHooagwLGn15We+m0s=";
 // const PUBLIC_SERVER_KEY = "MMko0OM/+lNtdKR+D9SvgZul1KiZXjZ5slLkGEBTO9s=";
 // const PUBLIC_SERVER_KEY = "sWf+wVQmbs+1lrjOpfwetHHMchQxDdEHVoCl6+1v1CI="; // htorohn lpayments-hub-hector-test dev server
 
-const LEDGER = "coopcentral-stg";
+// const LEDGER = "coopcentral-stg";
 // const LEDGER = "alianza-stg";
 const SERVER = "https://ldg-stg.one/api/v2";
 // const SERVER = "https://ledger.minka.io/api/v2";
@@ -47,7 +47,7 @@ const SERVER = "https://ldg-stg.one/api/v2";
 // const SECRET_KEY = "PWinr3kv7wI46SlfNLHJZu54IO2aann4H8hHYr3Ij/s=";
 
 // const LEDGER = "ph-demo";
-// const LEDGER = "alianza-stg";
+const LEDGER = "servibanca";
 // const PUBLIC_SERVER_KEY = "F1jP1QlOt2stfMYmP4E39gMclnuHVEG3Tlo/zIq7vbs=";
 
 // const getOwnerAccessRules = (publicKey: string) => {
@@ -87,22 +87,46 @@ const SERVER = "https://ldg-stg.one/api/v2";
 //     participantCode: "8224",
 //   },
 // };
+// const anchorData = {
+//   handle: "00789456149",
+//   target: "svgs:00789456149@fineract.com.co",
+//   symbol: "cop",
+//   schema: "business",
+//   custom: {
+//     name: "My Business",
+//     aliasType: "merchcode",
+//     routingCode: "TFY",
+//     documentType: "txid",
+//     documentNumber: "08239020232966",
+//     participantCode: "800180687", //Alianza NIT
+//     maxAmountOfTransfer: 10000000,
+//     dailyCountOfTransfersLimit: 100,
+//     dailySumAmountOfTransfersLimit: 100000000,
+//   },
+// };
 const anchorData = {
-  handle: "00789456149",
-  target: "svgs:00789456149@fineract.com.co",
+  handle: "@345891012123456789",
+  wallet: "DICE",
+  target: "svgs:1234567890@servibanca.com.co",
   symbol: "cop",
-  schema: "business",
   custom: {
-    name: "My Business",
-    aliasType: "merchcode",
-    routingCode: "TFY",
-    documentType: "txid",
-    documentNumber: "08239020232966",
-    participantCode: "800180687", //Alianza NIT
-    maxAmountOfTransfer: 10000000,
-    dailyCountOfTransfersLimit: 100,
-    dailySumAmountOfTransfersLimit: 100000000,
+    aliasType: "username",
+    documentType: "cc",
+    documentNumber: "1234567890",
+    accountType: "svgs",
+    accountNumber: "1234567890",
+    firstName: "John",
+    secondName: "Doe",
+    lastName: "Doe",
+    secondLastName: "Doe",
+    entityType: "individual",
+    targetSpbviCode: "TFY",
+    participantCode: "900504001",
+    directory: "local",
+    transactionReferenceNumber: "1234567890",
+    transactionAmount: 2000000,
   },
+  schema: "dynamic-keys",
 };
 // const anchorData = {
 //   handle: "@i234234235",
@@ -265,8 +289,7 @@ export const getAnchorWithApi = async (anchorHandle: string) => {
     });
     console.log("JWT: ", jwt);
     console.log("URL: ", `${SERVER}/anchors/${anchorHandle}`);
-
-    const headers = {
+    console.log("HEADERS: ", {
       "Content-Type": "application/json",
       "x-ledger": LEDGER,
       Authorization: `Bearer ${jwt}`,
@@ -274,11 +297,19 @@ export const getAnchorWithApi = async (anchorHandle: string) => {
       "x-dispatched": dayjs().toISOString(),
       "x-domain": "transfiya",
       "x-use-case": "send.b2p",
-      "x-directory": "centralized",
-    };
-    console.log("HEADERS: ", headers);
+      "x-directory": "local",
+    });
     const response = await axios.get(`${SERVER}/anchors/${anchorHandle}`, {
-      headers,
+      headers: {
+        "Content-Type": "application/json",
+        "x-ledger": LEDGER,
+        Authorization: `Bearer ${jwt}`,
+        "x-received": dayjs().toISOString(),
+        "x-dispatched": dayjs().toISOString(),
+        "x-domain": "transfiya",
+        "x-use-case": "send.b2p",
+        "x-directory": "local",
+      },
     });
 
     console.info("ANCHOR GET RESPONSE:", response.data);
